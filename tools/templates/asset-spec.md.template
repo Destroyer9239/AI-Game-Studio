@@ -1,0 +1,28 @@
+# __ASSET_ID__
+
+Status: draft. Agent must complete this specification and implement the generator.
+
+## Purpose and original design
+- Gameplay role, silhouette, front/rear cues and original design features:
+- Dimensions in meters, origin/pivot and attachment points:
+- Blender +Y forward/+Z up → Godot -Z forward/+Y up:
+- Required named components and emissive elements:
+
+## Runtime budget
+- Triangle and material budgets (also set in manifest):
+- Target view distance, texture resolution, LOD needs:
+- Collision: simple static import suffix (-colonly/-convcolonly), or explicitly designed runtime body for moving gameplay assets:
+
+## Surface plan
+- Metallic hull, roughness variation, emissive materials:
+- Solid PBR values or texture-based materials:
+- UVs: none / authored required / explicitly allowed smart unwrap:
+- Concept/texture request JSON, workflow, seed and model provenance if used:
+- Seam checks, alpha handling, and map color spaces:
+
+## Integration and acceptance
+- Generated asset wrapper: game/scenes/assets/__ASSET_ID__.tscn
+- Intended gameplay parent scene (do not change main scene without task need):
+- Expected scale, silhouette, collision and material checks:
+- Run tools/pipeline.ps1 test-pipeline -Asset __ASSET_ID__.
+- Inspect generated/previews/__ASSET_ID__.png and record the report path/results here.

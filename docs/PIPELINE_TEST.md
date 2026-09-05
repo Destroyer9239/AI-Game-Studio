@@ -2,6 +2,10 @@
 
 Verified on 2026-09-05 with Blender 5.0.1 and Godot 4.7.2.stable.official.ed1daf0bf on Windows.
 
+This records the original proof. The pipeline is now committed as `531e5fa`.
+For the current master command and report locations, read `AUTOMATED_WORKFLOW.md`.
+Godot command examples below use the current preferred executable path.
+
 ## Result
 
 | Stage | Result | Evidence |
@@ -13,7 +17,7 @@ Verified on 2026-09-05 with Blender 5.0.1 and Godot 4.7.2.stable.official.ed1daf
 | Main scene runtime | PASS | Headless startup ran 120 frames at a fixed 60 FPS with no logged errors. |
 | Rendered preview | PASS | Real OpenGL Compatibility rendering on NVIDIA GeForce RTX 5070 Ti; PNG captured and visually inspected. |
 
-AGENTS.md and all existing project directories/files were inspected before edits. The initial project contained README.md, AGENTS.md and an empty Godot configuration, with no existing scenes, scripts or assets. The clean initial commit `da77b3c` was checkpointed with Git tag `pipeline-test-before` before changes. Implementation files are left uncommitted for review.
+AGENTS.md and all existing project directories/files were inspected before edits. The initial project contained README.md, AGENTS.md and an empty Godot configuration, with no existing scenes, scripts or assets. The clean initial commit `da77b3c` was checkpointed with Git tag `pipeline-test-before` before changes. The working proof was subsequently committed as `531e5fa`.
 
 ## Generated content
 
@@ -50,12 +54,12 @@ git tag pipeline-test-before da77b3c
 pwsh -NoProfile -File tools/validate_pipeline.ps1 -Capture
 ```
 
-The initial Blender execution redirected console output to `generated/pipeline-test/blender.log`. The validator uses the executable on PATH if available, otherwise the installed Downloads path below. Override it with `-GodotPath` on another machine. Omit `-Capture` for entirely headless validation.
+The initial Blender execution redirected console output to `generated/pipeline-test/blender.log`. The validator uses the executable on PATH if available, otherwise the preferred C:\Tools\Godot path below. Override it with `-GodotPath` on another machine. Omit `-Capture` for entirely headless validation.
 
 The validator runs these Godot operations, adding an absolute `--log-file` path before the arguments:
 
 ```powershell
-$godotExe = 'C:\Users\ronan\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe'
+$godotExe = 'C:\Tools\Godot\godot.exe'
 & $godotExe --headless --path game --editor --import
 & $godotExe --headless --path game --script res://scripts/validate_pipeline.gd
 & $godotExe --headless --path game --quit-after 120 --fixed-fps 60
@@ -65,7 +69,7 @@ $godotExe = 'C:\Users\ronan\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2
 To launch the finished interactive test from any directory:
 
 ```powershell
-& 'C:\Users\ronan\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64.exe' --path 'C:\Users\ronan\AI-Game-Studio\game'
+& 'C:\Tools\Godot\godot.exe' --path 'C:\Users\ronan\AI-Game-Studio\game'
 ```
 
 ## Diagnostics and limitations

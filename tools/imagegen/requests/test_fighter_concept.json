@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "test_fighter_concept",
+  "asset": "test_fighter",
+  "kind": "concept",
+  "workflow": "tools/imagegen/workflows/sdxl-basic.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 94721,
+  "width": 1024,
+  "height": 1024,
+  "prompt": "Original compact military science fiction interceptor, broad swept wings, tapered central fuselage, framed teal cockpit, twin rear cyan ion engines, amber markings, clear front and rear, neutral studio background, three quarter concept painting, no franchise designs",
+  "negative": "text, watermark, logo, recognizable franchise spacecraft, extra wings, cropped spacecraft",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Prepared request only. No model has been installed and no AI image has been generated."
+}

@@ -2,3 +2,8 @@ game/.godot/
 *.blend1
 *.blend2
 generated/pipeline-test/
+generated/reports/
+generated/previews/
+generated/image-jobs/
+__pycache__/
+*.pyc

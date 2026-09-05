@@ -24,7 +24,7 @@ func _validate() -> void:
 	var scene := packed.instantiate()
 	root.add_child(scene)
 	await process_frame
-	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/test_fighter_scene.tscn", "Incorrect main scene")
+	check(ResourceLoader.exists(ProjectSettings.get_setting("application/run/main_scene", "")), "Missing configured main scene")
 	check(scene.get_node("Camera3D").current, "Camera is not active")
 	var fighter := scene.get_node("FighterPivot/TestFighter")
 	var meshes := fighter.find_children("*", "MeshInstance3D", true, false)

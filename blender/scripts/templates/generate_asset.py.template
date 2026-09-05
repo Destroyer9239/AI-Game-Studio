@@ -1,0 +1,25 @@
+"""Agent-authored original asset generator. Complete build_asset() before use."""
+from pathlib import Path
+import bpy
+
+ROOT = Path(__file__).resolve().parents[2]
+BLEND = ROOT / "blender/projects/__ASSET_ID__.blend"
+
+
+def build_asset():
+    # Implement meshes, sensible names, materials, optional UVs and collision.
+    # Use meters; +Y nose/forward, +Z up. Apply sensible scales before export.
+    # Do not replace this with a placeholder primitive and call the asset complete.
+    raise NotImplementedError("Author the original design in docs/assets/__ASSET_ID__.md first")
+
+
+if __name__ == "__main__":
+    bpy.ops.object.select_all(action="SELECT")
+    bpy.ops.object.delete(use_global=False)
+    build_asset()
+    bpy.context.scene.unit_settings.system = "METRIC"
+    bpy.context.scene.unit_settings.scale_length = 1.0
+    bpy.context.preferences.filepaths.save_version = 0
+    BLEND.parent.mkdir(parents=True, exist_ok=True)
+    bpy.ops.wm.save_as_mainfile(filepath=str(BLEND))
+    print(f"PIPELINE_BLENDER_PASS: {BLEND}")

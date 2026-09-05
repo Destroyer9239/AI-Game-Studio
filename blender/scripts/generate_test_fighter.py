@@ -5,6 +5,7 @@ Only solid PBR materials are used, so texture UVs are unnecessary.
 """
 from pathlib import Path
 import math
+import sys
 import bpy
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -140,6 +141,9 @@ def main():
     GLB.parent.mkdir(parents=True, exist_ok=True)
     bpy.context.preferences.filepaths.save_version = 0
     bpy.ops.wm.save_as_mainfile(filepath=str(BLEND))
+    if "--blend-only" in sys.argv:
+        print(f"PIPELINE_BLENDER_PASS: {BLEND} ({BLEND.stat().st_size} bytes)")
+        return
     bpy.ops.export_scene.gltf(filepath=str(GLB), export_format="GLB",
                              export_apply=True, export_yup=True,
                              export_cameras=False, export_lights=False)

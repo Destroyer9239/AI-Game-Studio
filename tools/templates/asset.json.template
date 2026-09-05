@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "__ASSET_ID__",
+  "status": "draft",
+  "specification": "docs/assets/__ASSET_ID__.md",
+  "generator": "blender/scripts/generate___ASSET_ID__.py",
+  "blend": "blender/projects/__ASSET_ID__.blend",
+  "model": "game/assets/models/__ASSET_ID__.glb",
+  "scene": "game/scenes/assets/__ASSET_ID__.tscn",
+  "uv_mode": "none",
+  "require_collision": true,
+  "max_triangles": 20000,
+  "max_materials": 8,
+  "required_nodes": ["Hull"],
+  "emissive_nodes": []
+}

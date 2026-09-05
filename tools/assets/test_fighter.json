@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "test_fighter",
+  "status": "ready",
+  "specification": "docs/assets/test_fighter.md",
+  "generator": "blender/scripts/generate_test_fighter.py",
+  "blend": "blender/projects/test_fighter.blend",
+  "model": "game/assets/models/test_fighter.glb",
+  "scene": "game/scenes/assets/test_fighter.tscn",
+  "uv_mode": "none",
+  "require_collision": true,
+  "max_triangles": 12000,
+  "max_materials": 8,
+  "required_nodes": ["Fuselage_Main", "Cockpit_Canopy", "Wing_Left", "Wing_Right", "Engine_Left_Emissive_Core", "Engine_Right_Emissive_Core"],
+  "emissive_nodes": ["Engine_Left_Emissive_Core", "Engine_Right_Emissive_Core"]
+}
