@@ -1,0 +1,4 @@
+game/.godot/
+*.blend1
+*.blend2
+generated/pipeline-test/

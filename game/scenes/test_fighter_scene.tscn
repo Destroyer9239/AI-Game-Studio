@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/test_fighter.glb" id="1_fighter"]
+[ext_resource type="Script" path="res://scripts/test_fighter_demo.gd" id="2_demo"]
+
+[sub_resource type="Environment" id="Environment_space"]
+background_mode = 1
+background_color = Color(0.007, 0.012, 0.027, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.39, 0.54, 0.7, 1)
+ambient_light_energy = 0.45
+tonemap_mode = 2
+
+[node name="TestFighterScene" type="Node3D"]
+script = ExtResource("2_demo")
+
+[node name="FighterPivot" type="Node3D" parent="."]
+
+[node name="TestFighter" parent="FighterPivot" instance=ExtResource("1_fighter")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(9, 9, -11)
+current = true
+fov = 43.0
+near = 0.1
+far = 200.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_space")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, -30, 0)
+light_color = Color(0.86, 0.93, 1, 1)
+light_energy = 1.0
+shadow_enabled = true
+
+[node name="RimLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-25, 140, 0)
+light_color = Color(0.2, 0.6, 1, 1)
+light_energy = 0.65
+
+[node name="WarmFill" type="OmniLight3D" parent="."]
+position = Vector3(-5, 3, -4)
+light_color = Color(1, 0.58, 0.27, 1)
+light_energy = 1.7
+omni_range = 16.0
+
+[node name="DepthMarkers" type="Node3D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="HUD"]
+offset_left = 38.0
+offset_top = 30.0
+theme_override_colors/font_color = Color(0.89, 0.94, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "KESTREL / 01"
+
+[node name="Subtitle" type="Label" parent="HUD"]
+offset_left = 40.0
+offset_top = 69.0
+theme_override_colors/font_color = Color(0.38, 0.72, 0.82, 1)
+theme_override_font_sizes/font_size = 15
+text = "EXPERIMENTAL FIGHTER     /     ASSET INSPECTION"
+
+[node name="Controls" type="Label" parent="HUD"]
+offset_left = 40.0
+offset_top = 728.0
+theme_override_colors/font_color = Color(0.66, 0.74, 0.83, 1)
+theme_override_font_sizes/font_size = 17
+text = "SPACE  Pause rotation     /     R  Reset view     /     ESC  Exit"
+
+[node name="Status" type="Label" parent="HUD"]
+offset_left = 40.0
+offset_top = 757.0
+theme_override_colors/font_color = Color(0.38, 0.72, 0.82, 1)
+theme_override_font_sizes/font_size = 13
+text = "AUTO ROTATION  /  12 DEG PER SECOND"
