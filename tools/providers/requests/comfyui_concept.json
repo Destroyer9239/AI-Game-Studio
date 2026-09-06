@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "name": "fighter_concept_01",
+  "asset_type": "concept_art",
+  "operation": "generate_image",
+  "provider": "comfyui",
+  "image_request": "tools/imagegen/requests/test_fighter_concept.json"
+}

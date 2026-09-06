@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "interceptor_01",
+  "asset_type": "spacecraft",
+  "provider": "meshy",
+  "operation": "generate_3d",
+  "method": "text",
+  "quality": "hero",
+  "prompt": "Original heavy sci-fi interceptor, compact reinforced central hull, forward cockpit, swept armored wings and two widely spaced rear engines. Clear front/rear and an original silhouette; no franchise designs or logos.",
+  "source_images": [],
+  "options": {"ai_model": "meshy-6", "target_polycount": 12000},
+  "cleanup": {"longest_side_m": 12.0, "origin": "center", "max_triangles": 20000, "allow_decimate": false, "lod_ratio": 0.5},
+  "provenance": "Original user-directed design. Check Meshy account/output license before distribution. Text preview is geometry only; paid refine needs separate approval."
+}

@@ -34,6 +34,7 @@ func _validate() -> void:
 	check(not meshes.is_empty(), "No visible asset meshes")
 	var triangles := 0
 	var materials: Dictionary = {}
+	var material_names: Dictionary = {}
 	for child in meshes:
 		var instance := child as MeshInstance3D
 		check(instance.mesh != null, "Empty mesh: " + str(child.name))
@@ -51,11 +52,26 @@ func _validate() -> void:
 			check(material != null, "Missing material: " + str(child.name))
 			if material != null:
 				materials[material.get_instance_id()] = true
+				material_names[material.resource_name] = true
+				var requirements: Dictionary = config.get("required_texture_slots", {})
+				var slots: Array = requirements.get(material.resource_name, [])
+				var pbr := material as StandardMaterial3D
+				for slot in slots:
+					check(pbr != null, "PBR material required")
+					if pbr == null:
+						continue
+					match str(slot):
+						"baseColorTexture": check(pbr.albedo_texture != null, "Base-color texture lost")
+						"normalTexture": check(pbr.normal_enabled and pbr.normal_texture != null, "Normal map lost")
+						"metallicRoughnessTexture": check(pbr.metallic_texture != null and pbr.roughness_texture != null, "Metallic/roughness map lost")
+						"emissiveTexture": check(pbr.emission_enabled and pbr.emission_texture != null, "Emission map lost")
 			if config.uv_mode != "none":
 				var uv: Variant = arrays[Mesh.ARRAY_TEX_UV]
 				check(uv != null and uv.size() == vertices.size(), "Missing UVs: " + str(child.name))
 	check(triangles > 0 and triangles <= int(config.max_triangles), "Triangle budget exceeded or empty geometry: %d" % triangles)
 	check(materials.size() <= int(config.max_materials), "Material budget exceeded: %d" % materials.size())
+	for expected_material in config.get("required_texture_slots", {}):
+		check(material_names.has(expected_material), "Required PBR material missing: " + str(expected_material))
 	if config.require_collision:
 		var shapes := asset.find_children("*", "CollisionShape3D", true, false)
 		check(not shapes.is_empty(), "Missing collision setup")

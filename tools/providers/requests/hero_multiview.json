@@ -1,0 +1,10 @@
+{
+  "name": "hero_interceptor_views",
+  "asset_type": "spacecraft",
+  "quality": "hero",
+  "complexity": "high",
+  "cost_policy": "consider_paid",
+  "provider": "auto",
+  "prompt": "Original heavy military sci-fi interceptor with a compact armored fuselage, broad separated engine nacelles, forward cockpit and swept stabilizers. Consistent original silhouette without franchise designs or logos.",
+  "cleanup": {"longest_side_m": 12, "origin": "center", "max_triangles": 24000, "lod_ratio": 0.5}
+}

@@ -7,3 +7,17 @@ generated/previews/
 generated/image-jobs/
 __pycache__/
 *.pyc
+.env
+.env.*
+*.secret
+*.secrets.json
+secrets/
+generated/approvals/
+generated/provider-jobs/
+generated/provider-fixtures/
+generated/processed/
+generated/raw/
+generated/reference-plans/
+generated/manifests/unit_*.json
+generated/references/unit_*/
+.VSCodeCounter/

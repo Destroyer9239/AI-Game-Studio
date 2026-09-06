@@ -1,0 +1,6 @@
+{
+  "prototype": {"max_triangles": 3000, "max_materials": 4, "lod_ratio": 0, "material_review": "basic", "preview_review": true},
+  "background": {"max_triangles": 6000, "max_materials": 4, "lod_ratio": 0.4, "material_review": "basic", "preview_review": true},
+  "standard": {"max_triangles": 20000, "max_materials": 12, "lod_ratio": 0.5, "material_review": "preserve_pbr", "preview_review": true},
+  "hero": {"max_triangles": 40000, "max_materials": 16, "lod_ratio": 0.5, "material_review": "preserve_pbr_and_visual_review", "preview_review": true}
+}

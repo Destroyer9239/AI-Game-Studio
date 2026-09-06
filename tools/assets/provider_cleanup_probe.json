@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "provider_cleanup_probe",
+  "status": "ready",
+  "generation_method": "external_import",
+  "specification": "docs/assets/provider_cleanup_probe.md",
+  "generator": "blender/scripts/generate_provider_cleanup_probe.py",
+  "blend": "blender/projects/provider_cleanup_probe.blend",
+  "model": "game/assets/models/provider_cleanup_probe.glb",
+  "scene": "game/scenes/assets/provider_cleanup_probe.tscn",
+  "uv_mode": "required",
+  "require_collision": true,
+  "max_triangles": 3000,
+  "max_materials": 12,
+  "required_nodes": [],
+  "emissive_nodes": [],
+  "required_texture_slots": {
+    "PBR_Fixture": [
+      "baseColorTexture",
+      "metallicRoughnessTexture",
+      "emissiveTexture",
+      "normalTexture"
+    ]
+  }
+}

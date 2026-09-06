@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "asset_name": "test_fighter",
+  "asset_type": "spacecraft",
+  "provider": "blender",
+  "generation_method": "procedural",
+  "source_prompt": "Regenerate the original Kestrel pipeline fighter from its authored procedural Blender script.",
+  "source_images": [],
+  "generation_date": "2026-09-06T03:12:54.903319+00:00",
+  "original_file": "game/assets/models/test_fighter.glb",
+  "original_sha256": "1e8d1ee203642e410cc565512be56fbbb115e002b2e38dba137fea3ffd057557",
+  "processed_file": "game/assets/models/test_fighter.glb",
+  "polygon_count": 3520,
+  "textures": [
+    {
+      "material": "Hull_Titanium_Slate",
+      "slots": {}
+    },
+    {
+      "material": "Armor_Pale_Ceramic_Metal",
+      "slots": {}
+    },
+    {
+      "material": "Engine_Graphite",
+      "slots": {}
+    },
+    {
+      "material": "Cockpit_Deep_Teal",
+      "slots": {}
+    },
+    {
+      "material": "Identification_Amber",
+      "slots": {}
+    },
+    {
+      "material": "Engine_Ion_Emission",
+      "slots": {}
+    }
+  ],
+  "scale": {
+    "units": "meters",
+    "source": "authored procedural generator"
+  },
+  "collision_status": "PASS_GODOT_VALIDATOR",
+  "Godot_import_status": "PASS",
+  "license_provenance_notes": "Original project geometry; local Blender generation, no external service.",
+  "provider_job": "12bdf56f1dad41d5b6da524fb01e6d67",
+  "asset_id": "test_fighter",
+  "quality_tier": "standard",
+  "provider_model": null,
+  "processed_blender_file": "blender/projects/test_fighter.blend",
+  "final_glb": "game/assets/models/test_fighter.glb",
+  "lods": [
+    "Godot automatic mesh LOD import; inspect imported geometry and distances for this asset"
+  ],
+  "Godot_scene": "game/scenes/assets/test_fighter.tscn",
+  "validation": {
+    "status": "PASS",
+    "log": "generated/provider-jobs/12bdf56f1dad41d5b6da524fb01e6d67/local.log"
+  },
+  "preview": "generated/previews/test_fighter.png",
+  "preview_review": "PASS_AGENT_VISUAL_REVIEW_2026-09-05",
+  "reference_views": {},
+  "cost": {
+    "estimate": {
+      "amount": 0,
+      "unit": "credits",
+      "basis": "Local Blender; no API spend"
+    },
+    "reported_credits": 0
+  },
+  "reference_images": [],
+  "processed_sha256": "1e8d1ee203642e410cc565512be56fbbb115e002b2e38dba137fea3ffd057557",
+  "polygon_count_unit": "triangles excluding collision"
+}

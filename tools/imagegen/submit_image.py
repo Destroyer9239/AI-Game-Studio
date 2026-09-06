@@ -10,7 +10,7 @@ from pathlib import Path
 import re
 import time
 from urllib.parse import urlencode, urlparse
-from urllib.request import Request, build_opener, ProxyHandler
+from urllib.request import Request, build_opener, ProxyHandler, HTTPRedirectHandler
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -51,34 +51,39 @@ def build_workflow(request):
     return replace(json.loads(project_path(request["workflow"]).read_text(encoding="utf-8")))
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("request")
-    parser.add_argument("--execute", action="store_true")
-    parser.add_argument("--server", default="http://127.0.0.1:8188")
-    parser.add_argument("--timeout", type=int, default=180)
-    args = parser.parse_args()
-    endpoint = urlparse(args.server)
+class NoRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise ValueError('Local image API redirects are not allowed')
+
+
+def validate_server(server):
+    endpoint = urlparse(server)
     if endpoint.scheme != "http" or endpoint.hostname not in ("127.0.0.1", "localhost", "::1") or endpoint.path not in ("", "/") or endpoint.username or endpoint.query or endpoint.fragment:
         raise ValueError("Only a local loopback ComfyUI HTTP endpoint is supported")
-    if args.timeout < 1:
+
+
+def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout=180):
+    validate_server(server)
+    if timeout < 1:
         raise ValueError("Timeout must be positive")
-    request = json.loads(project_path(args.request).read_text(encoding="utf-8"))
+    request = json.loads(project_path(request_file).read_text(encoding="utf-8-sig"))
     workflow = build_workflow(request)
     job = project_path("generated/image-jobs/" + request["id"] + "-" + uuid.uuid4().hex[:12])
     job.mkdir(parents=True)
     (job / "request.json").write_text(json.dumps(request, indent=2), encoding="utf-8")
     (job / "workflow.api.json").write_text(json.dumps(workflow, indent=2), encoding="utf-8")
-    record = {"status": "DRY_RUN", "request": request["id"], "files": [], "workflow_sha256": hashlib.sha256(json.dumps(workflow, sort_keys=True).encode()).hexdigest()}
-    opener = build_opener(ProxyHandler({}))
+    record = {"status": "DRY_RUN", "job": job.relative_to(ROOT).as_posix(), "request": request["id"], "files": [], "workflow_sha256": hashlib.sha256(json.dumps(workflow, sort_keys=True).encode()).hexdigest()}
+    opener = build_opener(ProxyHandler({}), NoRedirect())
     def http(route, body=None, binary=False):
         payload = None if body is None else json.dumps(body).encode()
-        req = Request(args.server.rstrip("/") + route, data=payload, headers={"Content-Type": "application/json"})
+        req = Request(server.rstrip("/") + route, data=payload, headers={"Content-Type": "application/json"})
         with opener.open(req, timeout=10) as response:
-            data = response.read()
+            data = response.read(64 * 1024 * 1024 + 1)
+        if len(data) > 64 * 1024 * 1024:
+            raise ValueError('Image API response exceeds 64 MiB')
         return data if binary else json.loads(data)
     try:
-        if args.execute:
+        if execute:
             record["status"] = "RUNNING"
             http("/system_stats")
             queued = http("/prompt", {"prompt": workflow, "client_id": uuid.uuid4().hex})
@@ -86,7 +91,7 @@ def main():
                 raise RuntimeError(f"ComfyUI rejected workflow: {queued}")
             prompt_id = queued["prompt_id"]
             record["prompt_id"] = prompt_id
-            deadline = time.monotonic() + args.timeout
+            deadline = time.monotonic() + timeout
             while time.monotonic() < deadline:
                 entry = http("/history/" + prompt_id).get(prompt_id)
                 if entry:
@@ -115,6 +120,17 @@ def main():
     finally:
         (job / "result.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
         print(f"IMAGE_JOB_{record['status']}: {job}")
+    return record
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('request')
+    parser.add_argument('--execute', action='store_true')
+    parser.add_argument('--server', default='http://127.0.0.1:8188')
+    parser.add_argument('--timeout', type=int, default=180)
+    args = parser.parse_args()
+    run_job(args.request, args.execute, args.server, args.timeout)
 
 
 if __name__ == "__main__":

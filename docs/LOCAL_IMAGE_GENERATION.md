@@ -56,6 +56,11 @@ ComfyUI is preferred over assembling a new Diffusers environment because its por
 
 ## Architecture already prepared
 
+The multi-provider stage now includes a ComfyUI configuration/health adapter and
+unified manifest integration; its real loopback HTTP protocol test passes against
+a mock backend. This does not change the installation or inference status.
+See [ASSET_PROVIDERS.md](ASSET_PROVIDERS.md) for routing and image-purpose guidance.
+
 - `tools/imagegen/requests/`: semantic job records (asset, purpose, prompt, negative prompt, seed, size, model source/license and constraints).
 - `tools/imagegen/workflows/`: checked-in API-format graphs using core local nodes.
 - `tools/imagegen/submit_image.py`: dry-run by default; explicit `--execute` submits to an existing loopback service, polls with a deadline, detects failures and saves PNG output hashes and metadata. It does not install or start anything. A timeout records the prompt ID without interrupting unrelated jobs.

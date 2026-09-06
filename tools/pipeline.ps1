@@ -1,12 +1,19 @@
 param(
     [Parameter(Position=0)]
-    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor')]
+    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview')]
     [string]$Action = 'validate',
     [string]$Asset = 'test_fighter',
     [string]$GodotPath,
     [string]$BlenderPath,
     [switch]$Capture,
-    [ValidateRange(0,3600)][int]$Frames = 0
+    [ValidateRange(0,3600)][int]$Frames = 0,
+    [string]$RequestFile,
+    [string]$Provider = 'auto',
+    [string]$Job,
+    [string]$Approval,
+    [ValidateSet('prototype','background','standard','hero')][string]$Quality,
+    [string]$SourceFile,
+    [switch]$Repair
 )
 . "$PSScriptRoot/studio-common.ps1"
 $runId = (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '-' + [guid]::NewGuid().ToString('N').Substring(0,6)
@@ -23,6 +30,9 @@ function Import-Project {
     Invoke-StudioProcess 'godot-import' $godot @('--headless','--path',$gamePath,'--editor','--import')
 }
 function Generate-Asset {
+    if ($assetConfig.PSObject.Properties['generation_method'] -and $assetConfig.generation_method -eq 'external_import') {
+        throw 'External assets must use provider cleanup/export; do not replace them with a procedural generator.'
+    }
     Invoke-StudioProcess 'blender-generate' $blender @('--background','--factory-startup','--python-exit-code','1','--python',(Get-StudioPath $assetConfig.generator),'--','--blend-only') 180 'PIPELINE_BLENDER_PASS'
     if (-not (Test-Path -LiteralPath (Get-StudioPath $assetConfig.blend))) { throw 'Generator did not save its editable Blender project.' }
 }
@@ -66,7 +76,28 @@ function Preview-Asset {
 }
 
 try {
-    if ($Action -eq 'doctor') {
+    if ($Action -in @('providers','asset-create','asset-plan','asset-process','multiview') -or $Action.StartsWith('provider-')) {
+        $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
+        $providerArgs = @('-3.11', (Get-StudioPath 'tools/providers/cli.py'))
+        if ($Action -eq 'providers') { $providerArgs += 'providers' }
+        elseif ($Action -in @('asset-create','asset-plan','multiview')) {
+            $providerArgs += @($Action.Replace('asset-', ''),'--request',$RequestFile,'--provider',$Provider)
+            if ($Quality) { $providerArgs += @('--quality',$Quality) }
+        }
+        elseif ($Action -eq 'asset-process') {
+            $providerArgs += @('process','--job',$Job)
+            if ($SourceFile) { $providerArgs += @('--source',$SourceFile) }
+            if ($Repair) { $providerArgs += '--repair' }
+        }
+        else {
+            $providerArgs += $Action.Replace('provider-', '')
+            if ($Job) { $providerArgs += @('--job',$Job) }
+            if ($Approval) { $providerArgs += @('--approval',$Approval) }
+            if ($Provider -ne 'auto') { $providerArgs += @('--provider',$Provider) }
+        }
+        Invoke-StudioProcess 'provider-command' $python.Source $providerArgs 600
+        Get-Content -LiteralPath (Join-Path $script:RunDirectory 'provider-command.log')
+    } elseif ($Action -eq 'doctor') {
         & "$PSScriptRoot/inspect-local.ps1" -OutputDirectory $script:RunDirectory
     } elseif ($Action -eq 'scaffold') {
         if ($Asset -notmatch '^[a-z][a-z0-9_]{0,63}$') { throw 'Invalid asset ID.' }

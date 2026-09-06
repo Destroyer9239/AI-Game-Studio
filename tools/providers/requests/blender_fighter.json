@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "test_fighter",
+  "asset_type": "spacecraft",
+  "provider": "auto",
+  "operation": "generate_3d",
+  "quality": "standard",
+  "prompt": "Regenerate the original Kestrel pipeline fighter from its authored procedural Blender script.",
+  "provenance": "Original project geometry; local Blender generation, no external service."
+}

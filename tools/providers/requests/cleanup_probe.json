@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "name": "provider_cleanup_probe",
+  "asset_type": "prop",
+  "provider": "blender",
+  "operation": "generate_3d",
+  "method": "import",
+  "source_file": "generated/provider-fixtures/textured_source.glb",
+  "prompt": "Local validation fixture for external-model cleanup. Preserve embedded PBR texture connections.",
+  "cleanup": {"longest_side_m": 3.0, "origin": "bottom", "max_triangles": 3000, "allow_decimate": false, "lod_ratio": 0.5},
+  "provenance": "Synthetic fixture authored locally in tools/providers/tests/create_fixture.py; no external service or credits."
+}

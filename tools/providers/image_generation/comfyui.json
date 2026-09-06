@@ -1,0 +1,7 @@
+{
+  "server": "http://127.0.0.1:8188",
+  "timeout_seconds": 180,
+  "workflow_directory": "tools/imagegen/workflows",
+  "install_status": "not_installed",
+  "checkpoint": "sd_xl_base_1.0.safetensors"
+}

@@ -1,5 +1,10 @@
 # Autonomous asset development
 
+The original commands below remain supported. For provider selection, quality tiers,
+paid request plans, external cleanup, image jobs and multi-view preparation, see
+[ASSET_PROVIDERS.md](ASSET_PROVIDERS.md). Run `tools/test-providers.ps1` for the combined
+no-credit acceptance suite, including the original fighter regression.
+
 The agent runs the tools directly. The user can request an original asset in ordinary language; no manual terminal work is needed for normal generation, import, validation or launch. The scripts execute the repeatable stages; the agent still authors the design and procedural generator and reviews the result.
 
 ## Entry point

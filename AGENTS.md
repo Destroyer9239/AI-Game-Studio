@@ -1,6 +1,6 @@
 # AI GAME STUDIO
 
-You are the primary development agent for this 3D game project.
+You are the game-development director and primary development agent for this 3D game project.
 
 ## Core Tools
 
@@ -116,6 +116,23 @@ Put hand-authored gameplay in a parent of generated `game/scenes/assets/<id>.tsc
 - Retain prompts, seeds, model source/license, workflow versions and output hashes. Review generated concepts before interpreting them as 3D geometry.
 - Curate concept art in `generated/concept-art/`, source maps in `generated/textures/`, and runtime textures in `game/assets/textures/<id>/`.
 - Verify actual seamlessness, alpha edges and material-map behavior. Text-to-image output is not automatically a seamless texture or calibrated roughness/metallic/normal map.
+
+## Multiple Asset Providers
+
+- Read `docs/ASSET_PROVIDERS.md`. Use `tools/pipeline.ps1 providers` for capabilities and `provider-status` for configuration plus local ComfyUI health. Installed/configured is not authenticated or tested.
+- Plan the original design, choose a provider, generate, process with Blender when needed, validate materials/geometry, import/test in Godot, render and inspect the preview, preserve provenance, and checkpoint Git.
+- Choose based on complexity, importance, available tools, expected quality and cost. Use `prototype`, `background`, `standard` or `hero`. Hero assets need LOD preparation and explicit visual/material review; more polygons alone do not establish quality.
+- Prefer procedural Blender for controlled mechanical geometry. Use approved reference-driven Meshy/Higgsfield routes where useful. Never silently fall back to paid generation after a local failure. Placeholder providers are not executable capabilities.
+- `asset-plan -RequestFile <json>` is offline. `asset-create` executes local work but only prepares paid work. A new procedural asset needs an agent-authored generator; complete it instead of returning a scaffold as an asset.
+- Every paid submission is LOCKED until the user explicitly approves its exact plan, operation and cost. Only then record a one-use receipt referencing that user message. Never invent authorization, reuse it for paid follow-ups, or call adapters/CLIs directly to bypass the gate.
+- Price snapshots are estimates, not billing caps. Check current pricing/official quotes before approval. Unknown prices need a verified quote first. A failed/uncertain submit may already be billed: retain task IDs/latches, reconcile status, never retry generation automatically.
+- Credentials belong in environment variables or the official CLI store, never files/prompts/logs/Git. Never expose secrets, bypass provider rules, scrape services or automate their websites. Official account login is a human action.
+- Preserve original assets and reference views. Record prompt/model/method, hashes, quality, scale, PBR, collision, LOD, Godot scene, validation, preview, cost and license notes in `generated/manifests/<id>.json`. Keep unknown fields truthful.
+- `multiview -RequestFile <json>` prepares concept/front/side/rear/top jobs. Inspect consistency before 3D generation; independent prompts do not ensure matching views. Prefer reference-conditioned editing or Blender orthographic renders after reviewing the concept.
+- External static cleanup preserves PBR/UVs and packs images. Missing maps/material references and invalid geometry must fail. Rigged/animated assets need specialized preservation work; never flatten them. Box collision and LODs still need gameplay-specific integration.
+- Use new IDs for imported versions by default. Explicit `asset-process ... -Repair` rebuilds only the recorded provider/source path and archives prior runtime/source files; keep Git checkpoints too.
+- Run `pwsh -NoProfile -File tools/test-providers.ps1` after provider changes. It runs actual local Blender/Godot work and mock provider protocol tests without credits. Inspect previews; never call mock tests live-service success.
+- Keep expensive models, credentials and raw job records out of Git. Curate runtime assets/provenance and preserve unrelated user work.
 
 ## Goal
 

@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "name": "spaceport_mood_01",
+  "asset_type": "cinematic_concept",
+  "provider": "higgsfield",
+  "operation": "generate_video",
+  "prompt": "Slow establishing shot of an original orbital spacecraft hangar, cold blue lighting, drifting vapor, no franchise logos.",
+  "provenance": "Concept/mood video only; never a required runtime game asset."
+}
