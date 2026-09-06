@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "texture_source_sdxl_example",
+  "asset_type": "texture",
+  "operation": "generate_texture",
+  "provider": "comfyui",
+  "quality": "standard",
+  "image_request": "tools/imagegen/requests/texture_source_sdxl_example.json",
+  "provenance": "Original local SDXL concept; human review required before production use."
+}

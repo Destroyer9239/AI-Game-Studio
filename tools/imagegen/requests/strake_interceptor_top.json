@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "strake_interceptor_top",
+  "asset": "strake_interceptor",
+  "kind": "reference",
+  "workflow": "tools/imagegen/workflows/multiview_reference_sdxl.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 391702,
+  "width": 1024,
+  "height": 1024,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "TOP VIEW, overhead plan view. Technical design study of one original advanced military sci-fi interceptor spacecraft, compact wedge fuselage, swept angular wings, two separated aft engine nacelles, dark gunmetal hull, small amber accents, enclosed forward cockpit. Full spacecraft centered on plain light gray background, minimal perspective distortion, readable silhouette, even diffuse lighting, single isolated object, game production reference art, no text.",
+  "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, lettering, cropped, clutter, multiple ships, dramatic perspective, three-quarter view, space background",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Related-design SDXL text reference; shared prompt vocabulary/seed does not constrain true multi-view geometry. Candidate only; compare with concept and reject inconsistent reconstruction inputs."
+}

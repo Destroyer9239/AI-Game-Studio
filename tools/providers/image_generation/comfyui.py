@@ -45,6 +45,9 @@ def execute(plan, directory):
     from tools.providers.service import manifest
     build(plan['asset'])
     config = plan['request']['configuration']
+    if config.get('auto_start') and health()['status'] != 'REACHABLE':
+        from tools.imagegen.backend import start
+        start(config)
     output = io.StringIO()
     try:
         with contextlib.redirect_stdout(output):
@@ -54,6 +57,7 @@ def execute(plan, directory):
     original = path(record['job']) / record['files'][0]['path']
     result = manifest(plan, original, status='IMAGE_SOURCE_PENDING_VISUAL_REVIEW')
     result['image_job'] = record
+    result['performance'] = {key: record[key] for key in ('elapsed_seconds', 'resolution', 'steps', 'peak_device_vram_mib_sampled', 'vram_measurement')}
     result['media_files'] = [(path(record['job']) / f['path']).relative_to(path('.')).as_posix() for f in record['files']]
     result['cost']['reported_credits'] = 0
     result['image_specification'] = read_json(path(plan['request']['image_request']))

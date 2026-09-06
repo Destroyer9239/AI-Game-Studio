@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "multiview_reference_sdxl_example",
+  "asset": "strake_interceptor",
+  "kind": "reference",
+  "workflow": "tools/imagegen/workflows/multiview_reference_sdxl.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 391702,
+  "width": 1216,
+  "height": 832,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "Original advanced military science fiction interceptor, compact wedge fuselage, swept angular wings, two separated aft engine nacelles, dark gunmetal hull, amber accents, enclosed forward cockpit. Side elevation design study, full spacecraft centered on plain light gray background, technical product concept art, minimal perspective, clear silhouette, single object, no text",
+  "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, logo, lettering, cropped, blurry, distorted, cluttered background, multiple spacecraft",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+}

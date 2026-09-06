@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "strake_interceptor_concept",
+  "asset_type": "concept_art",
+  "operation": "generate_image",
+  "provider": "comfyui",
+  "quality": "standard",
+  "image_request": "tools/imagegen/requests/strake_interceptor_concept.json",
+  "provenance": "Original local SDXL concept; human review required before production use."
+}

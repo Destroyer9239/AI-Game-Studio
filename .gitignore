@@ -21,3 +21,6 @@ generated/reference-plans/
 generated/manifests/unit_*.json
 generated/references/unit_*/
 .VSCodeCounter/
+generated/backend/
+*.safetensors
+*.ckpt

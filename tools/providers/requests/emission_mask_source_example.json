@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "emission_mask_source_example",
+  "asset_type": "map",
+  "operation": "generate_image",
+  "provider": "comfyui",
+  "quality": "standard",
+  "image_request": "tools/imagegen/requests/emission_mask_source_example.json",
+  "provenance": "Original local SDXL concept; human review required before production use."
+}

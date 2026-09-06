@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "texture_source_sdxl_example",
+  "asset": "strake_interceptor",
+  "kind": "texture",
+  "workflow": "tools/imagegen/workflows/texture_source_sdxl.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 481201,
+  "width": 1024,
+  "height": 1024,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "Close-up material source study of dark gunmetal spacecraft hull panels, subtle brushed metal grain, fine seams, restrained surface wear, flat even lighting, surface fills frame, no objects or perspective, original industrial material design",
+  "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, logo, lettering, cropped, blurry, distorted, cluttered background, multiple spacecraft",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+}

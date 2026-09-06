@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "ui_art_sdxl_example",
+  "asset": "strake_interceptor",
+  "kind": "ui",
+  "workflow": "tools/imagegen/workflows/ui_art_sdxl.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 481203,
+  "width": 1216,
+  "height": 832,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "Original science fiction cockpit interface background concept, dark blue black glass, restrained amber and cyan indicators, clean symmetrical instrument graphic, generous empty space, flat front view, no text or numbers",
+  "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, logo, lettering, cropped, blurry, distorted, cluttered background, multiple spacecraft",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+}

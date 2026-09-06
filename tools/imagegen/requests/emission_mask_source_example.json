@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "emission_mask_source_example",
+  "asset": "strake_interceptor",
+  "kind": "map",
+  "workflow": "tools/imagegen/workflows/emission_mask_source.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 481204,
+  "width": 1024,
+  "height": 1024,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "High contrast white geometric light strip shapes on pure black, segmented original science fiction engine panel light pattern, flat front view, crisp edges, simple sparse structure, no gradients, no text",
+  "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, logo, lettering, cropped, blurry, distorted, cluttered background, multiple spacecraft",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "Non-Color source; review before material use",
+  "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+}

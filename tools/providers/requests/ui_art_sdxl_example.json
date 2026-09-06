@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "ui_art_sdxl_example",
+  "asset_type": "ui",
+  "operation": "generate_image",
+  "provider": "comfyui",
+  "quality": "standard",
+  "image_request": "tools/imagegen/requests/ui_art_sdxl_example.json",
+  "provenance": "Original local SDXL concept; human review required before production use."
+}

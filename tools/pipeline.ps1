@@ -1,6 +1,6 @@
 param(
     [Parameter(Position=0)]
-    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview')]
+    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview','comfy-start','comfy-stop','comfy-restart','comfy-status')]
     [string]$Action = 'validate',
     [string]$Asset = 'test_fighter',
     [string]$GodotPath,
@@ -76,7 +76,11 @@ function Preview-Asset {
 }
 
 try {
-    if ($Action -in @('providers','asset-create','asset-plan','asset-process','multiview') -or $Action.StartsWith('provider-')) {
+    if ($Action.StartsWith('comfy-')) {
+        $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
+        Invoke-StudioProcess 'comfy-backend' $python.Source @('-3.11',(Get-StudioPath 'tools/imagegen/backend.py'),$Action.Replace('comfy-','')) 150
+        Get-Content -LiteralPath (Join-Path $script:RunDirectory 'comfy-backend.log')
+    } elseif ($Action -in @('providers','asset-create','asset-plan','asset-process','multiview') -or $Action.StartsWith('provider-')) {
         $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
         $providerArgs = @('-3.11', (Get-StudioPath 'tools/providers/cli.py'))
         if ($Action -eq 'providers') { $providerArgs += 'providers' }

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "strake_interceptor_concept",
+  "asset": "strake_interceptor",
+  "kind": "concept",
+  "workflow": "tools/imagegen/workflows/concept_art_sdxl.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 391702,
+  "width": 1216,
+  "height": 832,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "Cinematic hard-surface game concept art of one original advanced military science fiction interceptor spacecraft, compact wedge fuselage, swept angular wings, two separated aft engine nacelles clearly visible, dark gunmetal hull panels, small amber emissive strips, enclosed forward cockpit, strong readable silhouette, realistic industrial detailing, three-quarter upper front view, centered full spacecraft isolated on neutral cool gray studio background, soft studio lighting, production design painting, no text",
+  "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, logo, lettering, cropped, blurry, distorted, cluttered background, multiple spacecraft",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+}

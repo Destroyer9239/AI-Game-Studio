@@ -1,0 +1,10 @@
+{
+  "name": "strake_interceptor_front",
+  "asset_type": "reference",
+  "operation": "generate_image",
+  "provider": "comfyui",
+  "image_request": "tools/imagegen/requests/strake_interceptor_front.json",
+  "reference_views": {
+    "concept": "generated/concept-art/strake_interceptor/concept.png"
+  }
+}

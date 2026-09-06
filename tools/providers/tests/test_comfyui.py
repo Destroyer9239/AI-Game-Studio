@@ -24,6 +24,7 @@ class ComfyProtocolTests(unittest.TestCase):
             def do_GET(self):
                 calls.append(self.path)
                 if self.path == '/system_stats': self.send({'devices': [{'name': 'MOCK_NO_INFERENCE'}]})
+                elif self.path == '/object_info/CheckpointLoaderSimple': self.send({'CheckpointLoaderSimple': {'input': {'required': {'ckpt_name': [['sd_xl_base_1.0.safetensors']]}}}})
                 elif self.path.startswith('/history/'):
                     self.send({'mock-prompt': {'status': {'completed': True}, 'outputs': {'9': {'images': [{'filename': 'test.png', 'type': 'output', 'subfolder': ''}]}}}})
                 elif self.path.startswith('/view?'): self.send(png)

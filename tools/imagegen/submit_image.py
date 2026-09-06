@@ -8,6 +8,9 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
+import subprocess
+import threading
 import time
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, build_opener, ProxyHandler, HTTPRedirectHandler
@@ -38,10 +41,13 @@ def build_workflow(request):
         raise ValueError("Seed must be an unsigned 64-bit integer")
     if request.get("tileable_required") or request.get("alpha_required"):
         raise ValueError("Basic SDXL workflow does not guarantee tiling or alpha. Author and verify a dedicated workflow before requesting these outputs.")
+    steps, cfg = request.get('steps', 25), request.get('cfg', 7.0)
+    if type(steps) is not int or not 1 <= steps <= 60 or type(cfg) not in (int, float) or not 1 <= cfg <= 15:
+        raise ValueError('Steps must be 1–60 and CFG 1–15')
     values = {"__CHECKPOINT__": request["checkpoint"], "__PROMPT__": request["prompt"],
               "__NEGATIVE__": request["negative"], "__WIDTH__": request["width"],
               "__HEIGHT__": request["height"], "__SEED__": request["seed"],
-              "__PREFIX__": "ai_game_studio/" + request["id"]}
+              "__PREFIX__": "ai_game_studio/" + request["id"], '__STEPS__': steps, '__CFG__': cfg}
     def replace(value):
         if isinstance(value, dict):
             return {key: replace(item) for key, item in value.items()}
@@ -73,6 +79,26 @@ def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout
     (job / "request.json").write_text(json.dumps(request, indent=2), encoding="utf-8")
     (job / "workflow.api.json").write_text(json.dumps(workflow, indent=2), encoding="utf-8")
     record = {"status": "DRY_RUN", "job": job.relative_to(ROOT).as_posix(), "request": request["id"], "files": [], "workflow_sha256": hashlib.sha256(json.dumps(workflow, sort_keys=True).encode()).hexdigest()}
+    record['resolution'] = [request['width'], request['height']]
+    record['steps'] = next(n['inputs']['steps'] for n in workflow.values() if n['class_type'] == 'KSampler')
+    stopped = threading.Event()
+    samples = []
+    monitor = None
+    started = time.monotonic()
+
+    def sample_vram():
+        executable = shutil.which('nvidia-smi')
+        if not executable:
+            return
+        while not stopped.is_set():
+            try:
+                measured = subprocess.run([executable, '--query-gpu=memory.used', '--format=csv,noheader,nounits'], capture_output=True,
+                                          text=True, timeout=3, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+                if measured.returncode == 0:
+                    samples.append(float(measured.stdout.splitlines()[0]))
+            except (OSError, ValueError, subprocess.TimeoutExpired):
+                pass
+            stopped.wait(1)
     opener = build_opener(ProxyHandler({}), NoRedirect())
     def http(route, body=None, binary=False):
         payload = None if body is None else json.dumps(body).encode()
@@ -85,12 +111,19 @@ def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout
     try:
         if execute:
             record["status"] = "RUNNING"
-            http("/system_stats")
+            record['backend'] = http("/system_stats")
+            info = http('/object_info/CheckpointLoaderSimple')
+            available = info['CheckpointLoaderSimple']['input']['required']['ckpt_name'][0]
+            if request['checkpoint'] not in available:
+                raise ValueError('Required checkpoint is not installed: ' + request['checkpoint'])
+            monitor = threading.Thread(target=sample_vram, daemon=True)
+            monitor.start()
             queued = http("/prompt", {"prompt": workflow, "client_id": uuid.uuid4().hex})
             if queued.get("error") or queued.get("node_errors"):
                 raise RuntimeError(f"ComfyUI rejected workflow: {queued}")
             prompt_id = queued["prompt_id"]
             record["prompt_id"] = prompt_id
+            (job / 'result.json').write_text(json.dumps(record, indent=2), encoding='utf-8')
             deadline = time.monotonic() + timeout
             while time.monotonic() < deadline:
                 entry = http("/history/" + prompt_id).get(prompt_id)
@@ -109,6 +142,7 @@ def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout
                         if not record["files"]:
                             raise RuntimeError("Workflow completed without images")
                         record["status"] = "PASS"
+                        record['provider_execution_status'] = entry.get('status', {})
                         break
                 time.sleep(1)
             else:
@@ -118,6 +152,12 @@ def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout
         record["error"] = str(exc)
         raise
     finally:
+        stopped.set()
+        if monitor:
+            monitor.join(timeout=4)
+        record['elapsed_seconds'] = round(time.monotonic() - started, 3)
+        record['peak_device_vram_mib_sampled'] = max(samples) if samples else None
+        record['vram_measurement'] = 'nvidia-smi approximately 1-second samples; entire GPU including other apps; not allocator peak'
         (job / "result.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
         print(f"IMAGE_JOB_{record['status']}: {job}")
     return record

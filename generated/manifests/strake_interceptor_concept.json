@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "asset_name": "strake_interceptor_concept",
+  "asset_type": "concept_art",
+  "provider": "comfyui",
+  "generation_method": "text",
+  "source_prompt": "Cinematic hard-surface game concept art of one original advanced military science fiction interceptor spacecraft, compact wedge fuselage, swept angular wings, two separated aft engine nacelles clearly visible, dark gunmetal hull panels, small amber emissive strips, enclosed forward cockpit, strong readable silhouette, realistic industrial detailing, three-quarter upper front view, centered full spacecraft isolated on neutral cool gray studio background, soft studio lighting, production design painting, no text",
+  "source_images": [],
+  "generation_date": "2026-09-06T04:07:07.206340+00:00",
+  "original_file": "generated/image-jobs/strake_interceptor_concept-9a683794fc18/image-000.png",
+  "original_sha256": "5f4f5ca9168f40f8adfd599223bca892abe0b617b80faa9262e7d124d8360482",
+  "processed_file": null,
+  "polygon_count": null,
+  "textures": [],
+  "scale": null,
+  "collision_status": "NOT_CHECKED",
+  "Godot_import_status": "IMAGE_SOURCE_PENDING_VISUAL_REVIEW",
+  "license_provenance_notes": "CreativeML Open RAIL++-M; https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "provider_job": "ec163b7adad14874b07fb4302105e9c4",
+  "asset_id": "strake_interceptor_concept",
+  "quality_tier": "standard",
+  "provider_model": "sd_xl_base_1.0.safetensors",
+  "processed_blender_file": null,
+  "final_glb": null,
+  "lods": [],
+  "Godot_scene": null,
+  "validation": {
+    "status": "IMAGE_SOURCE_PENDING_VISUAL_REVIEW"
+  },
+  "preview": null,
+  "preview_review": "PENDING_AGENT_REVIEW",
+  "reference_views": {},
+  "cost": {
+    "estimate": {
+      "amount": 0,
+      "unit": "credits",
+      "basis": "Local inference; backend/model must already be installed"
+    },
+    "reported_credits": 0
+  },
+  "reference_images": [],
+  "image_job": {
+    "status": "PASS",
+    "job": "generated/image-jobs/strake_interceptor_concept-9a683794fc18",
+    "request": "strake_interceptor_concept",
+    "files": [
+      {
+        "path": "image-000.png",
+        "sha256": "5f4f5ca9168f40f8adfd599223bca892abe0b617b80faa9262e7d124d8360482"
+      }
+    ],
+    "workflow_sha256": "5a2cfc690560d5a4e531248af6c352c0a45d5bd29ebc61ef23aac22a617747b4",
+    "resolution": [
+      1216,
+      832
+    ],
+    "steps": 30,
+    "backend": {
+      "system": {
+        "os": "win32",
+        "ram_total": 34049167360,
+        "ram_free": 6077796352,
+        "comfyui_version": "0.34.0",
+        "required_frontend_version": "1.49.6",
+        "installed_templates_version": "0.11.48",
+        "required_templates_version": "0.11.48",
+        "comfy_package_versions": [
+          {
+            "name": "comfyui-frontend-package",
+            "installed": "1.49.6",
+            "required": "1.49.6"
+          },
+          {
+            "name": "comfyui-workflow-templates",
+            "installed": "0.11.48",
+            "required": "0.11.48"
+          },
+          {
+            "name": "comfyui-embedded-docs",
+            "installed": "0.5.10",
+            "required": "0.5.10"
+          },
+          {
+            "name": "comfy-kitchen",
+            "installed": "0.2.31",
+            "required": "0.2.31"
+          },
+          {
+            "name": "comfy-aimdo",
+            "installed": "0.4.15",
+            "required": "0.4.15"
+          }
+        ],
+        "python_version": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+        "pytorch_version": "2.13.0+cu130",
+        "embedded_python": true,
+        "deploy_environment": "local-portable",
+        "argv": [
+          "C:\\AI\\ComfyUI\\ComfyUI_windows_portable\\ComfyUI\\main.py",
+          "--windows-standalone-build",
+          "--listen",
+          "127.0.0.1",
+          "--port",
+          "8188",
+          "--disable-auto-launch",
+          "--disable-all-custom-nodes",
+          "--disable-api-nodes"
+        ]
+      },
+      "devices": [
+        {
+          "name": "cuda:0 NVIDIA GeForce RTX 5070 Ti : cudaMallocAsync",
+          "type": "cuda",
+          "index": 0,
+          "vram_total": 17094475776,
+          "vram_free": 15740174336,
+          "torch_vram_total": 0,
+          "torch_vram_free": 0
+        }
+      ]
+    },
+    "prompt_id": "05181d69-666a-4305-bf0e-f3ccf048f2a9",
+    "provider_execution_status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "05181d69-666a-4305-bf0e-f3ccf048f2a9",
+            "timestamp": 1788667607964
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [],
+            "prompt_id": "05181d69-666a-4305-bf0e-f3ccf048f2a9",
+            "timestamp": 1788667607965
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "05181d69-666a-4305-bf0e-f3ccf048f2a9",
+            "timestamp": 1788667626961
+          }
+        ]
+      ]
+    },
+    "elapsed_seconds": 19.281,
+    "peak_device_vram_mib_sampled": 14789.0,
+    "vram_measurement": "nvidia-smi approximately 1-second samples; entire GPU including other apps; not allocator peak"
+  },
+  "performance": {
+    "elapsed_seconds": 19.281,
+    "resolution": [
+      1216,
+      832
+    ],
+    "steps": 30,
+    "peak_device_vram_mib_sampled": 14789.0,
+    "vram_measurement": "nvidia-smi approximately 1-second samples; entire GPU including other apps; not allocator peak"
+  },
+  "media_files": [
+    "generated/image-jobs/strake_interceptor_concept-9a683794fc18/image-000.png"
+  ],
+  "image_specification": {
+    "schema_version": 1,
+    "id": "strake_interceptor_concept",
+    "asset": "strake_interceptor",
+    "kind": "concept",
+    "workflow": "tools/imagegen/workflows/concept_art_sdxl.api.json",
+    "checkpoint": "sd_xl_base_1.0.safetensors",
+    "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+    "model_license": "CreativeML Open RAIL++-M",
+    "seed": 391702,
+    "width": 1216,
+    "height": 832,
+    "steps": 30,
+    "cfg": 6.5,
+    "prompt": "Cinematic hard-surface game concept art of one original advanced military science fiction interceptor spacecraft, compact wedge fuselage, swept angular wings, two separated aft engine nacelles clearly visible, dark gunmetal hull panels, small amber emissive strips, enclosed forward cockpit, strong readable silhouette, realistic industrial detailing, three-quarter upper front view, centered full spacecraft isolated on neutral cool gray studio background, soft studio lighting, production design painting, no text",
+    "negative": "Star Wars, X-wing, TIE fighter, Star Trek, recognizable franchise design, text, watermark, logo, lettering, cropped, blurry, distorted, cluttered background, multiple spacecraft",
+    "tileable_required": false,
+    "alpha_required": false,
+    "color_space": "sRGB",
+    "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+  }
+}
