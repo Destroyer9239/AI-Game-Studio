@@ -50,3 +50,11 @@ reload passed. Headless gameplay 17 checks, streaming 11 and environment 13 pass
 Robot source validation and eight canonical reference views passed; actual first-person
 GPU render inspected. Original fighter main scene remains unchanged. Next: harden save
 schema and gameplay interfaces, then all-quality integrated regression and documentation.
+
+Checkpoint 2: gameplay state validation rejects malformed save structures before world
+mutation. Shared interactable implements terminal/switch/door/pickup state and damage
+hooks; terminal uses it. Event-driven objectives support activation/progress/completion/
+failure. Runtime InputMap defaults come from world/controls.json. Gameplay now passes
+28 checks including advancing animation playback, invalid saves and interaction hooks.
+Two more 20-cycle persistence stress processes passed. Master pipeline exposes world-test,
+world-stress, world-benchmark and world-launch; the original fighter main scene is preserved.

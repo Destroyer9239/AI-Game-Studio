@@ -38,8 +38,29 @@ func run() -> void:
 	var skeletons: Array=npc.visual.find_children("*","Skeleton3D",true,false)
 	check(skeletons.size()==1 and skeletons[0].get_bone_count()>=8,"imported skeleton")
 	check(npc.animation!=null and npc.animation.get_animation_list().size()>=2,"imported animation clips")
+	var playhead: float=npc.animation.current_animation_position
+	for i in range(5):await physics_frame
+	check(npc.animation.is_playing() and npc.animation.current_animation_position!=playhead,"animation actually advances")
 	check(npc.find_children("*","MeshInstance3D",true,false).any(func(n):return n.visibility_range_begin==35),"distant character proxy")
 	check(world.vehicle_hooks.has("enter_requested"),"vehicle interface reservation")
+	var saved: Dictionary=load("res://scripts/studio_save.gd").load_state("user://studio_unit_save.json")
+	for field in ["player","chunks","environment","settings"]:
+		var malformed:=saved.duplicate(true);malformed[field]="invalid"
+		check(not load("res://scripts/studio_save.gd").valid_world(malformed),"reject malformed "+field)
+	var door=load("res://scripts/studio_interactable.gd").new();door.kind="door";root.add_child(door)
+	var collision:=CollisionShape3D.new();collision.shape=BoxShape3D.new();door.add_child(collision)
+	door.interact(player);await process_frame
+	check(not door.visible and collision.disabled,"door hook opens collision")
+	door.interact(player);await process_frame
+	check(door.visible and not collision.disabled,"door hook closes collision")
+	door.apply_damage(10);check(door.health==90,"health hook")
+	door.kind="pickup";door.interact(player);door.interact(player)
+	check(door.active,"pickup consumed only once")
+	door.queue_free()
+	var objective=load("res://scripts/studio_objective.gd").new();objective.activate();objective.consume("unrelated")
+	check(objective.state=="ACTIVE" and objective.progress==0,"objective event filtering")
+	objective.fail();objective.consume("service_activated")
+	check(objective.state=="FAILED","objective failure is terminal")
 	DirAccess.remove_absolute("user://studio_unit_save.json")
 	world.queue_free();await process_frame;await create_timer(.2).timeout
 	print("GAMEPLAY_TESTS_PASS: ",checks," checks")

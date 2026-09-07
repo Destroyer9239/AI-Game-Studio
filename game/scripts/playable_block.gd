@@ -4,6 +4,7 @@ var director: Node3D
 var ambience: Node3D
 var player: CharacterBody3D
 var events: Node
+var objective_model=preload("res://scripts/studio_objective.gd").new()
 var objective:="RESTORE SERVICE LINK"
 var objective_state:="ACTIVE"
 var hud: Label
@@ -20,6 +21,8 @@ var vehicle_hooks:={"enter_requested":false,"active_vehicle_id":""}
 func _ready() -> void:
 	add_to_group("studio_runtime")
 	events=load("res://scripts/studio_events.gd").new();add_child(events)
+	events.world_event.connect(objective_model.consume)
+	objective_model.activate()
 	director=load("res://scripts/environment_director.gd").new();add_child(director)
 	ambience=load("res://scripts/ambient_director.gd").new();add_child(ambience)
 	director.state_changed.connect(ambience.on_environment)
@@ -49,7 +52,8 @@ func apply_quality() -> void:
 	director.rain.amount=600 if quality<2 else 1800
 
 func on_terminal(id: String) -> void:
-	objective_state="COMPLETE"
+	events.publish("service_activated",{"id":id})
+	objective_state=objective_model.state
 	objective="SERVICE LINK RESTORED"
 	events.publish("objective_complete",{"id":id})
 	ambience.trigger_event("service_online")
@@ -60,13 +64,16 @@ func save_game(file: String="user://studio_block_save.json") -> Error:
 
 func load_game(file: String="user://studio_block_save.json") -> bool:
 	var state: Dictionary=load("res://scripts/studio_save.gd").load_state(file)
-	if not state.has_all(["player","chunks","objective","environment"]):return false
+	if not load("res://scripts/studio_save.gd").valid_world(state):return false
 	player.position=Vector3(state.player[0],state.player[1],state.player[2]);player.rotation.y=state.get("yaw",0);player.velocity=Vector3.ZERO
 	streamer.states=state.chunks
 	for id in streamer.loaded:streamer.loaded[id].restore_state(streamer.states.get(id,{}))
-	objective_state=state.objective;objective="SERVICE LINK RESTORED" if objective_state=="COMPLETE" else "RESTORE SERVICE LINK"
+	objective_state=state.objective;objective_model.state=objective_state
+	objective_model.progress=1 if objective_state=="COMPLETE" else 0
+	objective="SERVICE LINK RESTORED" if objective_state=="COMPLETE" else "RESTORE SERVICE LINK"
 	director.set_weather(state.environment.weather);director.set_hour(state.environment.hour);director.wetness=state.environment.wetness
 	quality=state.get("settings",{}).get("quality",2);apply_quality()
+	streamer.update_focus(player.position)
 	events.publish("save_loaded",{})
 	return true
 

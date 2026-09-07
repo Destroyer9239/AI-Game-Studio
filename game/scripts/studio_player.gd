@@ -7,11 +7,12 @@ var persistence_id:="player"
 var injected_move:=Vector2.ZERO
 
 func _ready() -> void:
-	for action in {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"interact":KEY_E,"jump":KEY_SPACE}:
+	var controls: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://world/controls.json"))
+	for action in controls:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
 			var event:=InputEventKey.new()
-			event.physical_keycode={"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"interact":KEY_E,"jump":KEY_SPACE}[action]
+			event.physical_keycode=OS.find_keycode_from_string(controls[action])
 			InputMap.action_add_event(action,event)
 	var shape:=CollisionShape3D.new()
 	var capsule:=CapsuleShape3D.new();capsule.radius=.32;capsule.height=1.8

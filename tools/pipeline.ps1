@@ -1,6 +1,6 @@
 param(
     [Parameter(Position=0)]
-    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview','comfy-start','comfy-stop','comfy-restart','comfy-status','image-4k','environment-test','environment-launch')]
+    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview','comfy-start','comfy-stop','comfy-restart','comfy-status','image-4k','environment-test','environment-launch','world-test','world-launch','world-stress','world-benchmark')]
     [string]$Action = 'validate',
     [string]$Asset = 'test_fighter',
     [string]$GodotPath,
@@ -76,7 +76,11 @@ function Preview-Asset {
 }
 
 try {
-    if ($Action -eq 'image-4k') {
+    if ($Action.StartsWith('world-')) {
+        $operation = @{ 'world-test'='test-gameplay'; 'world-launch'='launch'; 'world-stress'='stress'; 'world-benchmark'='benchmark' }[$Action]
+        & pwsh -NoProfile -File "$PSScriptRoot/world.ps1" $operation
+        if ($LASTEXITCODE -ne 0) { throw 'World operation failed' }
+    } elseif ($Action -eq 'image-4k') {
         $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
         Invoke-StudioProcess 'image-4k' $python.Source @('-3.11',(Get-StudioPath 'tools/imagegen/high_resolution.py'),$RequestFile) 900
     } elseif ($Action.StartsWith('environment-')) {
