@@ -1,0 +1,25 @@
+{
+  "id": "worker_fixture",
+  "class": "worker technical fixture",
+  "height_m": 1.82,
+  "bones": [
+    "root",
+    "hips",
+    "spine",
+    "head",
+    "arm_l",
+    "arm_r",
+    "leg_l",
+    "leg_r"
+  ],
+  "animations": [
+    "Idle",
+    "Walk"
+  ],
+  "orientation": "Blender +Y forward/+Z up, Godot -Z forward/+Y up",
+  "skin": "rigid segmented parts with normalized single-bone weights; not organic humanoid deformation",
+  "source": "Original local procedural geometry/materials/animation",
+  "lod": "runtime cheap capsule proxy beyond 35 m",
+  "collision": "Godot CharacterBody3D capsule; source rig is never flattened",
+  "external_credits": 0
+}

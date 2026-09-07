@@ -5,6 +5,8 @@ extends Node3D
 static var shared: Dictionary = {}
 var persistent_state: Dictionary = {}
 var cell_data: Dictionary
+var terminal: Node
+var worker: Node
 
 static func mat(key: String, color: Color, metallic: float = 0, roughness: float = .7) -> StandardMaterial3D:
 	if not shared.has(key):
@@ -67,9 +69,10 @@ func _ready() -> void:
 	for x in range(-30,31,6):
 		box("LaneMark",Vector3(x,.04,0),Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8))
 	if cell_id=="center":
-		box("ShelterRoof",Vector3(0,3,-6),Vector3(4.2,.2,3),shared.steel,true)
-		for x in [-1.8,1.8]:
-			box("ShelterPost",Vector3(x,1.5,-7),Vector3(.1,3,.1),shared.steel,true)
+		for side in [-1,1]:
+			box("ShelterRoof",Vector3(0,3,side*6),Vector3(4.2,.2,3),shared.steel,true)
+			for x in [-1.8,1.8]:
+				box("ShelterPost",Vector3(x,1.5,side*7),Vector3(.1,3,.1),shared.steel,true)
 		var machine:=AudioStreamPlayer3D.new()
 		machine.stream=load("res://assets/audio/city.wav")
 		machine.position=Vector3(-16,8,-17)
@@ -78,6 +81,17 @@ func _ready() -> void:
 		add_child(machine)
 		machine.finished.connect(machine.play)
 		machine.play()
+		terminal=load("res://scripts/studio_terminal.gd").new()
+		terminal.position=Vector3(0,.95,-6.6)
+		add_child(terminal)
+		var runtime:=get_tree().get_first_node_in_group("studio_runtime")
+		if runtime:
+			terminal.activated.connect(runtime.on_terminal)
+			worker=load("res://scripts/studio_npc.gd").new()
+			worker.position=Vector3(-20,.3,6)
+			add_child(worker)
+			runtime.director.state_changed.connect(worker.on_environment)
+			worker.on_environment("weather",runtime.director.snapshot())
 	for b in cell_data.buildings:
 		var packed: PackedScene
 		for candidate in building_scenes:
@@ -106,10 +120,15 @@ func _ready() -> void:
 	set_meta("ready_for_streaming",true)
 
 func capture_state() -> Dictionary:
-	return persistent_state.duplicate(true)
+	var result:=persistent_state.duplicate(true)
+	if terminal:result["terminal"]=terminal.snapshot()
+	if worker:result["worker"]=worker.snapshot()
+	return result
 
 func restore_state(state: Dictionary) -> void:
 	persistent_state = state.duplicate(true)
+	if terminal and state.has("terminal"):terminal.restore(state.terminal)
+	if worker and state.has("worker"):worker.restore(state.worker)
 
 func _exit_tree() -> void:
 	for child in find_children("*","AudioStreamPlayer3D",true,false):

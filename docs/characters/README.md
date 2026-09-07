@@ -1,1 +1,3 @@
-# Reserved architecture directory; see docs/ENVIRONMENT_ARCHITECTURE.md. No complete city or character system is implemented here.
+# Character production
+
+See [WORKER_PIPELINE.md](WORKER_PIPELINE.md) for the implemented robot technical pipeline. Other character classes remain extension points.

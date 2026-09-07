@@ -1,0 +1,11 @@
+{
+ "id":"worker_fixture","class":"worker",
+ "supported_classes":["player","civilian","worker","guard","enemy"],
+ "source":"blender/projects/worker_fixture.blend",
+ "model":"game/assets/models/worker_fixture.glb",
+ "bones":["root","hips","spine","head","arm_l","arm_r","leg_l","leg_r"],
+ "animations":["Idle","Walk"],"height_range":[1.7,1.9],"max_triangles":1000,
+ "materials":"authored flat PBR; no external textures required",
+ "collision":"runtime capsule","lod":"35m capsule proxy",
+ "notes":"Reusable specification/validator contract. Other classes are extension points; only worker fixture implemented."
+}

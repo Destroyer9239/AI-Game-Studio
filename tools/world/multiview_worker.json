@@ -1,0 +1,11 @@
+{
+ "id":"canonical_worker","source_blend":"blender/projects/worker_fixture.blend",
+ "invariants":{
+ "dimension_ranges_m":[[1,1.3],[0.3,0.5],[1.7,1.9]],
+ "required_nodes":["WorkerTorso","WorkerHead","HeadVisor","Arm_l","Arm_r","Leg_l","Leg_r"],
+ "palette":"amber shell, graphite joints, cyan visor",
+ "markings":"no text, logos or image textures",
+ "orientation":"Blender +Y forward, +Z up",
+ "components":"one head/torso, two arms/legs/feet; segmented original technical robot"
+ }
+}

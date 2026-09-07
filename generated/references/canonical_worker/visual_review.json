@@ -1,0 +1,24 @@
+{
+  "reviewer": "Astra actual eight-view contact sheet inspection",
+  "geometry_sha256": "f3ce1dd379003317cb4d09edec1e8c0b0ec22e68cac0ef510efe9dbff4af6d70",
+  "views": [
+    "front",
+    "left",
+    "right",
+    "rear",
+    "top",
+    "bottom",
+    "front_three_quarter",
+    "rear_three_quarter"
+  ],
+  "checks": {
+    "silhouette": "PASS",
+    "proportions": "PASS",
+    "components": "PASS",
+    "placement": "PASS",
+    "palette": "PASS",
+    "markings": "PASS",
+    "viewpoints": "PASS"
+  },
+  "notes": "Same segmented robot in eight canonical poses; cyan front visor, amber shell, graphite pelvis/feet; two arms and legs. No text/logos. Technical fixture only, not polished character art."
+}

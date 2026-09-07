@@ -37,3 +37,16 @@ clear GPU views inspected. Explicit audio shutdown fixes resource lifetime durin
 unload/tests. Current art/audio remain prototype quality; no professional sound assets
 or physically calibrated HDR are claimed. Next: actual player, rigged fixture, NPC,
 interaction/objective/save/event foundations and integrated playable acceptance.
+
+Continuation checkpoint 1 (2026-09-07): recovered all character/gameplay working files.
+Serialized shared-resource requests before main-thread cell instantiation; queued
+out-of-range requests cancel, active requests drain/discard and shutdown drains owned
+work. Prior intermittent dummy-renderer RID failure occurred with overlapping resource
+loads/scene creation; concurrency is the suspected trigger, not a proven engine root
+cause. Five separate stress processes passed 203 assertions each / 20 cycles each
+(100 cycles total), maximum 719 nodes, 3 loaded / 0 pending / 0 failures at completion.
+Worker and terminal persistence, navigation region budgets and current weather on
+reload passed. Headless gameplay 17 checks, streaming 11 and environment 13 passed.
+Robot source validation and eight canonical reference views passed; actual first-person
+GPU render inspected. Original fighter main scene remains unchanged. Next: harden save
+schema and gameplay interfaces, then all-quality integrated regression and documentation.
