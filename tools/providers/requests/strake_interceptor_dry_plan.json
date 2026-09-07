@@ -1,0 +1,21 @@
+{
+  "name": "strake_interceptor_dry_plan",
+  "asset_type": "spacecraft",
+  "operation": "generate_3d",
+  "provider": "meshy",
+  "method": "multi_image",
+  "quality": "standard",
+  "prompt": "Original design study, dry planning only. References failed visual review; do not submit.",
+  "external_reason": "NOT RECOMMENDED with these rejected references. Demonstrates offline plan fields only.",
+  "reference_views": {
+    "front": "generated/references/strake_interceptor/front.png",
+    "side": "generated/references/strake_interceptor/side.png",
+    "rear": "generated/references/strake_interceptor/rear.png",
+    "top": "generated/references/strake_interceptor/top.png"
+  },
+  "options": {
+    "should_texture": true,
+    "target_polycount": 12000
+  },
+  "review_status": "REJECTED_FOR_3D"
+}

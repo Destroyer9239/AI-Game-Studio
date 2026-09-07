@@ -1,0 +1,39 @@
+{
+  "environment": [
+    "dirt",
+    "rock",
+    "sand",
+    "terrain",
+    "floor"
+  ],
+  "metal": [
+    "painted_steel",
+    "brushed_metal",
+    "industrial_metal",
+    "worn_metal",
+    "futuristic_paneling"
+  ],
+  "urban": [
+    "asphalt",
+    "sidewalk",
+    "brick",
+    "roofing",
+    "glass",
+    "road_markings"
+  ],
+  "scifi": [
+    "hull_panels",
+    "industrial_panels",
+    "vents",
+    "grates",
+    "emissive_strips",
+    "screens",
+    "warning_surfaces"
+  ],
+  "concrete": [
+    "clean",
+    "weathered",
+    "painted",
+    "damaged"
+  ]
+}

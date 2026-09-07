@@ -6,7 +6,7 @@ from urllib.request import build_opener, ProxyHandler
 from tools.providers.common import path, read_json, write_json
 from tools.imagegen.submit_image import build_workflow, run_job, validate_server, NoRedirect
 
-LOCAL_NODES = {'CheckpointLoaderSimple', 'CLIPTextEncode', 'EmptyLatentImage', 'KSampler', 'VAEDecode', 'SaveImage'}
+LOCAL_NODES = {'CheckpointLoaderSimple', 'CLIPTextEncode', 'EmptyLatentImage', 'KSampler', 'VAEDecode', 'SaveImage', 'LoadImage', 'UpscaleModelLoader', 'ImageUpscaleWithModel', 'ImageScale'}
 
 
 def configuration():
@@ -36,7 +36,7 @@ def build(request):
         raise ValueError('ComfyUI adapter supports images/texture concepts only')
     if any(node.get('class_type') not in LOCAL_NODES for node in workflow.values()):
         raise ValueError('Only reviewed core local nodes are allowed; paid API/custom nodes are not local generation')
-    return {'transport': 'local_http', 'method': 'text', 'model': image_request['checkpoint'], 'image_request': request['image_request'],
+    return {'transport': 'local_http', 'method': image_request.get('mode', 'text'), 'model': image_request.get('upscale_model', image_request['checkpoint']), 'image_request': request['image_request'],
             'configuration': configuration(),
             'cost': {'amount': 0, 'unit': 'credits', 'basis': 'Local inference; backend/model must already be installed'}}
 

@@ -101,3 +101,12 @@ Missing credentials, unsupported methods, unsafe paths, unreviewed nodes and unr
 Run `pwsh -NoProfile -File tools/test-providers.ps1`. It creates the textured source in actual Blender, plans/selects the local provider, performs cleanup, imports and tests in Godot, renders the preview, checks PBR image bytes/transforms/origin/normals/LOD, exercises provider/cost/auth/HTTP tests, and regenerates the original fighter through the provider interface. It performs no paid submission.
 
 See [PROVIDER_TEST_RESULTS.md](PROVIDER_TEST_RESULTS.md) for the measured final results and remaining live-service limitations.
+
+## Local image/environment acceptance update (2026-09-06)
+
+ComfyUI now supports managed loopback lifecycle, actual SDXL inference and tiled
+Real-ESRGAN 4K processing. See LOCAL_IMAGE_GENERATION.md for verified status. Plans
+include local alternatives, output destinations and an explicit external recommendation
+field. Price gates remain unchanged; no paid job was submitted in this stage. Meshy
+user-level key presence was detected, but its safe authentication check returned 401.
+Rejected independent spacecraft views are unsuitable for paid reconstruction.

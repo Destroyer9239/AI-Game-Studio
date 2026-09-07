@@ -17,6 +17,33 @@ CONTROL = ROOT / 'generated/backend'
 STATE = CONTROL / 'comfyui.json'
 
 
+def process_alive(pid):
+    import ctypes
+    if sys.platform != 'win32':
+        import os
+        try:
+            os.kill(pid, 0)
+            return True
+        except ProcessLookupError:
+            return False
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.OpenProcess.restype = ctypes.c_void_p
+    kernel.GetExitCodeProcess.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_ulong)]
+    kernel.CloseHandle.argtypes = [ctypes.c_void_p]
+    handle = kernel.OpenProcess(0x1000, False, int(pid))
+    if not handle:
+        if ctypes.get_last_error() == 87:
+            return False
+        raise OSError('Cannot safely inspect the previous backend PID')
+    try:
+        code = ctypes.c_ulong()
+        if not kernel.GetExitCodeProcess(handle, ctypes.byref(code)):
+            raise OSError('Cannot inspect backend exit status')
+        return code.value == 259
+    finally:
+        kernel.CloseHandle(handle)
+
+
 def configuration():
     return read_json(ROOT / 'tools/providers/image_generation/comfyui.json')
 
@@ -60,7 +87,9 @@ def start(config=None):
         if STATE.exists():
             prior = read_json(STATE)
             if not (CONTROL / (prior['run_id'] + '.exit.json')).exists():
-                raise RuntimeError('A previously managed server has no exit record; inspect its log before starting a duplicate')
+                if process_alive(prior['pid']):
+                    raise RuntimeError('Previous backend PID is still alive without a reachable API; inspect its log before starting a duplicate')
+                write_json(CONTROL / (prior['run_id'] + '.exit.json'), {'exited': True, 'recovered': 'verified previous PID exited', 'time': time.time()})
         run_id = uuid.uuid4().hex
         logfile = CONTROL / (run_id + '.log')
         command = [str(python), '-s', str(ROOT / 'tools/imagegen/managed_server.py'), '--runtime', str(runtime),
@@ -94,6 +123,9 @@ def stop(config=None):
     exited = CONTROL / (run_id + '.exit.json')
     if exited.exists():
         return {'status': 'STOPPED', 'action': 'ALREADY_EXITED'}
+    if not process_alive(state['pid']):
+        write_json(exited, {'exited': True, 'recovered': 'verified previous PID exited', 'time': time.time()})
+        return {'status': 'STOPPED', 'action': 'RECOVERED_EXIT_RECORD'}
     current = status(config)
     if current['status'] == 'REACHABLE':
         queue = api('/queue', config)

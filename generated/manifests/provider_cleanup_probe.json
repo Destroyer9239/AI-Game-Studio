@@ -6,9 +6,9 @@
   "generation_method": "import",
   "source_prompt": "Local validation fixture for external-model cleanup. Preserve embedded PBR texture connections.",
   "source_images": [],
-  "generation_date": "2026-09-06T03:12:33.338927+00:00",
+  "generation_date": "2026-09-06T16:19:49.007805+00:00",
   "original_file": "generated/provider-fixtures/textured_source.glb",
-  "original_sha256": "89a0717d198c06d2e165e7d8c0fe5e857f753ae31cc3dd943ec7392a437e4425",
+  "original_sha256": "f2b1c1fd54e14750a02e976b82dfc2aa81c238441ad2bbab3da35f323e932291",
   "processed_file": "game/assets/models/provider_cleanup_probe.glb",
   "polygon_count": 528,
   "textures": [
@@ -40,7 +40,7 @@
   "collision_status": "GENERATED_BOX_PROXY",
   "Godot_import_status": "PASS",
   "license_provenance_notes": "Synthetic fixture authored locally in tools/providers/tests/create_fixture.py; no external service or credits.",
-  "provider_job": "f95b88845bff47c9804dfe461176ba1c",
+  "provider_job": "f75296dbd3404cbcb341c0dbb4097099",
   "asset_id": "provider_cleanup_probe",
   "quality_tier": "standard",
   "provider_model": null,
@@ -57,7 +57,7 @@
     "log": "generated/processed/provider_cleanup_probe/godot-validation.log"
   },
   "preview": "generated/previews/provider_cleanup_probe.png",
-  "preview_review": "PASS_AGENT_VISUAL_REVIEW_2026-09-05",
+  "preview_review": "PENDING_AGENT_REVIEW",
   "reference_views": {},
   "cost": {
     "estimate": {
@@ -68,7 +68,7 @@
     "reported_credits": 0
   },
   "reference_images": [],
-  "processed_sha256": "345b4de25e7a4e8acd9629119908146b7208e5eed3a151bdf5cb4811dd36fbc7",
+  "processed_sha256": "7f4f226051c4ec98e51abfac8f646a12a4364c4b710468d8322a28a3ded33d06",
   "polygon_count_unit": "triangles excluding collision",
   "cleanup_audit": {
     "source": "generated\\provider-fixtures\\textured_source.glb",

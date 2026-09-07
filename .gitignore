@@ -24,3 +24,6 @@ generated/references/unit_*/
 generated/backend/
 *.safetensors
 *.ckpt
+*.pth
+*.pt
+generated/material-work/

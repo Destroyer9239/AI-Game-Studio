@@ -1,0 +1,7 @@
+{
+  "1": {"class_type": "LoadImage", "inputs": {"image": "__INPUT_IMAGE__"}},
+  "2": {"class_type": "UpscaleModelLoader", "inputs": {"model_name": "__UPSCALE_MODEL__"}},
+  "3": {"class_type": "ImageUpscaleWithModel", "inputs": {"upscale_model": ["2", 0], "image": ["1", 0]}},
+  "4": {"class_type": "ImageScale", "inputs": {"image": ["3", 0], "upscale_method": "lanczos", "width": "__WIDTH__", "height": "__HEIGHT__", "crop": "disabled"}},
+  "5": {"class_type": "SaveImage", "inputs": {"images": ["4", 0], "filename_prefix": "__PREFIX__"}}
+}

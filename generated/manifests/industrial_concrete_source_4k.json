@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "asset_name": "industrial_concrete_source_4k",
+  "asset_type": "texture",
+  "provider": "comfyui",
+  "generation_method": "upscale",
+  "source_prompt": "Flat evenly lit material scan of weathered futuristic cast concrete, warm gray fine mineral aggregate, subtle pores, worn industrial surface, restrained mottled variation, no objects, no panels, no perspective, no directional lighting, no text, material fills entire square frame",
+  "source_images": [],
+  "generation_date": "2026-09-06T16:16:49.529351+00:00",
+  "original_file": "generated/image-jobs/industrial_concrete_source_4k-6f584f54a80d/image-000.png",
+  "original_sha256": "060b4600516d13b05c9a74232a5c3e01111e28255b0cfce92edaf50333f2e3d2",
+  "processed_file": null,
+  "polygon_count": null,
+  "textures": [],
+  "scale": null,
+  "collision_status": "NOT_CHECKED",
+  "Godot_import_status": "IMAGE_SOURCE_PENDING_VISUAL_REVIEW",
+  "license_provenance_notes": "CreativeML Open RAIL++-M; https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "provider_job": "e0d4a1fb9069446e9ea01496d3faacd2",
+  "asset_id": "industrial_concrete_source_4k",
+  "quality_tier": "standard",
+  "provider_model": "RealESRGAN_x4plus.pth",
+  "processed_blender_file": null,
+  "final_glb": null,
+  "lods": [],
+  "Godot_scene": null,
+  "validation": {
+    "status": "IMAGE_SOURCE_PENDING_VISUAL_REVIEW"
+  },
+  "preview": null,
+  "preview_review": "PENDING_AGENT_REVIEW",
+  "reference_views": {},
+  "cost": {
+    "estimate": {
+      "amount": 0,
+      "unit": "credits",
+      "basis": "Local inference; backend/model must already be installed"
+    },
+    "reported_credits": 0
+  },
+  "reference_images": [],
+  "image_job": {
+    "status": "PASS",
+    "job": "generated/image-jobs/industrial_concrete_source_4k-6f584f54a80d",
+    "request": "industrial_concrete_source_4k",
+    "files": [
+      {
+        "path": "image-000.png",
+        "sha256": "060b4600516d13b05c9a74232a5c3e01111e28255b0cfce92edaf50333f2e3d2"
+      }
+    ],
+    "workflow_sha256": "c8f97959e98c9859db91f94775590e4ed6b4378bec3410bec1d3f3d35f5417ce",
+    "resolution": [
+      4096,
+      4096
+    ],
+    "steps": 0,
+    "backend": {
+      "system": {
+        "os": "win32",
+        "ram_total": 34049167360,
+        "ram_free": 2197655552,
+        "comfyui_version": "0.34.0",
+        "required_frontend_version": "1.49.6",
+        "installed_templates_version": "0.11.48",
+        "required_templates_version": "0.11.48",
+        "comfy_package_versions": [
+          {
+            "name": "comfyui-frontend-package",
+            "installed": "1.49.6",
+            "required": "1.49.6"
+          },
+          {
+            "name": "comfyui-workflow-templates",
+            "installed": "0.11.48",
+            "required": "0.11.48"
+          },
+          {
+            "name": "comfyui-embedded-docs",
+            "installed": "0.5.10",
+            "required": "0.5.10"
+          },
+          {
+            "name": "comfy-kitchen",
+            "installed": "0.2.31",
+            "required": "0.2.31"
+          },
+          {
+            "name": "comfy-aimdo",
+            "installed": "0.4.15",
+            "required": "0.4.15"
+          }
+        ],
+        "python_version": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+        "pytorch_version": "2.13.0+cu130",
+        "embedded_python": true,
+        "deploy_environment": "local-portable",
+        "argv": [
+          "C:\\AI\\ComfyUI\\ComfyUI_windows_portable\\ComfyUI\\main.py",
+          "--windows-standalone-build",
+          "--listen",
+          "127.0.0.1",
+          "--port",
+          "8188",
+          "--disable-auto-launch",
+          "--disable-all-custom-nodes",
+          "--disable-api-nodes"
+        ]
+      },
+      "devices": [
+        {
+          "name": "cuda:0 NVIDIA GeForce RTX 5070 Ti : cudaMallocAsync",
+          "type": "cuda",
+          "index": 0,
+          "vram_total": 17094475776,
+          "vram_free": 8687819514,
+          "torch_vram_total": 67108864,
+          "torch_vram_free": 31824634
+        }
+      ]
+    },
+    "prompt_id": "341af8eb-a53a-4a3e-aadc-687c2aa3bf22",
+    "provider_execution_status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "341af8eb-a53a-4a3e-aadc-687c2aa3bf22",
+            "timestamp": 1788711402466
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [],
+            "prompt_id": "341af8eb-a53a-4a3e-aadc-687c2aa3bf22",
+            "timestamp": 1788711402469
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "341af8eb-a53a-4a3e-aadc-687c2aa3bf22",
+            "timestamp": 1788711409408
+          }
+        ]
+      ]
+    },
+    "elapsed_seconds": 7.093,
+    "peak_device_vram_mib_sampled": 12127.0,
+    "vram_measurement": "nvidia-smi approximately 1-second samples; entire GPU including other apps; not allocator peak"
+  },
+  "performance": {
+    "elapsed_seconds": 7.093,
+    "resolution": [
+      4096,
+      4096
+    ],
+    "steps": 0,
+    "peak_device_vram_mib_sampled": 12127.0,
+    "vram_measurement": "nvidia-smi approximately 1-second samples; entire GPU including other apps; not allocator peak"
+  },
+  "media_files": [
+    "generated/image-jobs/industrial_concrete_source_4k-6f584f54a80d/image-000.png"
+  ],
+  "image_specification": {
+    "schema_version": 1,
+    "id": "industrial_concrete_source_4k",
+    "asset": "industrial_concrete",
+    "kind": "texture",
+    "workflow": "tools/imagegen/workflows/upscale_4k.api.json",
+    "checkpoint": "sd_xl_base_1.0.safetensors",
+    "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+    "model_license": "CreativeML Open RAIL++-M",
+    "seed": 842731,
+    "width": 4096,
+    "height": 4096,
+    "steps": 30,
+    "cfg": 6.5,
+    "prompt": "Flat evenly lit material scan of weathered futuristic cast concrete, warm gray fine mineral aggregate, subtle pores, worn industrial surface, restrained mottled variation, no objects, no panels, no perspective, no directional lighting, no text, material fills entire square frame",
+    "negative": "objects, scene, perspective, cast shadows, text, watermark, dramatic lighting, cracks crossing entire image, metallic, shiny, tiles, large shapes",
+    "tileable_required": false,
+    "alpha_required": false,
+    "color_space": "sRGB",
+    "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee.",
+    "mode": "upscale",
+    "source_image": "generated/image-jobs/industrial_concrete_source-57eebcff04d2/image-000.png",
+    "upscale_model": "RealESRGAN_x4plus.pth",
+    "upscale_source": "https://github.com/xinntao/Real-ESRGAN/releases/tag/v0.1.0",
+    "upscale_license": "BSD-3-Clause"
+  }
+}

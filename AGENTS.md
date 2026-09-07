@@ -111,7 +111,7 @@ Put hand-authored gameplay in a parent of generated `game/scenes/assets/<id>.tsc
 ## Images and Texture Preparation
 
 - Read `docs/LOCAL_IMAGE_GENERATION.md` before choosing or installing a local image backend.
-- No local diffusion backend/model is installed by this setup. ComfyUI Portable + SDXL is the proposed next installation, subject to approval for its large downloads.
+- ComfyUI Portable + SDXL and Real-ESRGAN are installed outside Git at C:\AI\ComfyUI. Use managed comfy-start/stop/status; the provider can auto-start. Loopback only; no custom/paid API nodes.
 - Prepared requests/workflows live in `tools/imagegen/`; the standard-library adapter defaults to dry-run and only talks to loopback when explicitly executed.
 - Retain prompts, seeds, model source/license, workflow versions and output hashes. Review generated concepts before interpreting them as 3D geometry.
 - Curate concept art in `generated/concept-art/`, source maps in `generated/textures/`, and runtime textures in `game/assets/textures/<id>/`.
@@ -150,3 +150,15 @@ When implementing a feature, consider:
 - collisions
 - saving/loading when relevant
 - debugging
+
+
+## Environment and High-resolution Work
+
+- Read docs/MATERIAL_FACTORY.md, docs/RENDERING_AND_SKIES.md and docs/ENVIRONMENT_ARCHITECTURE.md before environment work.
+- Use `pipeline.ps1 image-4k -RequestFile <local-provider-request>` for 1024-square SDXL to tiled Real-ESRGAN 4096 output. Do not substitute native 4K diffusion or distort non-square references.
+- Use `environment.ps1 build`, `validate`, `benchmark -Quality HIGH`, or `launch`. Desktop now uses Forward+; preserve the fighter main scene. Run all five quality presets after renderer changes.
+- Inspect material tiling and actual GPU renders. Exact texture edge equality does not prove natural nonrepetition. Color imagery is not calibrated PBR/HDR, and generated multiview prompts are not consistent orthographic geometry.
+- Author only meaningful maps, preserve sRGB versus linear data, packed textures, UV scale and collision budgets. The concrete factory authors microrelief and roughness; it does not recover physical depth from AI colors.
+- City/character templates are architecture only. Reuse modular kits, per-chunk instancing and quality classes; do not claim streaming/navigation/rigging is implemented from a template.
+- Run `py -3.11 tools/imagegen/test_local_backend.py` for actual local lifecycle/inference acceptance. Run `tools/imagegen/test_environment.py` with the configured embedded Python for material/GLB tests. Keep existing provider and fighter regressions passing.
+- No further model is needed for this tested stage. Downloads over approximately 2 GB require the user's concrete approval; never silently spend external credits. Rejected spacecraft view images must not be used as approved 3D references.

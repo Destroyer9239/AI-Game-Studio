@@ -1,0 +1,7 @@
+{
+  "name": "industrial_concrete_source",
+  "asset_type": "texture",
+  "operation": "generate_texture",
+  "provider": "comfyui",
+  "image_request": "tools/imagegen/requests/industrial_concrete_source.json"
+}

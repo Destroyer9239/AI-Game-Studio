@@ -15,6 +15,15 @@ from tools.providers.meshy import adapter as meshy
 from tools.providers.higgsfield import adapter as higgsfield
 
 class ProviderTests(unittest.TestCase):
+    def test_rejected_review_and_cost_context(self):
+        directory, plan = service.prepare(self.request(review_status='REJECTED_FOR_3D'))
+        self.assertIn('local_alternative',plan)
+        self.assertIn('output_destination',plan)
+        self.assertIn('external_recommendation_reason',plan)
+        with patch.object(meshy,'submit',side_effect=AssertionError('Must not submit')):
+            with self.assertRaisesRegex(ValueError,'review rejected'):
+                service.execute(str(directory), 'unused-receipt')
+
     def request(self, **changes):
         request = {'name': 'unit_test_asset', 'asset_type': 'organic', 'operation': 'generate_3d', 'provider': 'meshy', 'prompt': 'Original creature'}
         request.update(changes)

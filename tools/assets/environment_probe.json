@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "environment_probe",
+  "status": "ready",
+  "specification": "docs/assets/environment_probe.md",
+  "generator": "blender/scripts/generate_environment_probe.py",
+  "blend": "blender/projects/environment_probe.blend",
+  "model": "game/assets/models/environment_probe.glb",
+  "scene": "game/scenes/assets/environment_probe.tscn",
+  "uv_mode": "required",
+  "require_collision": true,
+  "max_triangles": 2000,
+  "max_materials": 4,
+  "required_nodes": ["Floor_Module", "Wall_Module", "Wall_Cap"],
+  "emissive_nodes": ["Emission_Strip_0"]
+}

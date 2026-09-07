@@ -79,3 +79,11 @@ Reports/previews/raw image jobs and Godot caches are ignored by Git. Editable so
 - An initial exporter run timed out while using the user's startup configuration. Factory startup isolated the process and the next complete run passed. Existing Blender sessions were preserved.
 
 Read `LOCAL_IMAGE_GENERATION.md` for the measured machine inventory and proposed image backend installation. Read `PIPELINE_TEST.md` for the original proof scene.
+
+## Environment stage commands
+
+The local backend is now installed and inference-tested. See LOCAL_IMAGE_GENERATION.md
+for current status; earlier setup statements are historical. Master commands now include
+`comfy-start`, `comfy-stop`, `comfy-restart`, `comfy-status`, `image-4k -RequestFile <json>`,
+`environment-test` and `environment-launch`. The environment command preserves the
+fighter main scene and provides a separate interactive Forward+ quality lab.

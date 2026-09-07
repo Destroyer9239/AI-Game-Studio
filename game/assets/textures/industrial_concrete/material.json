@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "industrial_concrete",
+  "category": "concrete/weathered",
+  "source": "generated/image-jobs/industrial_concrete_4k-267942466a56/image-000.png",
+  "source_sha256": "e6164ab67105d1a0406cc492321a0c296eecd050c7ea073503238755c8c59bdb",
+  "maps": {
+    "basecolor": {
+      "path": "game/assets/textures/industrial_concrete/industrial_concrete_basecolor.png",
+      "sha256": "f1c033505d05dbb6313ae4a137b679f3ccfaff2ea1918ae0700ed321ea44d35f",
+      "resolution": [
+        4096,
+        4096
+      ]
+    },
+    "normal": {
+      "path": "game/assets/textures/industrial_concrete/industrial_concrete_normal.png",
+      "sha256": "62d70141d2c4a2c76d91c9fc19dc4384de1cdfa524e697f810c8427d54f15c2c",
+      "resolution": [
+        4096,
+        4096
+      ]
+    },
+    "roughness": {
+      "path": "game/assets/textures/industrial_concrete/industrial_concrete_roughness.png",
+      "sha256": "fc0e5013572e99bbc24ec9b0933639bb33198a9f1c289deca942b477100ec109",
+      "resolution": [
+        4096,
+        4096
+      ]
+    }
+  },
+  "metallic": 0,
+  "roughness": 0.82,
+  "tile_meters": 2,
+  "normal_convention": "OpenGL +Y tangent space",
+  "relief": "Authored periodic microrelief, 0.15 mm range; not inferred physical geometry",
+  "omitted_maps": {
+    "ao": "No geometry bake",
+    "metallic": "Dielectric constant 0",
+    "emission": "Non-emissive"
+  },
+  "color_processing": "256 px smooth opposite-edge reconciliation; generated panel joints remain color only",
+  "review": "PASS: repeated texture grid and actual Forward+ render inspected; recurring color-only joints remain a documented limitation",
+  "source_provenance": "generated/manifests/industrial_concrete_4k.json"
+}

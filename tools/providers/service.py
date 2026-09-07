@@ -83,7 +83,10 @@ def input_hashes(request):
     files += list(request.get('reference_views', {}).values())
     files += [request[k] for k in ('source_file', 'image_request') if request.get(k)]
     if request.get('image_request'):
-        files.append(read_json(path(request['image_request']))['workflow'])
+        image_spec = read_json(path(request['image_request']))
+        files.append(image_spec['workflow'])
+        if image_spec.get('source_image'):
+            files.append(image_spec['source_image'])
         files.append('tools/providers/image_generation/comfyui.json')
     return {str(path(file).relative_to(ROOT)).replace('\\', '/'): file_hash(path(file)) for file in files if not file.startswith('https://')}
 
@@ -114,6 +117,9 @@ def prepare(request):
             'availability': adapter(chosen).configured() if hasattr(adapter(chosen), 'configured') else {'local_tool_resolution': 'at execution'},
             'workflow_stages': ['design', 'concept/references if required', 'generation', 'Blender cleanup/material checks', 'collision/LOD', 'Godot import/validation', 'preview/review', 'provenance'],
             'automatic_followup_paid_tasks': False}
+    plan['local_alternative'] = 'Authored procedural Blender or local ComfyUI; never automatic paid fallback'
+    plan['external_recommendation_reason'] = request.get('external_reason', 'No external quality recommendation established; explicit provider selection still requires review') if info['paid'] else None
+    plan['output_destination'] = 'generated/raw/' + job_id if info['paid'] else 'generated/image-jobs/' if chosen == 'comfyui' else request['name']
     directory = path('generated/provider-jobs/' + job_id)
     write_json(directory / 'plan.json', plan)
     write_json(directory / 'state.json', {'status': 'PLANNED', 'paid_requests_submitted': 0})
@@ -291,6 +297,8 @@ def execute(job, receipt=None):
     if datetime.fromisoformat(plan['expires']) <= datetime.now(timezone.utc):
         raise ValueError('Plan expired; recheck current docs/pricing and prepare again')
     check_inputs(plan)
+    if str(plan['asset'].get('review_status','')).startswith('REJECTED'):
+        raise ValueError('Asset review rejected these inputs; replace/review references and prepare a new plan')
     module = adapter(plan['provider'])
     if plan['paid']:
         if not receipt:

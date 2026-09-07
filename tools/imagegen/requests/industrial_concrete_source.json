@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "industrial_concrete_source",
+  "asset": "industrial_concrete",
+  "kind": "texture",
+  "workflow": "tools/imagegen/workflows/texture_source_sdxl.api.json",
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+  "model_source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+  "model_license": "CreativeML Open RAIL++-M",
+  "seed": 842731,
+  "width": 1024,
+  "height": 1024,
+  "steps": 30,
+  "cfg": 6.5,
+  "prompt": "Flat evenly lit material scan of weathered futuristic cast concrete, warm gray fine mineral aggregate, subtle pores, worn industrial surface, restrained mottled variation, no objects, no panels, no perspective, no directional lighting, no text, material fills entire square frame",
+  "negative": "objects, scene, perspective, cast shadows, text, watermark, dramatic lighting, cracks crossing entire image, metallic, shiny, tiles, large shapes",
+  "tileable_required": false,
+  "alpha_required": false,
+  "color_space": "sRGB",
+  "notes": "Opaque source artwork. No seamlessness, alpha, orthographic consistency or calibrated map guarantee."
+}

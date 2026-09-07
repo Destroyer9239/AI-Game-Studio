@@ -1,0 +1,13 @@
+{
+  "schema_version":1,
+  "status":"architecture_only",
+  "id":"original_character",
+  "concept":null,"reference_views":{},"source_model":null,
+  "skeleton_contract":{"type":"humanoid","rest_pose":"T","bone_mapping":null},
+  "preserve":["armature","skin_weights","animations","UVs","PBR","shape_keys"],
+  "animations":[],"lods":[],
+  "godot_body":"CharacterBody3D",
+  "collision":"capsule sized to reviewed character",
+  "integration":["Skeleton3D","AnimationTree","root_motion_policy","navigation","movement_controller"],
+  "provider_note":"Existing Meshy rig/animate require separate paid approvals; static cleanup must reject rigs. No generation authorized."
+}

@@ -6,7 +6,7 @@
   "generation_method": "procedural",
   "source_prompt": "Regenerate the original Kestrel pipeline fighter from its authored procedural Blender script.",
   "source_images": [],
-  "generation_date": "2026-09-06T03:12:54.903319+00:00",
+  "generation_date": "2026-09-06T16:20:11.801723+00:00",
   "original_file": "game/assets/models/test_fighter.glb",
   "original_sha256": "1e8d1ee203642e410cc565512be56fbbb115e002b2e38dba137fea3ffd057557",
   "processed_file": "game/assets/models/test_fighter.glb",
@@ -44,7 +44,7 @@
   "collision_status": "PASS_GODOT_VALIDATOR",
   "Godot_import_status": "PASS",
   "license_provenance_notes": "Original project geometry; local Blender generation, no external service.",
-  "provider_job": "12bdf56f1dad41d5b6da524fb01e6d67",
+  "provider_job": "3d39ad5a50cc4bdeb2596631db6bfe0c",
   "asset_id": "test_fighter",
   "quality_tier": "standard",
   "provider_model": null,
@@ -56,10 +56,10 @@
   "Godot_scene": "game/scenes/assets/test_fighter.tscn",
   "validation": {
     "status": "PASS",
-    "log": "generated/provider-jobs/12bdf56f1dad41d5b6da524fb01e6d67/local.log"
+    "log": "generated/provider-jobs/3d39ad5a50cc4bdeb2596631db6bfe0c/local.log"
   },
   "preview": "generated/previews/test_fighter.png",
-  "preview_review": "PASS_AGENT_VISUAL_REVIEW_2026-09-05",
+  "preview_review": "PENDING_AGENT_REVIEW",
   "reference_views": {},
   "cost": {
     "estimate": {

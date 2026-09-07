@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "asset_id": "environment_probe",
+  "provider": "local ComfyUI + procedural Blender",
+  "quality_tier": "STANDARD geometry, HERO resolution demonstration",
+  "files": {
+    "blend": "blender/projects/environment_probe.blend",
+    "glb": "game/assets/models/environment_probe.glb",
+    "scene": "game/scenes/environment_lab.tscn",
+    "material": "game/assets/textures/industrial_concrete/material.json"
+  },
+  "sha256": {
+    "blend": "a3edc58898a182baa0701f15da06cb2cb838e47d898840b6ab5ff7d0c041a616",
+    "glb": "5b106c34191e4d32e936d92361c9323c5ea334038b3f3fc822b88a71a3a44d19",
+    "scene": "d3b2db64d3a9465b173d36cafcf81dfb06b1be8c8749c48421126c0b0c8ed7f2",
+    "material": "8f032b812fdf7c378955f183fcbf9d39cc3c8ee820d2cd4dee72fc3336419199"
+  },
+  "scale": "meters; 8x6 floor, 8x3 wall; two-meter texture repeat",
+  "collision_status": "PASS: imported static wall/floor collision",
+  "Godot_import_status": "PASS",
+  "validation": "Blender export, embedded 4096 textures, material links, Godot resource/asset/sky tests and GPU preview passed",
+  "preview": "generated/previews/environment_HIGH.png",
+  "preview_review": "PASS, pipeline-quality sample; not production city art",
+  "cost": {
+    "external_credits": 0
+  },
+  "source_provenance": [
+    "generated/manifests/industrial_concrete_source.json",
+    "generated/manifests/industrial_concrete_4k.json"
+  ],
+  "lods": "Small 108-triangle render sample; no custom LOD required",
+  "license_notes": "Original procedural geometry and authored materials; SDXL appearance provenance retained; Real-ESRGAN BSD-3-Clause",
+  "benchmarks": {
+    "LOW": {
+      "adapter": "NVIDIA GeForce RTX 5070 Ti",
+      "draw_calls": 37.0,
+      "elapsed_seconds": 4.179016,
+      "instances": 100,
+      "mean_frame_ms": 0.495475117603367,
+      "notes": "At least 2 seconds/120 frames warm-up and 2 seconds/240 samples; CPU wall intervals, not isolated GPU timing; small scene, not city capacity",
+      "p95_frame_ms": 1.244,
+      "quality": "LOW",
+      "rendered_objects": 133.0,
+      "renderer": "forward_plus",
+      "sample_count": 4039,
+      "video_memory_bytes": 1062159504.0
+    },
+    "MEDIUM": {
+      "adapter": "NVIDIA GeForce RTX 5070 Ti",
+      "draw_calls": 38.0,
+      "elapsed_seconds": 4.1858,
+      "instances": 100,
+      "mean_frame_ms": 0.617936634881573,
+      "notes": "At least 2 seconds/120 frames warm-up and 2 seconds/240 samples; CPU wall intervals, not isolated GPU timing; small scene, not city capacity",
+      "p95_frame_ms": 1.705,
+      "quality": "MEDIUM",
+      "rendered_objects": 137.0,
+      "renderer": "forward_plus",
+      "sample_count": 3251,
+      "video_memory_bytes": 1090410976.0
+    },
+    "HIGH": {
+      "adapter": "NVIDIA GeForce RTX 5070 Ti",
+      "draw_calls": 65.0,
+      "elapsed_seconds": 4.170891,
+      "instances": 100,
+      "mean_frame_ms": 1.04175546305931,
+      "notes": "At least 2 seconds/120 frames warm-up and 2 seconds/240 samples; CPU wall intervals, not isolated GPU timing; small scene, not city capacity",
+      "p95_frame_ms": 2.391,
+      "quality": "HIGH",
+      "rendered_objects": 162.0,
+      "renderer": "forward_plus",
+      "sample_count": 1922,
+      "video_memory_bytes": 1232010144.0
+    },
+    "ULTRA": {
+      "adapter": "NVIDIA GeForce RTX 5070 Ti",
+      "draw_calls": 65.0,
+      "elapsed_seconds": 4.236171,
+      "instances": 100,
+      "mean_frame_ms": 1.27867795527157,
+      "notes": "At least 2 seconds/120 frames warm-up and 2 seconds/240 samples; CPU wall intervals, not isolated GPU timing; small scene, not city capacity",
+      "p95_frame_ms": 2.959,
+      "quality": "ULTRA",
+      "rendered_objects": 163.0,
+      "renderer": "forward_plus",
+      "sample_count": 1565,
+      "video_memory_bytes": 1301163424.0
+    },
+    "CINEMATIC": {
+      "adapter": "NVIDIA GeForce RTX 5070 Ti",
+      "draw_calls": 65.0,
+      "elapsed_seconds": 4.233019,
+      "instances": 100,
+      "mean_frame_ms": 1.35328668018932,
+      "notes": "At least 2 seconds/120 frames warm-up and 2 seconds/240 samples; CPU wall intervals, not isolated GPU timing; small scene, not city capacity",
+      "p95_frame_ms": 3.026,
+      "quality": "CINEMATIC",
+      "rendered_objects": 167.0,
+      "renderer": "forward_plus",
+      "sample_count": 1479,
+      "video_memory_bytes": 1390882208.0
+    }
+  },
+  "polygon_count": 108,
+  "polygon_count_unit": "triangles excluding collision",
+  "textures": [
+    {
+      "material": "Concrete_4K_Authored_Relief",
+      "slots": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicRoughnessTexture": {
+          "index": 2
+        },
+        "normalTexture": {
+          "index": 0
+        }
+      }
+    },
+    {
+      "material": "Graphite_Steel",
+      "slots": {}
+    },
+    {
+      "material": "Cyan_Strip",
+      "slots": {}
+    }
+  ],
+  "generation_method": "SDXL appearance -> tiled Real-ESRGAN -> authored periodic material -> procedural Blender modules",
+  "final_glb": "game/assets/models/environment_probe.glb",
+  "processed_blender_file": "blender/projects/environment_probe.blend",
+  "Godot_scene": "game/scenes/environment_lab.tscn"
+}

@@ -35,7 +35,8 @@ def build_workflow(request):
     if request["kind"] not in ("concept", "texture", "decal", "ui", "map", "reference"):
         raise ValueError("Invalid image kind")
     for field in ("width", "height"):
-        if type(request[field]) is not int or not 256 <= request[field] <= 2048 or request[field] % 64:
+        limit = 4096 if request.get('mode') == 'upscale' else 2048
+        if type(request[field]) is not int or not 256 <= request[field] <= limit or request[field] % 64:
             raise ValueError("Image dimensions must be multiples of 64, from 256 to 2048")
     if type(request["seed"]) is not int or not 0 <= request["seed"] < 2**64:
         raise ValueError("Seed must be an unsigned 64-bit integer")
@@ -48,6 +49,12 @@ def build_workflow(request):
               "__NEGATIVE__": request["negative"], "__WIDTH__": request["width"],
               "__HEIGHT__": request["height"], "__SEED__": request["seed"],
               "__PREFIX__": "ai_game_studio/" + request["id"], '__STEPS__': steps, '__CFG__': cfg}
+    if request.get('mode') == 'upscale':
+        source = project_path(request['source_image'])
+        if not source.is_file() or source.suffix.lower() != '.png':
+            raise ValueError('Upscale source must be an existing project PNG')
+        values['__INPUT_IMAGE__'] = 'studio_' + hashlib.sha256(source.read_bytes()).hexdigest()[:24] + '.png'
+        values['__UPSCALE_MODEL__'] = request.get('upscale_model', 'RealESRGAN_x4plus.pth')
     def replace(value):
         if isinstance(value, dict):
             return {key: replace(item) for key, item in value.items()}
@@ -68,6 +75,15 @@ def validate_server(server):
         raise ValueError("Only a local loopback ComfyUI HTTP endpoint is supported")
 
 
+def combo_options(schema):
+    """Comfy legacy nodes and current core V3 nodes expose different combo schemas."""
+    if isinstance(schema[0], list):
+        return schema[0]
+    if schema[0] == 'COMBO' and len(schema) > 1:
+        return schema[1].get('options', [])
+    raise ValueError('Unrecognized model selection schema')
+
+
 def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout=180):
     validate_server(server)
     if timeout < 1:
@@ -80,7 +96,7 @@ def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout
     (job / "workflow.api.json").write_text(json.dumps(workflow, indent=2), encoding="utf-8")
     record = {"status": "DRY_RUN", "job": job.relative_to(ROOT).as_posix(), "request": request["id"], "files": [], "workflow_sha256": hashlib.sha256(json.dumps(workflow, sort_keys=True).encode()).hexdigest()}
     record['resolution'] = [request['width'], request['height']]
-    record['steps'] = next(n['inputs']['steps'] for n in workflow.values() if n['class_type'] == 'KSampler')
+    record['steps'] = next((n['inputs']['steps'] for n in workflow.values() if n['class_type'] == 'KSampler'), 0)
     stopped = threading.Event()
     samples = []
     monitor = None
@@ -112,10 +128,31 @@ def run_job(request_file, execute=False, server='http://127.0.0.1:8188', timeout
         if execute:
             record["status"] = "RUNNING"
             record['backend'] = http("/system_stats")
-            info = http('/object_info/CheckpointLoaderSimple')
-            available = info['CheckpointLoaderSimple']['input']['required']['ckpt_name'][0]
-            if request['checkpoint'] not in available:
-                raise ValueError('Required checkpoint is not installed: ' + request['checkpoint'])
+            if request.get('mode') == 'upscale':
+                info = http('/object_info/UpscaleModelLoader')
+                available = combo_options(info['UpscaleModelLoader']['input']['required']['model_name'])
+                if request.get('upscale_model', 'RealESRGAN_x4plus.pth') not in available:
+                    raise ValueError('Required upscale model is not installed')
+                source = project_path(request['source_image']).read_bytes()
+                if len(source) > 32 * 1024 * 1024:
+                    raise ValueError('Source upload exceeds 32 MiB')
+                filename = 'studio_' + hashlib.sha256(source).hexdigest()[:24] + '.png'
+                boundary = 'studio-' + uuid.uuid4().hex
+                body = (f'--{boundary}\r\nContent-Disposition: form-data; name="image"; filename="{filename}"\r\nContent-Type: image/png\r\n\r\n'.encode()
+                        + source + f'\r\n--{boundary}--\r\n'.encode())
+                upload = Request(server.rstrip('/') + '/upload/image', data=body, headers={'Content-Type': 'multipart/form-data; boundary=' + boundary})
+                with opener.open(upload, timeout=30) as response:
+                    uploaded = json.loads(response.read(1024 * 1024))
+                for node in workflow.values():
+                    if node['class_type'] == 'LoadImage':
+                        node['inputs']['image'] = (uploaded.get('subfolder', '').strip('/') + '/' + uploaded['name']).lstrip('/')
+                (job / 'workflow.api.json').write_text(json.dumps(workflow, indent=2), encoding='utf-8')
+                record['workflow_sha256'] = hashlib.sha256(json.dumps(workflow, sort_keys=True).encode()).hexdigest()
+            else:
+                info = http('/object_info/CheckpointLoaderSimple')
+                available = combo_options(info['CheckpointLoaderSimple']['input']['required']['ckpt_name'])
+                if request['checkpoint'] not in available:
+                    raise ValueError('Required checkpoint is not installed: ' + request['checkpoint'])
             monitor = threading.Thread(target=sample_vram, daemon=True)
             monitor.start()
             queued = http("/prompt", {"prompt": workflow, "client_id": uuid.uuid4().hex})

@@ -1,0 +1,22 @@
+{
+  "status": "REJECTED_FOR_3D",
+  "reason": "Independent SDXL text prompts did not preserve one design or requested orthographic views. Use controlled Blender blockout views next.",
+  "views": {
+    "front": {
+      "path": "generated/references/strake_interceptor/front.png",
+      "status": "REJECTED"
+    },
+    "side": {
+      "path": "generated/references/strake_interceptor/side.png",
+      "status": "REJECTED"
+    },
+    "rear": {
+      "path": "generated/references/strake_interceptor/rear.png",
+      "status": "REJECTED"
+    },
+    "top": {
+      "path": "generated/references/strake_interceptor/top.png",
+      "status": "REJECTED"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "architecture_only",
+  "id": "original_world",
+  "units": "meters",
+  "grid_meters": 0.5,
+  "chunk_meters": 128,
+  "districts": [],
+  "district_template": {
+    "id": "district_id", "biome": "urban_industrial", "block_ids": [],
+    "material_palette": [], "lighting_profile": "HIGH", "stream_radius_meters": 384
+  },
+  "block_template": {"id":"block_id", "lot_ids":[], "roads":[], "navigation_region":"per_chunk"},
+  "lot_template": {"id":"lot_id", "bounds_meters":[16,24], "building_recipe":null},
+  "building_template": {
+    "kit_id":null, "floors":3, "floor_height_meters":3,
+    "modules":[], "props":[], "decals":[], "lights":[],
+    "collision":"simplified_static", "navigation":"bake_per_loaded_region",
+    "gameplay":{"entrances":[],"interactions":[],"spawn_tags":[]}
+  },
+  "module_categories":["foundation","facade","window","door","corner","balcony","roof","storefront","vent","pipe","hvac","antenna","sign","roof_machinery","street_detail"],
+  "road_categories":["asphalt","curb","sidewalk","intersection","marking","drain"],
+  "prop_categories":["street_light","barrier","bench","sign","utility","crate","industrial_equipment"],
+  "detail_categories":["dirt","grime","wear","fictional_advertisement","original_logo","warning","building_number","leak","surface_variation"]
+}

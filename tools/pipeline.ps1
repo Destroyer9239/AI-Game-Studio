@@ -1,6 +1,6 @@
 param(
     [Parameter(Position=0)]
-    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview','comfy-start','comfy-stop','comfy-restart','comfy-status')]
+    [ValidateSet('validate','launch','generate','export','import','integrate','test-asset','preview','test-pipeline','scaffold','doctor','providers','asset-plan','asset-create','asset-process','provider-status','provider-execute','provider-poll','provider-fetch','provider-balance','provider-usage','provider-quote','multiview','comfy-start','comfy-stop','comfy-restart','comfy-status','image-4k','environment-test','environment-launch')]
     [string]$Action = 'validate',
     [string]$Asset = 'test_fighter',
     [string]$GodotPath,
@@ -76,7 +76,14 @@ function Preview-Asset {
 }
 
 try {
-    if ($Action.StartsWith('comfy-')) {
+    if ($Action -eq 'image-4k') {
+        $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
+        Invoke-StudioProcess 'image-4k' $python.Source @('-3.11',(Get-StudioPath 'tools/imagegen/high_resolution.py'),$RequestFile) 900
+    } elseif ($Action.StartsWith('environment-')) {
+        $operation = if ($Action -eq 'environment-launch') { 'launch' } else { 'build' }
+        & pwsh -NoProfile -File "$PSScriptRoot/environment.ps1" $operation
+        if ($LASTEXITCODE -ne 0) { throw 'Environment operation failed' }
+    } elseif ($Action.StartsWith('comfy-')) {
         $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
         Invoke-StudioProcess 'comfy-backend' $python.Source @('-3.11',(Get-StudioPath 'tools/imagegen/backend.py'),$Action.Replace('comfy-','')) 150
         Get-Content -LiteralPath (Join-Path $script:RunDirectory 'comfy-backend.log')
