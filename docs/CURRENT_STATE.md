@@ -20,3 +20,11 @@ Checkpoint 2: canonical fighter multiviews passed structural and visual review, 
 five gate tests. The foundry building passed eight recipe checks and its complete
 Blender/GLB/Godot/render pipeline. See MULTIVIEW_AND_BUILDINGS.md. Next: small block
 composition and bounded streaming. No paid services used.
+
+Checkpoint 3: four-building Cinder Exchange block and two service cells. Industrial,
+commercial and office recipes exported/imported/rendered. Eleven real streaming checks
+pass (duplicate prevention, load/unload, state restoration, collision/navigation and
+cell budget). Final overview inspected after correcting entrances to face the street.
+See CITY_AND_STREAMING.md. Next: connected environment/weather/audio, then playable
+character/gameplay integration. Corridor streaming is intentionally bounded, not a
+complete arbitrary large-world solution.

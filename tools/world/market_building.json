@@ -1,0 +1,31 @@
+{
+  "id": "market_building",
+  "seed": 14721,
+  "archetype": "commercial",
+  "quality": "STANDARD",
+  "footprint": [
+    16,
+    9
+  ],
+  "floors": 2,
+  "district": "industrial",
+  "style": "original restrained near-future mineral facade and charcoal service trim",
+  "facade_color": [
+    0.48,
+    0.37,
+    0.26
+  ],
+  "roof": "flat_service",
+  "age": "established",
+  "condition": "maintained",
+  "wealth": "working",
+  "function": "fabrication offices",
+  "technology": "near_future",
+  "lighting_style": "warm occupied windows, cyan service markers",
+  "invariants": {
+    "front_entrance": 1,
+    "roof_hvac": 1,
+    "story_height_m": 3.2,
+    "major_asymmetry": "front canopy and service panel"
+  }
+}

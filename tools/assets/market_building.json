@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "market_building",
+  "status": "ready",
+  "specification": "docs/assets/market_building.md",
+  "generator": "blender/scripts/generate_market_building.py",
+  "blend": "blender/projects/market_building.blend",
+  "model": "game/assets/models/market_building.glb",
+  "scene": "game/scenes/assets/market_building.tscn",
+  "uv_mode": "required",
+  "require_collision": true,
+  "max_triangles": 20000,
+  "max_materials": 8,
+  "required_nodes": [
+    "Foundation",
+    "Structural_Shell",
+    "Entrance_Glass",
+    "Entrance_Canopy",
+    "Roof_Parapet"
+  ],
+  "emissive_nodes": [
+    "Entrance_Light"
+  ]
+}

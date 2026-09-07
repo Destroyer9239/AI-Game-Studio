@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "id": "cinder_exchange",
+  "seed": 2914,
+  "cell_size": 64,
+  "district": "industrial",
+  "load_radius": 82,
+  "unload_radius": 110,
+  "max_loaded": 3,
+  "cells": [
+    {
+      "id": "west",
+      "x": -64,
+      "role": "service",
+      "buildings": []
+    },
+    {
+      "id": "center",
+      "x": 0,
+      "role": "block",
+      "buildings": [
+        {
+          "id": "foundry_a",
+          "asset": "foundry_building",
+          "position": [
+            -16,
+            0,
+            -17
+          ],
+          "yaw": 180,
+          "front_offset": 5.28
+        },
+        {
+          "id": "market_a",
+          "asset": "market_building",
+          "position": [
+            16,
+            0,
+            -17
+          ],
+          "yaw": 180,
+          "front_offset": 4.78
+        },
+        {
+          "id": "relay_a",
+          "asset": "relay_building",
+          "position": [
+            -16,
+            0,
+            17
+          ],
+          "yaw": 0,
+          "front_offset": 5.78
+        },
+        {
+          "id": "foundry_b",
+          "asset": "foundry_building",
+          "position": [
+            16,
+            0,
+            17
+          ],
+          "yaw": 0,
+          "front_offset": 5.28
+        }
+      ]
+    },
+    {
+      "id": "east",
+      "x": 64,
+      "role": "service",
+      "buildings": []
+    }
+  ],
+  "district_rules": {
+    "industrial": {
+      "road_width": 8,
+      "height_range": [
+        2,
+        5
+      ],
+      "ambient": "machinery",
+      "npc_density": 2,
+      "exposure": 0.8
+    },
+    "commercial": {
+      "road_width": 10,
+      "height_range": [
+        2,
+        6
+      ],
+      "ambient": "city",
+      "npc_density": 6,
+      "exposure": 0.6
+    },
+    "residential": {
+      "road_width": 7,
+      "height_range": [
+        2,
+        4
+      ],
+      "ambient": "wind",
+      "npc_density": 4,
+      "exposure": 0.5
+    },
+    "civic": {
+      "road_width": 12,
+      "height_range": [
+        3,
+        6
+      ],
+      "ambient": "city",
+      "npc_density": 3,
+      "exposure": 0.7
+    },
+    "spaceport": {
+      "road_width": 14,
+      "height_range": [
+        1,
+        5
+      ],
+      "ambient": "machinery",
+      "npc_density": 2,
+      "exposure": 1.0
+    },
+    "outskirts": {
+      "road_width": 6,
+      "height_range": [
+        1,
+        2
+      ],
+      "ambient": "wind",
+      "npc_density": 1,
+      "exposure": 1.0
+    }
+  }
+}

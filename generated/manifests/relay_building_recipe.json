@@ -1,0 +1,2637 @@
+{
+  "schema_version": 1,
+  "spec": {
+    "id": "relay_building",
+    "seed": 14721,
+    "archetype": "office",
+    "quality": "STANDARD",
+    "footprint": [
+      9,
+      11
+    ],
+    "floors": 5,
+    "district": "industrial",
+    "style": "original restrained near-future mineral facade and charcoal service trim",
+    "facade_color": [
+      0.22,
+      0.31,
+      0.35
+    ],
+    "roof": "flat_service",
+    "age": "established",
+    "condition": "maintained",
+    "wealth": "working",
+    "function": "fabrication offices",
+    "technology": "near_future",
+    "lighting_style": "warm occupied windows, cyan service markers",
+    "invariants": {
+      "front_entrance": 1,
+      "roof_hvac": 1,
+      "story_height_m": 3.2,
+      "major_asymmetry": "front canopy and service panel"
+    }
+  },
+  "placements": [
+    {
+      "name": "Foundation",
+      "position": [
+        0,
+        0,
+        0.2
+      ],
+      "dimensions": [
+        9.5,
+        11.5,
+        0.4
+      ],
+      "material": "Foundation"
+    },
+    {
+      "name": "Structural_Shell",
+      "position": [
+        0,
+        0,
+        8.4
+      ],
+      "dimensions": [
+        9,
+        11,
+        16.0
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Floor_Ledge_0",
+      "position": [
+        0,
+        0,
+        0.5800000000000001
+      ],
+      "dimensions": [
+        9.18,
+        11.18,
+        0.16
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_0_0_Frame",
+      "position": [
+        -3.0,
+        5.54,
+        1.9
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_0_0_Window",
+      "position": [
+        -3.0,
+        5.635,
+        1.9
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "front_0_1_Frame",
+      "position": [
+        0.0,
+        5.54,
+        1.9
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        2.5500000000000003
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Entrance_Glass",
+      "position": [
+        0.0,
+        5.635,
+        1.9
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        2.33
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Entrance_Canopy",
+      "position": [
+        0.0,
+        6.15,
+        3.02
+      ],
+      "dimensions": [
+        3.75,
+        1.5,
+        0.18
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Entrance_Light",
+      "position": [
+        0.0,
+        6.21,
+        2.89
+      ],
+      "dimensions": [
+        3.0,
+        0.9,
+        0.035
+      ],
+      "material": "Cyan_Wayfinding"
+    },
+    {
+      "name": "front_0_2_Frame",
+      "position": [
+        3.0,
+        5.54,
+        1.9
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_0_2_Window",
+      "position": [
+        3.0,
+        5.635,
+        1.9
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_0_0_Frame",
+      "position": [
+        -3.0,
+        -5.54,
+        1.9
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_0_0_Window",
+      "position": [
+        -3.0,
+        -5.635,
+        1.9
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "rear_0_1_Frame",
+      "position": [
+        0.0,
+        -5.54,
+        1.9
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_0_1_Window",
+      "position": [
+        0.0,
+        -5.635,
+        1.9
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_0_2_Frame",
+      "position": [
+        3.0,
+        -5.54,
+        1.9
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_0_2_Window",
+      "position": [
+        3.0,
+        -5.635,
+        1.9
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_0_0_Frame",
+      "position": [
+        -4.54,
+        -4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_0_0_Window",
+      "position": [
+        -4.635,
+        -4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_0_1_Frame",
+      "position": [
+        -4.54,
+        -2.1999999999999997,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_0_1_Window",
+      "position": [
+        -4.635,
+        -2.1999999999999997,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_0_2_Frame",
+      "position": [
+        -4.54,
+        0.0,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_0_2_Window",
+      "position": [
+        -4.635,
+        0.0,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_0_3_Frame",
+      "position": [
+        -4.54,
+        2.200000000000001,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_0_3_Window",
+      "position": [
+        -4.635,
+        2.200000000000001,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "left_0_4_Frame",
+      "position": [
+        -4.54,
+        4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_0_4_Window",
+      "position": [
+        -4.635,
+        4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "right_0_0_Frame",
+      "position": [
+        4.54,
+        -4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_0_0_Window",
+      "position": [
+        4.635,
+        -4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_0_1_Frame",
+      "position": [
+        4.54,
+        -2.1999999999999997,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_0_1_Window",
+      "position": [
+        4.635,
+        -2.1999999999999997,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_0_2_Frame",
+      "position": [
+        4.54,
+        0.0,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_0_2_Window",
+      "position": [
+        4.635,
+        0.0,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_0_3_Frame",
+      "position": [
+        4.54,
+        2.200000000000001,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_0_3_Window",
+      "position": [
+        4.635,
+        2.200000000000001,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_0_4_Frame",
+      "position": [
+        4.54,
+        4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_0_4_Window",
+      "position": [
+        4.635,
+        4.4,
+        1.9
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Floor_Ledge_1",
+      "position": [
+        0,
+        0,
+        3.7800000000000002
+      ],
+      "dimensions": [
+        9.18,
+        11.18,
+        0.16
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_1_0_Frame",
+      "position": [
+        -3.0,
+        5.54,
+        5.1
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_1_0_Window",
+      "position": [
+        -3.0,
+        5.635,
+        5.1
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "front_1_1_Frame",
+      "position": [
+        0.0,
+        5.54,
+        5.1
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_1_1_Window",
+      "position": [
+        0.0,
+        5.635,
+        5.1
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "front_1_2_Frame",
+      "position": [
+        3.0,
+        5.54,
+        5.1
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_1_2_Window",
+      "position": [
+        3.0,
+        5.635,
+        5.1
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_1_0_Frame",
+      "position": [
+        -3.0,
+        -5.54,
+        5.1
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_1_0_Window",
+      "position": [
+        -3.0,
+        -5.635,
+        5.1
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_1_1_Frame",
+      "position": [
+        0.0,
+        -5.54,
+        5.1
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_1_1_Window",
+      "position": [
+        0.0,
+        -5.635,
+        5.1
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "rear_1_2_Frame",
+      "position": [
+        3.0,
+        -5.54,
+        5.1
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_1_2_Window",
+      "position": [
+        3.0,
+        -5.635,
+        5.1
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_1_0_Frame",
+      "position": [
+        -4.54,
+        -4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_1_0_Window",
+      "position": [
+        -4.635,
+        -4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_1_1_Frame",
+      "position": [
+        -4.54,
+        -2.1999999999999997,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_1_1_Window",
+      "position": [
+        -4.635,
+        -2.1999999999999997,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_1_2_Frame",
+      "position": [
+        -4.54,
+        0.0,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_1_2_Window",
+      "position": [
+        -4.635,
+        0.0,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_1_3_Frame",
+      "position": [
+        -4.54,
+        2.200000000000001,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_1_3_Window",
+      "position": [
+        -4.635,
+        2.200000000000001,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_1_4_Frame",
+      "position": [
+        -4.54,
+        4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_1_4_Window",
+      "position": [
+        -4.635,
+        4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "right_1_0_Frame",
+      "position": [
+        4.54,
+        -4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_1_0_Window",
+      "position": [
+        4.635,
+        -4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_1_1_Frame",
+      "position": [
+        4.54,
+        -2.1999999999999997,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_1_1_Window",
+      "position": [
+        4.635,
+        -2.1999999999999997,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_1_2_Frame",
+      "position": [
+        4.54,
+        0.0,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_1_2_Window",
+      "position": [
+        4.635,
+        0.0,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_1_3_Frame",
+      "position": [
+        4.54,
+        2.200000000000001,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_1_3_Window",
+      "position": [
+        4.635,
+        2.200000000000001,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_1_4_Frame",
+      "position": [
+        4.54,
+        4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_1_4_Window",
+      "position": [
+        4.635,
+        4.4,
+        5.1
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Floor_Ledge_2",
+      "position": [
+        0,
+        0,
+        6.98
+      ],
+      "dimensions": [
+        9.18,
+        11.18,
+        0.16
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_2_0_Frame",
+      "position": [
+        -3.0,
+        5.54,
+        8.3
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_2_0_Window",
+      "position": [
+        -3.0,
+        5.635,
+        8.3
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "front_2_1_Frame",
+      "position": [
+        0.0,
+        5.54,
+        8.3
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_2_1_Window",
+      "position": [
+        0.0,
+        5.635,
+        8.3
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "front_2_2_Frame",
+      "position": [
+        3.0,
+        5.54,
+        8.3
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_2_2_Window",
+      "position": [
+        3.0,
+        5.635,
+        8.3
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_2_0_Frame",
+      "position": [
+        -3.0,
+        -5.54,
+        8.3
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_2_0_Window",
+      "position": [
+        -3.0,
+        -5.635,
+        8.3
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_2_1_Frame",
+      "position": [
+        0.0,
+        -5.54,
+        8.3
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_2_1_Window",
+      "position": [
+        0.0,
+        -5.635,
+        8.3
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_2_2_Frame",
+      "position": [
+        3.0,
+        -5.54,
+        8.3
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_2_2_Window",
+      "position": [
+        3.0,
+        -5.635,
+        8.3
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_2_0_Frame",
+      "position": [
+        -4.54,
+        -4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_2_0_Window",
+      "position": [
+        -4.635,
+        -4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_2_1_Frame",
+      "position": [
+        -4.54,
+        -2.1999999999999997,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_2_1_Window",
+      "position": [
+        -4.635,
+        -2.1999999999999997,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "left_2_2_Frame",
+      "position": [
+        -4.54,
+        0.0,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_2_2_Window",
+      "position": [
+        -4.635,
+        0.0,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_2_3_Frame",
+      "position": [
+        -4.54,
+        2.200000000000001,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_2_3_Window",
+      "position": [
+        -4.635,
+        2.200000000000001,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_2_4_Frame",
+      "position": [
+        -4.54,
+        4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_2_4_Window",
+      "position": [
+        -4.635,
+        4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_2_0_Frame",
+      "position": [
+        4.54,
+        -4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_2_0_Window",
+      "position": [
+        4.635,
+        -4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_2_1_Frame",
+      "position": [
+        4.54,
+        -2.1999999999999997,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_2_1_Window",
+      "position": [
+        4.635,
+        -2.1999999999999997,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_2_2_Frame",
+      "position": [
+        4.54,
+        0.0,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_2_2_Window",
+      "position": [
+        4.635,
+        0.0,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_2_3_Frame",
+      "position": [
+        4.54,
+        2.200000000000001,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_2_3_Window",
+      "position": [
+        4.635,
+        2.200000000000001,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_2_4_Frame",
+      "position": [
+        4.54,
+        4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_2_4_Window",
+      "position": [
+        4.635,
+        4.4,
+        8.3
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Floor_Ledge_3",
+      "position": [
+        0,
+        0,
+        10.180000000000001
+      ],
+      "dimensions": [
+        9.18,
+        11.18,
+        0.16
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_3_0_Frame",
+      "position": [
+        -3.0,
+        5.54,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_3_0_Window",
+      "position": [
+        -3.0,
+        5.635,
+        11.500000000000002
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "front_3_1_Frame",
+      "position": [
+        0.0,
+        5.54,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_3_1_Window",
+      "position": [
+        0.0,
+        5.635,
+        11.500000000000002
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "front_3_2_Frame",
+      "position": [
+        3.0,
+        5.54,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_3_2_Window",
+      "position": [
+        3.0,
+        5.635,
+        11.500000000000002
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_3_0_Frame",
+      "position": [
+        -3.0,
+        -5.54,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_3_0_Window",
+      "position": [
+        -3.0,
+        -5.635,
+        11.500000000000002
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "rear_3_1_Frame",
+      "position": [
+        0.0,
+        -5.54,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_3_1_Window",
+      "position": [
+        0.0,
+        -5.635,
+        11.500000000000002
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_3_2_Frame",
+      "position": [
+        3.0,
+        -5.54,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_3_2_Window",
+      "position": [
+        3.0,
+        -5.635,
+        11.500000000000002
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_3_0_Frame",
+      "position": [
+        -4.54,
+        -4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_3_0_Window",
+      "position": [
+        -4.635,
+        -4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "left_3_1_Frame",
+      "position": [
+        -4.54,
+        -2.1999999999999997,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_3_1_Window",
+      "position": [
+        -4.635,
+        -2.1999999999999997,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_3_2_Frame",
+      "position": [
+        -4.54,
+        0.0,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_3_2_Window",
+      "position": [
+        -4.635,
+        0.0,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "left_3_3_Frame",
+      "position": [
+        -4.54,
+        2.200000000000001,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_3_3_Window",
+      "position": [
+        -4.635,
+        2.200000000000001,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_3_4_Frame",
+      "position": [
+        -4.54,
+        4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_3_4_Window",
+      "position": [
+        -4.635,
+        4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_3_0_Frame",
+      "position": [
+        4.54,
+        -4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_3_0_Window",
+      "position": [
+        4.635,
+        -4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_3_1_Frame",
+      "position": [
+        4.54,
+        -2.1999999999999997,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_3_1_Window",
+      "position": [
+        4.635,
+        -2.1999999999999997,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_3_2_Frame",
+      "position": [
+        4.54,
+        0.0,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_3_2_Window",
+      "position": [
+        4.635,
+        0.0,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_3_3_Frame",
+      "position": [
+        4.54,
+        2.200000000000001,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_3_3_Window",
+      "position": [
+        4.635,
+        2.200000000000001,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "right_3_4_Frame",
+      "position": [
+        4.54,
+        4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_3_4_Window",
+      "position": [
+        4.635,
+        4.4,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Floor_Ledge_4",
+      "position": [
+        0,
+        0,
+        13.38
+      ],
+      "dimensions": [
+        9.18,
+        11.18,
+        0.16
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_4_0_Frame",
+      "position": [
+        -3.0,
+        5.54,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_4_0_Window",
+      "position": [
+        -3.0,
+        5.635,
+        14.700000000000001
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "front_4_1_Frame",
+      "position": [
+        0.0,
+        5.54,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_4_1_Window",
+      "position": [
+        0.0,
+        5.635,
+        14.700000000000001
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "front_4_2_Frame",
+      "position": [
+        3.0,
+        5.54,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "front_4_2_Window",
+      "position": [
+        3.0,
+        5.635,
+        14.700000000000001
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_4_0_Frame",
+      "position": [
+        -3.0,
+        -5.54,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_4_0_Window",
+      "position": [
+        -3.0,
+        -5.635,
+        14.700000000000001
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "rear_4_1_Frame",
+      "position": [
+        0.0,
+        -5.54,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_4_1_Window",
+      "position": [
+        0.0,
+        -5.635,
+        14.700000000000001
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "rear_4_2_Frame",
+      "position": [
+        3.0,
+        -5.54,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.14,
+        0.16,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "rear_4_2_Window",
+      "position": [
+        3.0,
+        -5.635,
+        14.700000000000001
+      ],
+      "dimensions": [
+        1.94,
+        0.035,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_4_0_Frame",
+      "position": [
+        -4.54,
+        -4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_4_0_Window",
+      "position": [
+        -4.635,
+        -4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_4_1_Frame",
+      "position": [
+        -4.54,
+        -2.1999999999999997,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_4_1_Window",
+      "position": [
+        -4.635,
+        -2.1999999999999997,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_4_2_Frame",
+      "position": [
+        -4.54,
+        0.0,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_4_2_Window",
+      "position": [
+        -4.635,
+        0.0,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "left_4_3_Frame",
+      "position": [
+        -4.54,
+        2.200000000000001,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_4_3_Window",
+      "position": [
+        -4.635,
+        2.200000000000001,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "left_4_4_Frame",
+      "position": [
+        -4.54,
+        4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "left_4_4_Window",
+      "position": [
+        -4.635,
+        4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_4_0_Frame",
+      "position": [
+        4.54,
+        -4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_4_0_Window",
+      "position": [
+        4.635,
+        -4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "right_4_1_Frame",
+      "position": [
+        4.54,
+        -2.1999999999999997,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_4_1_Window",
+      "position": [
+        4.635,
+        -2.1999999999999997,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "right_4_2_Frame",
+      "position": [
+        4.54,
+        0.0,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_4_2_Window",
+      "position": [
+        4.635,
+        0.0,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "right_4_3_Frame",
+      "position": [
+        4.54,
+        2.200000000000001,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_4_3_Window",
+      "position": [
+        4.635,
+        2.200000000000001,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Warm_Window_Light"
+    },
+    {
+      "name": "right_4_4_Frame",
+      "position": [
+        4.54,
+        4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.16,
+        1.5960000000000003,
+        1.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "right_4_4_Window",
+      "position": [
+        4.635,
+        4.4,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.035,
+        1.3960000000000001,
+        1.63
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Corner_Column",
+      "position": [
+        -4.36,
+        -5.36,
+        8.4
+      ],
+      "dimensions": [
+        0.4,
+        0.4,
+        16.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Corner_Column",
+      "position": [
+        -4.36,
+        5.36,
+        8.4
+      ],
+      "dimensions": [
+        0.4,
+        0.4,
+        16.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Corner_Column",
+      "position": [
+        4.36,
+        -5.36,
+        8.4
+      ],
+      "dimensions": [
+        0.4,
+        0.4,
+        16.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Corner_Column",
+      "position": [
+        4.36,
+        5.36,
+        8.4
+      ],
+      "dimensions": [
+        0.4,
+        0.4,
+        16.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Roof_Parapet",
+      "position": [
+        0,
+        0,
+        16.53
+      ],
+      "dimensions": [
+        9.3,
+        11.3,
+        0.28
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Roof_Deck",
+      "position": [
+        0,
+        0,
+        16.71
+      ],
+      "dimensions": [
+        8.5,
+        10.5,
+        0.1
+      ],
+      "material": "Foundation"
+    },
+    {
+      "name": "HVAC_Base",
+      "position": [
+        -1.8,
+        0,
+        17.15
+      ],
+      "dimensions": [
+        2.4,
+        1.9,
+        0.85
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "HVAC_Louver",
+      "position": [
+        -2.8,
+        0,
+        17.6
+      ],
+      "dimensions": [
+        0.16,
+        1.6,
+        0.08
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "HVAC_Louver",
+      "position": [
+        -2.4,
+        0,
+        17.6
+      ],
+      "dimensions": [
+        0.16,
+        1.6,
+        0.08
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "HVAC_Louver",
+      "position": [
+        -1.9999999999999998,
+        0,
+        17.6
+      ],
+      "dimensions": [
+        0.16,
+        1.6,
+        0.08
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "HVAC_Louver",
+      "position": [
+        -1.5999999999999996,
+        0,
+        17.6
+      ],
+      "dimensions": [
+        0.16,
+        1.6,
+        0.08
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "HVAC_Louver",
+      "position": [
+        -1.1999999999999997,
+        0,
+        17.6
+      ],
+      "dimensions": [
+        0.16,
+        1.6,
+        0.08
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "HVAC_Louver",
+      "position": [
+        -0.7999999999999998,
+        0,
+        17.6
+      ],
+      "dimensions": [
+        0.16,
+        1.6,
+        0.08
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Service_Panel",
+      "position": [
+        -3.15,
+        5.62,
+        1.1
+      ],
+      "dimensions": [
+        0.7,
+        0.16,
+        1.1
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Sign_Mount",
+      "position": [
+        0,
+        5.65,
+        3.6
+      ],
+      "dimensions": [
+        4.5,
+        0.2,
+        0.5
+      ],
+      "material": "Cyan_Wayfinding"
+    },
+    {
+      "name": "Building-colonly",
+      "position": [
+        0,
+        0,
+        8.2
+      ],
+      "dimensions": [
+        9,
+        11,
+        16.4
+      ],
+      "material": "Foundation"
+    }
+  ],
+  "recipe_sha256": "31eed25bafd75d9e841f3323146f9844a605d55ae402945da08194ad9b65f3fb",
+  "source": "original modular generator",
+  "navigation_hooks": {
+    "front_entrance": [
+      0,
+      6.5,
+      0
+    ]
+  },
+  "material_policy": "shared authored PBR; no per-building 4K textures",
+  "lod_policy": "Godot automatic mesh LOD plus cheap DISTANT recipe; assembled HLOD requires city visibility integration"
+}

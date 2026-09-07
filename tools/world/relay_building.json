@@ -1,0 +1,31 @@
+{
+  "id": "relay_building",
+  "seed": 14721,
+  "archetype": "office",
+  "quality": "STANDARD",
+  "footprint": [
+    9,
+    11
+  ],
+  "floors": 5,
+  "district": "industrial",
+  "style": "original restrained near-future mineral facade and charcoal service trim",
+  "facade_color": [
+    0.22,
+    0.31,
+    0.35
+  ],
+  "roof": "flat_service",
+  "age": "established",
+  "condition": "maintained",
+  "wealth": "working",
+  "function": "fabrication offices",
+  "technology": "near_future",
+  "lighting_style": "warm occupied windows, cyan service markers",
+  "invariants": {
+    "front_entrance": 1,
+    "roof_hvac": 1,
+    "story_height_m": 3.2,
+    "major_asymmetry": "front canopy and service panel"
+  }
+}
