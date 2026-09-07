@@ -1,0 +1,8 @@
+{
+ "clear":{"cloud":0.0,"rain":0.0,"fog":0.001,"wind":0.2,"wetness":0.0},
+ "cloudy":{"cloud":0.7,"rain":0.0,"fog":0.004,"wind":0.4,"wetness":0.0},
+ "rain":{"cloud":0.85,"rain":0.5,"fog":0.008,"wind":0.55,"wetness":0.75},
+ "heavy_rain":{"cloud":1.0,"rain":1.0,"fog":0.014,"wind":0.8,"wetness":1.0},
+ "fog":{"cloud":0.6,"rain":0.0,"fog":0.035,"wind":0.1,"wetness":0.2},
+ "storm":{"cloud":1.0,"rain":0.85,"fog":0.02,"wind":1.0,"wetness":1.0}
+}

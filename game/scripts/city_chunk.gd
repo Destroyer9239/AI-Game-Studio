@@ -66,6 +66,18 @@ func _ready() -> void:
 			box("Drain",Vector3(x,.255,side*4.6),Vector3(.7,.025,.5),shared.steel)
 	for x in range(-30,31,6):
 		box("LaneMark",Vector3(x,.04,0),Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8))
+	if cell_id=="center":
+		box("ShelterRoof",Vector3(0,3,-6),Vector3(4.2,.2,3),shared.steel,true)
+		for x in [-1.8,1.8]:
+			box("ShelterPost",Vector3(x,1.5,-7),Vector3(.1,3,.1),shared.steel,true)
+		var machine:=AudioStreamPlayer3D.new()
+		machine.stream=load("res://assets/audio/city.wav")
+		machine.position=Vector3(-16,8,-17)
+		machine.volume_db=-20
+		machine.max_distance=24
+		add_child(machine)
+		machine.finished.connect(machine.play)
+		machine.play()
 	for b in cell_data.buildings:
 		var packed: PackedScene
 		for candidate in building_scenes:
@@ -98,3 +110,7 @@ func capture_state() -> Dictionary:
 
 func restore_state(state: Dictionary) -> void:
 	persistent_state = state.duplicate(true)
+
+func _exit_tree() -> void:
+	for child in find_children("*","AudioStreamPlayer3D",true,false):
+		child.stop()

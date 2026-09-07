@@ -39,4 +39,5 @@ func run() -> void:
 	print("STREAMING_TESTS_PASS: ",checks," checks ",streamer.metrics())
 	streamer.queue_free()
 	await process_frame
+	await create_timer(.15).timeout
 	quit()

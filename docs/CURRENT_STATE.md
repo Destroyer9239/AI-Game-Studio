@@ -28,3 +28,12 @@ cell budget). Final overview inspected after correcting entrances to face the st
 See CITY_AND_STREAMING.md. Next: connected environment/weather/audio, then playable
 character/gameplay integration. Corridor streaming is intentionally bounded, not a
 complete arbitrary large-world solution.
+
+Checkpoint 4: EnvironmentDirector connects data-driven weather/time to sky color,
+sun/city lighting, fog, particles, gradual road wetness and audio signals. Layered
+procedural ambience, local machinery, seeded one-shots and spatial shelter zones work.
+Thirteen state/audio-zone checks and five synthesized-waveform checks pass; rainy and
+clear GPU views inspected. Explicit audio shutdown fixes resource lifetime during cell
+unload/tests. Current art/audio remain prototype quality; no professional sound assets
+or physically calibrated HDR are claimed. Next: actual player, rigged fixture, NPC,
+interaction/objective/save/event foundations and integrated playable acceptance.

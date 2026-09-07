@@ -1,0 +1,32 @@
+{
+  "wind": {
+    "samples": 88200,
+    "peak": 0.08780175176244392,
+    "rms": 0.017929500632463256,
+    "source": "original procedural placeholder, seed 8412"
+  },
+  "city": {
+    "samples": 88200,
+    "peak": 0.05850398266548662,
+    "rms": 0.027400419258711124,
+    "source": "original procedural placeholder, seed 8412"
+  },
+  "rain": {
+    "samples": 88200,
+    "peak": 0.10208441419721061,
+    "rms": 0.04596912169199341,
+    "source": "original procedural placeholder, seed 8412"
+  },
+  "interior": {
+    "samples": 88200,
+    "peak": 0.054322946867275006,
+    "rms": 0.016940680891180827,
+    "source": "original procedural placeholder, seed 8412"
+  },
+  "event": {
+    "samples": 88200,
+    "peak": 0.07519760734885708,
+    "rms": 0.011091850467436496,
+    "source": "original procedural placeholder, seed 8412"
+  }
+}
