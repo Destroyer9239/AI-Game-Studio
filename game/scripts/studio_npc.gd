@@ -33,9 +33,9 @@ func _ready() -> void:
 		for clip in animation.get_animation_list():
 			if "Walk" in clip:
 				animation.get_animation(clip).loop_mode=Animation.LOOP_LINEAR
-				animation.play(clip)
-	for child in visual.find_children("*","GeometryInstance3D",true,false):child.visibility_range_end=35
-	var proxy:=MeshInstance3D.new();var mesh:=CapsuleMesh.new();mesh.height=1.8;mesh.radius=.3;mesh.radial_segments=6;mesh.rings=1;proxy.mesh=mesh;proxy.position.y=.9;proxy.visibility_range_begin=35
+				animation.play(clip,.18)
+	for child in visual.find_children("*","GeometryInstance3D",true,false):child.visibility_range_end=70
+	var proxy:=MeshInstance3D.new();var mesh:=CapsuleMesh.new();mesh.height=1.8;mesh.radius=.3;mesh.radial_segments=6;mesh.rings=1;proxy.mesh=mesh;proxy.position.y=.9;proxy.visibility_range_begin=70
 	var proxy_material:=StandardMaterial3D.new();proxy_material.albedo_color=Color(.55,.22,.035);proxy.material_override=proxy_material
 	add_child(proxy)
 	agent=NavigationAgent3D.new();agent.path_desired_distance=.5;agent.target_desired_distance=.6;add_child(agent)
@@ -57,7 +57,7 @@ func set_animation(moving: bool) -> void:
 	for clip in animation.get_animation_list():
 		if wanted in clip and animation.current_animation!=clip:
 			animation.get_animation(clip).loop_mode=Animation.LOOP_LINEAR
-			animation.play(clip)
+			animation.play(clip,.18)
 
 func _physics_process(delta: float) -> void:
 	ready_frames+=1

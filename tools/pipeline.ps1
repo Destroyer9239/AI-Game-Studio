@@ -78,14 +78,14 @@ function Preview-Asset {
 try {
     if ($Action.StartsWith('world-')) {
         $operation = @{ 'world-test'='test-gameplay'; 'world-launch'='launch'; 'world-stress'='stress'; 'world-benchmark'='benchmark' }[$Action]
-        & pwsh -NoProfile -File "$PSScriptRoot/world.ps1" $operation
+        & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/world.ps1" $operation
         if ($LASTEXITCODE -ne 0) { throw 'World operation failed' }
     } elseif ($Action -eq 'image-4k') {
         $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1
         Invoke-StudioProcess 'image-4k' $python.Source @('-3.11',(Get-StudioPath 'tools/imagegen/high_resolution.py'),$RequestFile) 900
     } elseif ($Action.StartsWith('environment-')) {
         $operation = if ($Action -eq 'environment-launch') { 'launch' } else { 'build' }
-        & pwsh -NoProfile -File "$PSScriptRoot/environment.ps1" $operation
+        & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/environment.ps1" $operation
         if ($LASTEXITCODE -ne 0) { throw 'Environment operation failed' }
     } elseif ($Action.StartsWith('comfy-')) {
         $python = Get-Command py -CommandType Application -ErrorAction Stop | Select-Object -First 1

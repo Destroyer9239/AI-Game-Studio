@@ -45,7 +45,7 @@ func run() -> void:
 	var playhead: float=npc.animation.current_animation_position
 	for i in range(5):await physics_frame
 	check(npc.animation.is_playing() and npc.animation.current_animation_position!=playhead,"animation actually advances")
-	check(npc.find_children("*","MeshInstance3D",true,false).any(func(n):return n.visibility_range_begin==35),"distant character proxy")
+	check(npc.find_children("*","MeshInstance3D",true,false).any(func(n):return n.visibility_range_begin==70),"distant character proxy")
 	check(world.vehicle_hooks.has("enter_requested"),"vehicle interface reservation")
 	var saved: Dictionary=load("res://scripts/studio_save.gd").load_state("user://studio_unit_save.json")
 	for field in ["player","chunks","environment","settings"]:

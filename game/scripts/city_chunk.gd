@@ -39,6 +39,24 @@ func box(label: String, pos: Vector3, size: Vector3, material: Material, collisi
 		node.add_child(body)
 	return node
 
+func multibox(label: String, size: Vector3, material: Material, offsets: Array) -> MultiMeshInstance3D:
+	## Repeated collision-less street furniture: identical box and material, so
+	## one instanced submission replaces one draw call per prop.
+	var node := MultiMeshInstance3D.new()
+	node.name = label
+	var mesh := BoxMesh.new()
+	mesh.size = size
+	var batch := MultiMesh.new()
+	batch.transform_format = MultiMesh.TRANSFORM_3D
+	batch.mesh = mesh
+	batch.instance_count = offsets.size()
+	for index in offsets.size():
+		batch.set_instance_transform(index, Transform3D(Basis(), offsets[index]))
+	node.multimesh = batch
+	node.material_override = material
+	add_child(node)
+	return node
+
 func _ready() -> void:
 	var spec: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://world/city_block.json"))
 	for value in spec.cells:
@@ -58,12 +76,18 @@ func _ready() -> void:
 	box("Road",Vector3(0,.015,0),Vector3(64,.03,8),mat("road",Color(.055,.065,.075),0,.87))
 	shared.road.normal_enabled=true;shared.road.normal_texture=pavement.normal_texture
 	shared.road.uv1_triplanar=true;shared.road.uv1_world_triplanar=true;shared.road.uv1_scale=Vector3(.5,.5,.5)
+	var steel := mat("steel",Color(.055,.075,.09),.8,.3)
+	var lamp_material := mat("lamp_emitter",Color(.8,.62,.34),0,.4)
+	lamp_material.emission_enabled=true;lamp_material.emission=Color(1,.65,.28);lamp_material.emission_energy_multiplier=2
+	var posts:Array[Vector3]=[];var arms:Array[Vector3]=[];var heads:Array[Vector3]=[];var drains:Array[Vector3]=[]
 	for side in [-1,1]:
 		box("Sidewalk",Vector3(0,.12,side*6),Vector3(64,.24,4),pavement,true)
 		box("Curb",Vector3(0,.16,side*4.1),Vector3(64,.32,.2),mat("curb",Color(.52,.5,.44)),true)
 		for x in [-24,-8,8,24]:
-			box("LampPost",Vector3(x,2.9,side*7.3),Vector3(.14,5.8,.14),mat("steel",Color(.055,.075,.09),.8,.3))
-			box("LampArm",Vector3(x,5.7,side*6.5),Vector3(.12,.12,1.7),shared.steel)
+			posts.append(Vector3(x,2.9,side*7.3))
+			arms.append(Vector3(x,5.7,side*6.5))
+			heads.append(Vector3(x,5.58,side*5.75))
+			drains.append(Vector3(x,.255,side*4.6))
 			var light := OmniLight3D.new()
 			light.position = Vector3(x,5.4,side*5.8)
 			light.light_color = Color(1,.73,.42)
@@ -74,27 +98,38 @@ func _ready() -> void:
 			light.distance_fade_length = 15
 			light.add_to_group("city_lights")
 			add_child(light)
-			box("Drain",Vector3(x,.255,side*4.6),Vector3(.7,.025,.5),shared.steel)
-	for x in range(-30,31,6):
-		box("LaneMark",Vector3(x,.04,0),Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8))
+	multibox("LampPosts",Vector3(.14,5.8,.14),steel,posts)
+	multibox("LampArms",Vector3(.12,.12,1.7),steel,arms)
+	multibox("LampHeads",Vector3(.4,.09,.75),lamp_material,heads)
+	multibox("Drains",Vector3(.7,.025,.5),steel,drains)
+	var lane_marks:Array[Vector3]=[]
+	for x in range(-30,31,6):lane_marks.append(Vector3(x,.04,0))
+	multibox("LaneMarks",Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8),lane_marks)
 	if cell_id=="center":
 		# Composed service-edge clusters leave a continuous pedestrian route.
 		var paint:=mat("service_paint",Color(.45,.22,.07),0,.65)
+		var stripes:Array[Vector3]=[];var feet:Array[Vector3]=[];var bands:Array[Vector3]=[];var joints:Array[Vector3]=[]
 		for side in [-1,1]:
 			for x in [-27,-11,11,27]:
 				box("Bollard",Vector3(x,.7,side*7.6),Vector3(.18,.92,.18),paint,true)
-				box("BollardStripe",Vector3(x,.96,side*7.6),Vector3(.19,.12,.19),shared.curb)
+				stripes.append(Vector3(x,.96,side*7.6))
 			for x in [-12,12]:
 				box("BenchSeat",Vector3(x,.72,side*7.4),Vector3(2.3,.12,.55),shared.steel,true)
-				for dx in [-.8,.8]:box("BenchFoot",Vector3(x+dx,.46,side*7.4),Vector3(.12,.44,.4),shared.steel)
+				for dx in [-.8,.8]:feet.append(Vector3(x+dx,.46,side*7.4))
 			for x in [-24,24]:
 				box("ServiceCrate",Vector3(x,.75,side*10),Vector3(1.4,1.5,1.2),paint,true)
-				box("CrateBand",Vector3(x,.76,side*10),Vector3(1.43,.13,1.23),shared.steel)
-			for x in range(-30,31,2):box("PavementJoint",Vector3(x,.244,side*6),Vector3(.025,.007,3.8),shared.steel)
+				bands.append(Vector3(x,.76,side*10))
+			for x in range(-30,31,2):joints.append(Vector3(x,.244,side*6))
+		multibox("BollardStripes",Vector3(.19,.12,.19),shared.curb,stripes)
+		multibox("BenchFeet",Vector3(.12,.44,.4),shared.steel,feet)
+		multibox("CrateBands",Vector3(1.43,.13,1.23),shared.steel,bands)
+		multibox("PavementJoints",Vector3(.025,.007,3.8),shared.steel,joints)
 		box("UtilityCabinet",Vector3(8,.94,6),Vector3(.8,1.4,.7),paint,true)
 		box("UtilityVent",Vector3(8,1.15,5.64),Vector3(.6,.35,.035),shared.steel)
+		var crossings:Array[Vector3]=[]
 		for x in [-28,28]:
-			for z in [-2,-1,0,1,2]:box("Crosswalk",Vector3(x,.045,z),Vector3(2,.016,.5),shared.paint)
+			for z in [-2,-1,0,1,2]:crossings.append(Vector3(x,.045,z))
+		multibox("Crosswalks",Vector3(2,.016,.5),shared.paint,crossings)
 		for side in [-1,1]:
 			box("ShelterRoof",Vector3(0,3,side*6),Vector3(4.2,.2,3),shared.steel,true)
 			for x in [-1.8,1.8]:
@@ -103,6 +138,7 @@ func _ready() -> void:
 		machine.stream=load("res://assets/audio/city.wav")
 		machine.position=Vector3(-16,8,-17)
 		machine.volume_db=-20
+		machine.unit_size=5
 		machine.max_distance=24
 		add_child(machine)
 		machine.finished.connect(machine.play)

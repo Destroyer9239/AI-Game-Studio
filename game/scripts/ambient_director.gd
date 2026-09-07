@@ -70,6 +70,7 @@ func update_targets() -> void:
 	if hour<6 or hour>21: targets.city-=5
 
 func trigger_event(_event: String) -> void:
+	one_shot.pitch_scale=rng.randf_range(.88,1.12)
 	one_shot.play()
 
 func _process(delta: float) -> void:
@@ -79,7 +80,7 @@ func _process(delta: float) -> void:
 	timer+=delta
 	if timer>next_event:
 		timer=0
-		next_event=rng.randf_range(18,34)
+		next_event=rng.randf_range(23,47)
 		trigger_event("distant_machinery")
 
 func _exit_tree() -> void:

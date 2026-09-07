@@ -19,7 +19,7 @@
   "orientation": "Blender +Y forward/+Z up, Godot -Z forward/+Y up",
   "skin": "rigid segmented parts with normalized single-bone weights; not organic humanoid deformation",
   "source": "Original local procedural geometry/materials/animation",
-  "lod": "runtime cheap capsule proxy beyond 35 m",
+  "lod": "runtime cheap capsule proxy beyond 70 m",
   "collision": "Godot CharacterBody3D capsule; source rig is never flattened",
   "external_credits": 0
 }

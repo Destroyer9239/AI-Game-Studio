@@ -15,16 +15,18 @@ foreach($asset in @('fighter','worker')) {
 Invoke-StudioProcess 'character-source' $blender @('--background','--factory-startup','--python-exit-code','1','--python','blender/scripts/validate_character.py','--','tools/world/worker_character.json') 90 'CHARACTER_SOURCE_PASS'
 Invoke-StudioProcess 'building-recipe' $blender @('--background','--factory-startup','--python-exit-code','1','--python','blender/scripts/test_building_recipe.py') 180 'BUILDING_RECIPE_TESTS_PASS'
 $config=Get-Content (Get-StudioPath 'tools/providers/image_generation/comfyui.json') -Raw | ConvertFrom-Json
+Invoke-StudioProcess 'hero-surface-tests' (Join-Path $config.runtime 'python_embeded/python.exe') @('tools/world/test_hero_surfaces.py') 90 'OK'
+Invoke-StudioProcess 'hero-navigation' (Resolve-StudioTool godot) @('--headless','--path',(Get-StudioPath 'game'),'--script','res://scripts/test_hero_navigation.gd') 90 'HERO_NAVIGATION_PASS'
 Invoke-StudioProcess 'material-regression' (Join-Path $config.runtime 'python_embeded/python.exe') @('tools/imagegen/test_environment.py') 120 'OK'
 foreach($entry in @('test-automation.ps1','pipeline.ps1')) {
  [string[]]$arguments=if($entry -eq 'pipeline.ps1'){@('validate')}else{@()}
- & pwsh -NoProfile -File "$PSScriptRoot/$entry" @arguments
+ & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/$entry" @arguments
  if($LASTEXITCODE -ne 0){throw "$entry failed"}
 }
-& pwsh -NoProfile -File "$PSScriptRoot/world.ps1" stress -Runs 5
+& (Get-StudioShell) -NoProfile -File "$PSScriptRoot/world.ps1" stress -Runs 5
 if($LASTEXITCODE -ne 0){throw 'World stress failed'}
 if(-not $SkipGpu) {
- & pwsh -NoProfile -File "$PSScriptRoot/world.ps1" benchmark -Weather rain
+ & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/world.ps1" benchmark -Weather rain
  if($LASTEXITCODE -ne 0){throw 'GPU benchmark failed'}
 }
 Invoke-StudioProcess 'artifact-audit' $py @('-3.11','tools/audit_git.py') 90 'PASS'

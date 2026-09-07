@@ -1,4 +1,4 @@
-param([ValidateSet('validate','preview','launch','test-gameplay','stress','preview-playable','benchmark')][string]$Action='validate',[ValidateSet('clear','rain','heavy_rain','fog','cloudy','storm')][string]$Weather='clear',[ValidateRange(0,4)][int]$Quality=2,[ValidateRange(1,20)][int]$Runs=5)
+param([ValidateSet('validate','preview','launch','test-gameplay','stress','preview-playable','benchmark')][string]$Action='validate',[ValidateSet('clear','rain','heavy_rain','fog','cloudy','storm')][string]$Weather='clear',[ValidateRange(0,4)][int]$Quality=2,[ValidateRange(1,20)][int]$Runs=5,[ValidateRange(0,24)][float]$Hour=16)
 . "$PSScriptRoot/studio-common.ps1"
 $script:RunDirectory=Get-StudioPath ('generated/reports/world-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Force $script:RunDirectory | Out-Null
@@ -16,11 +16,11 @@ if($Action -eq 'stress') {
 }
 if($Action -eq 'benchmark') {
  foreach($preset in 0..4) {
- Invoke-StudioProcess "playable-quality-$preset" $godot @('--path',$game,'--rendering-method','forward_plus','res://scenes/playable_block.tscn','--',"--weather=$Weather","--quality=$preset","--capture=$(Get-StudioPath "generated/previews/playable_${Weather}_q$preset.png")","--report=$script:RunDirectory/quality_$preset.json") 120 'PLAYABLE_PREVIEW_PASS'
+ Invoke-StudioProcess "playable-quality-$preset" $godot @('--path',$game,'--rendering-method','forward_plus','res://scenes/playable_block.tscn','--',"--weather=$Weather","--hour=$Hour","--quality=$preset","--inspection","--benchmark","--capture=$(Get-StudioPath "generated/previews/playable_${Weather}_q$preset.png")","--report=$script:RunDirectory/quality_$preset.json") 120 'PLAYABLE_PREVIEW_PASS'
  }
 }
 if($Action -eq 'preview-playable') {
- Invoke-StudioProcess 'playable-preview' $godot @('--path',$game,'--rendering-method','forward_plus','res://scenes/playable_block.tscn','--',"--weather=$Weather","--quality=$Quality","--capture=$(Get-StudioPath "generated/previews/playable_$Weather.png")","--report=$script:RunDirectory/playable_metrics.json") 120 'PLAYABLE_PREVIEW_PASS'
+ Invoke-StudioProcess 'playable-preview' $godot @('--path',$game,'--rendering-method','forward_plus','res://scenes/playable_block.tscn','--',"--weather=$Weather","--hour=$Hour","--quality=$Quality","--inspection","--capture=$(Get-StudioPath "generated/previews/playable_$Weather.png")","--report=$script:RunDirectory/playable_metrics.json") 120 'PLAYABLE_PREVIEW_PASS'
 }
 if($Action -eq 'preview') {
  Invoke-StudioProcess 'city-preview' $godot @('--path',$game,'--rendering-method','forward_plus','res://scenes/city_block_demo.tscn','--',"--weather=$Weather","--capture=$(Get-StudioPath "generated/previews/city_block_$Weather.png")") 120 'CITY_PREVIEW_PASS'

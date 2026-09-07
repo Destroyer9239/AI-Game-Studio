@@ -83,3 +83,26 @@ no inferred physical PBR. Composed benches/bollards/cabinets/service crates adde
 excludes expanded collision footprints. Same street view draw calls fell 1086 to 501 by
 batching static building parts by material. Visually IMPROVED PROTOTYPE, not hero quality.
 Next: navigation route test, uncapped benchmark and day/rain/night lighting review.
+
+Hero checkpoint B (engineering, 2026-09-07): Astra's hero-block visual work is preserved
+unchanged; this pass only measured, tested and hardened it. The uncapped benchmark is
+finished: vsync and the FPS cap are disabled for the benchmark process only, the camera
+and time of day are fixed, and CPU/GPU render-only timings plus median/p95/p99 come from
+RenderingServer and Performance monitors. All five presets measured on the real Vulkan
+device; see HERO_BLOCK_PERFORMANCE.md for the method, the full table and the limitations.
+Astra's draw-call claim is verified against f6b5667 in a temporary worktree: 1105 to 299
+draw calls on the same street view while primitives rose 117,528 to 161,448, so no content
+was dropped. Two measured fixes: repeated collision-less street props became MultiMesh
+instances (490 to 299 draw calls, CPU render -17%, max stress nodes 719 to 283) and the
+hero surface maps now import with the mip chain their material filter already requested.
+Godot ArgumentList tooling only ran under PowerShell 7, which is not installed here; the
+shared helper now works on Windows PowerShell 5.1 too without changing the pwsh path.
+Test coverage grew: hero surfaces 4 to 21 tests including rejection cases, hero navigation
+43 checks covering prop clearance, lane continuity, stall/oscillation, unreachable targets
+and unload/reload of a routing agent, building recipe 8 to 105 checks including batching
+determinism across all three archetypes, streaming 11 to 121, ambience 13 to 66 and the
+streaming stress 203 to 286 checks per process. Full tools/test-world.ps1 run: 2,206
+counted passing checks, zero failures, 100 streaming cycles across five separate processes,
+372 audited files. Remaining engineering issue: the navigation mesh stops 4.22 m short of
+the designed building entrances. Remaining art work is Astra's; no provider, credit or
+model use in this pass.

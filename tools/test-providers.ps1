@@ -19,9 +19,9 @@ try {
     if ($LASTEXITCODE) { throw 'Provider acceptance failed' }
     & py -3.11 -m unittest discover -s tools/imagegen -p test_workflow.py -v
     if ($LASTEXITCODE) { throw 'Image workflow regression failed' }
-    & pwsh -NoProfile -File tools/test-automation.ps1
+    & (Get-StudioShell) -NoProfile -File tools/test-automation.ps1
     if ($LASTEXITCODE) { throw 'PowerShell regression failed' }
-    & pwsh -NoProfile -File tools/pipeline.ps1 asset-create -RequestFile tools/providers/requests/blender_fighter.json
+    & (Get-StudioShell) -NoProfile -File tools/pipeline.ps1 asset-create -RequestFile tools/providers/requests/blender_fighter.json
     if ($LASTEXITCODE) { throw 'Original full Blender/Godot pipeline regression failed' }
     Write-Host 'PROVIDER_SUITE_PASS: local protocol, cleanup/PBR, Godot, preview, cost gates and original pipeline'
 } finally {

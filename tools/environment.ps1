@@ -13,12 +13,12 @@ if ($Action -in @('material','build')) {
  Invoke-StudioProcess 'material' $python @((Get-StudioPath 'tools/imagegen/material_factory.py'),'--source',$manifest.original_file) 180 'MATERIAL_FACTORY_PASS'
 }
 if ($Action -eq 'build') {
- & pwsh -NoProfile -File "$PSScriptRoot/pipeline.ps1" test-pipeline -Asset environment_probe
+ & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/pipeline.ps1" test-pipeline -Asset environment_probe
  if ($LASTEXITCODE -ne 0) { throw 'Environment asset pipeline failed' }
 }
 if ($Action -eq 'validate') {
  Invoke-StudioProcess 'material-validation' $python @((Get-StudioPath 'tools/imagegen/material_factory.py'),'--validate') 90 'MATERIAL_VALIDATION_PASS'
- & pwsh -NoProfile -File "$PSScriptRoot/pipeline.ps1" validate
+ & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/pipeline.ps1" validate
  if ($LASTEXITCODE -ne 0) { throw 'Godot validation failed' }
 }
 if ($Action -in @('benchmark','launch','build')) {

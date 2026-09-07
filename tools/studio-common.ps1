@@ -61,6 +61,32 @@ function Read-StudioAsset([string]$Id) {
     return $asset
 }
 
+function Get-StudioShell {
+    # Prefer PowerShell 7; fall back to the host running this script when pwsh is absent.
+    $found = Get-Command pwsh -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($found) { return $found.Source }
+    $self = (Get-Process -Id $PID).Path
+    if ($self) { return $self }
+    throw 'No PowerShell host available to run nested entry points.'
+}
+
+function Format-StudioArgument([string]$Value) {
+    # Windows command-line quoting for hosts without ProcessStartInfo.ArgumentList.
+    if ($Value -ne '' -and $Value -notmatch '[\s"]') { return $Value }
+    $escaped = [regex]::Replace($Value, '(\\*)"', '$1$1\"')
+    $escaped = [regex]::Replace($escaped, '(\\+)$', '$1$1')
+    return '"' + $escaped + '"'
+}
+
+function Set-StudioProcessArguments($StartInfo, [string[]]$Arguments) {
+    # pwsh 7 passes an argument vector; Windows PowerShell 5.1 has no ArgumentList.
+    if ($StartInfo.PSObject.Properties['ArgumentList']) {
+        foreach ($argument in $Arguments) { $StartInfo.ArgumentList.Add($argument) }
+    } else {
+        $StartInfo.Arguments = (@($Arguments | ForEach-Object { Format-StudioArgument $_ }) -join ' ')
+    }
+}
+
 function Invoke-StudioProcess([string]$Name, [string]$Executable, [string[]]$Arguments, [int]$TimeoutSeconds = 180, [string]$PassMarker = '') {
     $logFile = Join-Path $script:RunDirectory ($Name + '.log')
     $start = [Diagnostics.ProcessStartInfo]::new()
@@ -70,7 +96,7 @@ function Invoke-StudioProcess([string]$Name, [string]$Executable, [string[]]$Arg
     $start.CreateNoWindow = $true
     $start.RedirectStandardOutput = $true
     $start.RedirectStandardError = $true
-    foreach ($argument in $Arguments) { $start.ArgumentList.Add($argument) }
+    Set-StudioProcessArguments $start $Arguments
     $process = [Diagnostics.Process]::new()
     $process.StartInfo = $start
     $timer = [Diagnostics.Stopwatch]::StartNew()

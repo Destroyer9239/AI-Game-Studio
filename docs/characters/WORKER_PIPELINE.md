@@ -2,7 +2,7 @@
 
 Original maintenance robot: editable Blender source, ten segmented meshes, eight named bones, normalized rigid skin weights, three authored materials and Idle/Walk clips. This is a technical fixture, not a polished humanoid. No image textures are required.
 
-Godot imports skin and animation without flattening. CharacterBody3D owns capsule collision and NavigationAgent3D. A cheap capsule proxy starts at 35 m.
+Godot imports skin and animation without flattening. CharacterBody3D owns capsule collision and NavigationAgent3D. A cheap capsule proxy starts at 70 m.
 
 `tools/world/worker_character.json` is the reusable validation contract. Blender validation uses `--background --factory-startup --python-exit-code 1 --python blender/scripts/validate_character.py -- tools/world/worker_character.json`. This read-only check covers topology, budgets, finite vertices, materials, normalized weights, bone references, animations, dimensions, orientation and GLB presence. Generation already succeeded; do not regenerate to validate.
 

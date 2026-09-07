@@ -11,6 +11,7 @@ var environment: Environment
 var sun: DirectionalLight3D
 var rain: GPUParticles3D
 var sky_kind := "procedural"
+var visual_cloud:=0.0
 
 func _ready() -> void:
 	profiles = JSON.parse_string(FileAccess.get_file_as_string("res://world/weather_profiles.json"))
@@ -23,7 +24,7 @@ func _ready() -> void:
 	sky.ground_bottom_color=Color(.025,.035,.05)
 	sky.ground_horizon_color=Color(.14,.19,.23)
 	environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR
-	environment.ambient_light_color=Color(.48,.61,.76)
+	environment.ambient_light_color=Color(.7,.78,.86)
 	environment.ambient_light_energy=.75
 	environment.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	environment.tonemap_mode=Environment.TONE_MAPPER_FILMIC
@@ -88,22 +89,23 @@ func set_sky(kind: String, texture: Texture2D=null, hdr_lighting:=false) -> void
 func apply_state() -> void:
 	var profile: Dictionary=profiles[weather]
 	var daylight:=maxf(0,sin((hour-6)*PI/12))
-	environment.ambient_light_energy=.35+daylight*.65
+	environment.ambient_light_energy=.15+daylight*.55
 	sun.rotation_degrees.x=(hour-6)*-15
-	sun.light_energy=daylight*1.6*(1-float(profile.cloud)*.7)
-	sun.light_color=Color(1,.79,.55).lerp(Color(.65,.77,.9),float(profile.cloud))
+	sun.light_energy=daylight*2.4*(1-visual_cloud*.7)
+	sun.light_color=Color(1,.79,.55).lerp(Color(.65,.77,.9),visual_cloud)
 	environment.volumetric_fog_density=profile.fog
-	environment.background_energy_multiplier=.2+daylight*.6
+	environment.background_energy_multiplier=.15+daylight*.85
 	if environment.sky.sky_material is ProceduralSkyMaterial:
 		var sky := environment.sky.sky_material as ProceduralSkyMaterial
-		sky.sky_top_color=Color(.035,.11,.23).lerp(Color(.11,.15,.20),float(profile.cloud))
-		sky.sky_horizon_color=Color(.25,.37,.48).lerp(Color(.16,.20,.24),float(profile.cloud))
+		sky.sky_top_color=Color(.18,.32,.46).lerp(Color(.11,.15,.20),visual_cloud)
+		sky.sky_horizon_color=Color(.56,.61,.60).lerp(Color(.16,.20,.24),visual_cloud)
 	rain.emitting=float(profile.rain)>0 and not indoors
 	rain.amount_ratio=profile.rain
 	for light in get_tree().get_nodes_in_group("city_lights"):
 		light.light_energy=lerpf(1.6,.15,daylight)
 
 func _process(delta: float) -> void:
+	visual_cloud=move_toward(visual_cloud,float(profiles[weather].cloud),delta*.2)
 	if clock_running: hour=fposmod(hour+delta*.02,24)
 	wetness=move_toward(wetness,float(profiles[weather].wetness),delta*.12)
 	rain.position=focus+Vector3(0,16,0)

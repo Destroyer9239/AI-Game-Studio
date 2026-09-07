@@ -23,6 +23,7 @@ func run() -> void:
 	world.director.set_weather("rain")
 	check(world.save_game("user://studio_stress_save.json")==OK,"integrated save")
 	var baseline_regions:=NavigationServer3D.map_get_regions(world.get_world_3d().navigation_map).size()
+	var baseline_buses:=AudioServer.bus_count
 	var max_nodes:=0
 	for cycle in range(20):
 		var old_worker=weakref(s.loaded.center.worker)
@@ -30,6 +31,7 @@ func run() -> void:
 		await settle(s);await process_frame
 		check(not s.loaded.has("center") and old_worker.get_ref()==null,"unload destroys worker")
 		check(get_nodes_in_group("npcs").is_empty(),"no stale NPC group entry")
+		check(s.find_children("*","AudioStreamPlayer3D",true,false).is_empty(),"no orphaned positional audio after unload")
 		# Rapid crossing changes the target while a resource may be pending.
 		s.update_focus(Vector3.ZERO);await process_frame
 		s.update_focus(Vector3(-160,0,0));await process_frame
@@ -43,6 +45,10 @@ func run() -> void:
 		check(s.loaded.center.worker.state=="SEEK_SHELTER","current weather applied on reload")
 		check(s.loaded.center.terminal.active and world.objective_state=="COMPLETE","terminal and objective persistence")
 		check(s.failures.is_empty() and s.pending.is_empty(),"no failed or stranded loads")
+		var machinery: Array=s.loaded.center.find_children("*","AudioStreamPlayer3D",true,false)
+		check(machinery.size()==1,"one positional machinery player per reloaded cell")
+		check(machinery[0].playing,"positional machinery resumes after reload")
+		check(AudioServer.bus_count==baseline_buses,"streaming never leaks an audio bus")
 		for i in range(3):await physics_frame
 		check(NavigationServer3D.map_get_regions(world.get_world_3d().navigation_map).size()==baseline_regions,"navigation region budget")
 		max_nodes=maxi(max_nodes,int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)))

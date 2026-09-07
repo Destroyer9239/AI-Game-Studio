@@ -7,15 +7,15 @@ if (-not $SkipInference) {
  & py -3.11 tools/imagegen/test_local_backend.py
  Check-Exit 'Local backend acceptance'
 }
-& pwsh -NoProfile -File tools/environment.ps1 build
+& (Get-StudioShell) -NoProfile -File tools/environment.ps1 build
 Check-Exit 'Environment vertical slice'
-& pwsh -NoProfile -File tools/test-providers.ps1
+& (Get-StudioShell) -NoProfile -File tools/test-providers.ps1
 Check-Exit 'Provider suite'
 $config=Get-Content tools/providers/image_generation/comfyui.json -Raw | ConvertFrom-Json
 & (Join-Path $config.runtime 'python_embeded/python.exe') tools/imagegen/test_environment.py
 Check-Exit 'Material regression'
 foreach($quality in @('LOW','MEDIUM','HIGH','ULTRA','CINEMATIC')) {
- & pwsh -NoProfile -File tools/environment.ps1 benchmark -Quality $quality
+ & (Get-StudioShell) -NoProfile -File tools/environment.ps1 benchmark -Quality $quality
  Check-Exit "Benchmark $quality"
 }
 & py -3.11 tools/audit_git.py
