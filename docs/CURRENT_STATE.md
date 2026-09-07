@@ -74,3 +74,12 @@ All five final rainy presets and actual street/worker images inspected. Current 
 loopback health is unavailable because the backend is stopped; no new inference or model
 install was needed. Meshy remains deferred (prior HTTP 401), no Gemini/Higgsfield, no credits.
 Next milestone is visual/navigation refinement of this same small block, not a larger city.
+
+Hero checkpoint A: existing three recipes now differ in window proportion, facade rhythm,
+roof silhouette and accent palette. Blender generation/export and Godot validation/render
+passed for all three. Eight recipe checks and 11 streaming/16 environment/30 gameplay
+checks passed. Authored 1024-square periodic normal/roughness fields use a two-meter repeat;
+no inferred physical PBR. Composed benches/bollards/cabinets/service crates added; nav grid
+excludes expanded collision footprints. Same street view draw calls fell 1086 to 501 by
+batching static building parts by material. Visually IMPROVED PROTOTYPE, not hero quality.
+Next: navigation route test, uncapped benchmark and day/rain/night lighting review.

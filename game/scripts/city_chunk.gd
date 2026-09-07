@@ -7,6 +7,7 @@ var persistent_state: Dictionary = {}
 var cell_data: Dictionary
 var terminal: Node
 var worker: Node
+var nav_obstacles: Array[AABB]=[]
 
 static func mat(key: String, color: Color, metallic: float = 0, roughness: float = .7) -> StandardMaterial3D:
 	if not shared.has(key):
@@ -28,6 +29,7 @@ func box(label: String, pos: Vector3, size: Vector3, material: Material, collisi
 	node.position = pos
 	add_child(node)
 	if collision:
+		nav_obstacles.append(AABB(pos-size*.5,size))
 		var body := StaticBody3D.new()
 		var shape := CollisionShape3D.new()
 		var bounds := BoxShape3D.new()
@@ -45,10 +47,17 @@ func _ready() -> void:
 	assert(cell_data != null, "Unknown cell")
 	var pavement := mat("pavement",Color(.29,.31,.32),0,.83)
 	if pavement.albedo_texture == null:
-		pavement.albedo_texture = load("res://assets/textures/industrial_concrete/industrial_concrete_basecolor.png")
-		pavement.uv1_scale = Vector3(8,8,8)
+		pavement.albedo_texture = load("res://assets/textures/hero_surfaces/aggregate.png")
+		pavement.uv1_triplanar=true
+		pavement.uv1_world_triplanar=true
+		pavement.uv1_scale = Vector3(.5,.5,.5)
+		pavement.normal_enabled=true
+		pavement.normal_texture=load("res://assets/textures/hero_surfaces/normal.png")
+		pavement.roughness_texture=load("res://assets/textures/hero_surfaces/roughness.png")
 	box("Ground",Vector3(0,-.25,0),Vector3(64,.5,64),mat("ground",Color(.12,.14,.15)),true)
 	box("Road",Vector3(0,.015,0),Vector3(64,.03,8),mat("road",Color(.055,.065,.075),0,.87))
+	shared.road.normal_enabled=true;shared.road.normal_texture=pavement.normal_texture
+	shared.road.uv1_triplanar=true;shared.road.uv1_world_triplanar=true;shared.road.uv1_scale=Vector3(.5,.5,.5)
 	for side in [-1,1]:
 		box("Sidewalk",Vector3(0,.12,side*6),Vector3(64,.24,4),pavement,true)
 		box("Curb",Vector3(0,.16,side*4.1),Vector3(64,.32,.2),mat("curb",Color(.52,.5,.44)),true)
@@ -69,6 +78,23 @@ func _ready() -> void:
 	for x in range(-30,31,6):
 		box("LaneMark",Vector3(x,.04,0),Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8))
 	if cell_id=="center":
+		# Composed service-edge clusters leave a continuous pedestrian route.
+		var paint:=mat("service_paint",Color(.45,.22,.07),0,.65)
+		for side in [-1,1]:
+			for x in [-27,-11,11,27]:
+				box("Bollard",Vector3(x,.7,side*7.6),Vector3(.18,.92,.18),paint,true)
+				box("BollardStripe",Vector3(x,.96,side*7.6),Vector3(.19,.12,.19),shared.curb)
+			for x in [-12,12]:
+				box("BenchSeat",Vector3(x,.72,side*7.4),Vector3(2.3,.12,.55),shared.steel,true)
+				for dx in [-.8,.8]:box("BenchFoot",Vector3(x+dx,.46,side*7.4),Vector3(.12,.44,.4),shared.steel)
+			for x in [-24,24]:
+				box("ServiceCrate",Vector3(x,.75,side*10),Vector3(1.4,1.5,1.2),paint,true)
+				box("CrateBand",Vector3(x,.76,side*10),Vector3(1.43,.13,1.23),shared.steel)
+			for x in range(-30,31,2):box("PavementJoint",Vector3(x,.244,side*6),Vector3(.025,.007,3.8),shared.steel)
+		box("UtilityCabinet",Vector3(8,.94,6),Vector3(.8,1.4,.7),paint,true)
+		box("UtilityVent",Vector3(8,1.15,5.64),Vector3(.6,.35,.035),shared.steel)
+		for x in [-28,28]:
+			for z in [-2,-1,0,1,2]:box("Crosswalk",Vector3(x,.045,z),Vector3(2,.016,.5),shared.paint)
 		for side in [-1,1]:
 			box("ShelterRoof",Vector3(0,3,side*6),Vector3(4.2,.2,3),shared.steel,true)
 			for x in [-1.8,1.8]:
@@ -106,15 +132,27 @@ func _ready() -> void:
 		var sign := Label3D.new()
 		sign.text = {"market_a":"CINDER / EXCHANGE", "relay_a":"RELAY 07"}.get(b.id,"CINDER / WORKS")
 		sign.font_size = 48
-		sign.pixel_size = .013
+		sign.pixel_size = .008
 		sign.position = building.position + Vector3(0,3.6,0) + Vector3.FORWARD.rotated(Vector3.UP,deg_to_rad(b.yaw))*float(b.front_offset)
 		sign.rotation_degrees.y = b.yaw+180
 		add_child(sign)
-	# Reviewed rectangular navigation strip avoids every building footprint.
+	# One-meter navigation grid excludes expanded prop footprints for capsule clearance.
 	var region := NavigationRegion3D.new()
 	var navigation := NavigationMesh.new()
-	navigation.set_vertices(PackedVector3Array([Vector3(-32,.3,-8),Vector3(32,.3,-8),Vector3(32,.3,8),Vector3(-32,.3,8)]))
-	navigation.add_polygon(PackedInt32Array([0,1,2,3]))
+	var vertices:=PackedVector3Array()
+	for z in range(-8,9):
+		for x in range(-32,33):vertices.append(Vector3(x,.3,z))
+	navigation.set_vertices(vertices)
+	for z in range(16):
+		for x in range(64):
+			var center:=Vector3(x-31.5,.3,z-7.5)
+			var blocked:=false
+			for bounds in nav_obstacles:
+				if bounds.position.y+bounds.size.y<.4 or bounds.position.y>2.1:continue
+				if absf(center.x-bounds.get_center().x)<bounds.size.x*.5+1 and absf(center.z-bounds.get_center().z)<bounds.size.z*.5+1:blocked=true;break
+			if not blocked:
+				var a:=z*65+x
+				navigation.add_polygon(PackedInt32Array([a,a+1,a+66,a+65]))
 	region.navigation_mesh = navigation
 	add_child(region)
 	set_meta("ready_for_streaming",true)

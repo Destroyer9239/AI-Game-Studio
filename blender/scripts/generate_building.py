@@ -35,16 +35,32 @@ def build(spec):
         return m
     stone=material('Warm_Mineral_Facade',spec.get('facade_color',[.34,.39,.42]))
     steel=material('Charcoal_Trim',(.055,.075,.09),.75,.3)
-    glass=material('Blue_Glazing',(.045,.17,.23),.7,.18)
-    light=material('Warm_Window_Light',(.95,.59,.23),0,.35,1.3)
-    cyan=material('Cyan_Wayfinding',(.02,.5,.63),.2,.35,2)
+    glass=material('Blue_Glazing',(.018,.065,.08),0,.12)
+    light=material('Warm_Window_Light',(.42,.27,.13),0,.35,.45)
+    cyan=material('Cyan_Wayfinding',(.02,.3,.36),.2,.35,1.2)
     ground=material('Foundation',(.17,.19,.20),0,.9)
+    accent=material('Painted_Accent',spec.get('accent_color',[.32,.13,.055]),0,.65)
+    for role in ['normal','roughness']:
+        image=bpy.data.images.load(str(ROOT/f'game/assets/textures/hero_surfaces/{role}.png'),check_existing=True)
+        image.colorspace_settings.name='Non-Color';image.pack()
+        tex=stone.node_tree.nodes.new('ShaderNodeTexImage');tex.image=image
+        p=stone.node_tree.nodes.get('Principled BSDF')
+        if role=='normal':
+            normal=stone.node_tree.nodes.new('ShaderNodeNormalMap');stone.node_tree.links.new(tex.outputs['Color'],normal.inputs['Color']);stone.node_tree.links.new(normal.outputs['Normal'],p.inputs['Normal'])
+        else:stone.node_tree.links.new(tex.outputs['Color'],p.inputs['Roughness'])
     placements=[]
     def box(name,loc,dim,mat,bevel=0):
         bpy.ops.mesh.primitive_cube_add(size=1,location=loc)
         o=bpy.context.object; o.name=name; o.dimensions=dim
         bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
         o.data.materials.append(mat)
+        # Planar face projection: consistent two-meter UV repeat, including long walls.
+        uv=o.data.uv_layers.active.data
+        for polygon in o.data.polygons:
+            axis=max(range(3),key=lambda a:abs(polygon.normal[a]));plane=[a for a in range(3) if a!=axis]
+            for loop in polygon.loop_indices:
+                co=o.data.vertices[o.data.loops[loop].vertex_index].co
+                uv[loop].uv=(co[plane[0]]/2,co[plane[1]]/2)
         if bevel:
             modifier=o.modifiers.new('EdgeHighlights','BEVEL'); modifier.width=bevel; modifier.segments=1
         placements.append({'name':name,'position':loc,'dimensions':dim,'material':mat.name})
@@ -66,7 +82,8 @@ def build(spec):
                     horizontal=-length/2+(b+.5)*bay
                     # Entrance replaces a ground-floor front bay, preserving structure.
                     entrance=facade=='front' and floor==0 and b==bays//2
-                    width=bay*.68; height=2.45 if entrance else 1.75
+                    width=bay*(.83 if spec['archetype']=='commercial' else .56 if spec['archetype']=='industrial' else .72)
+                    height=2.45 if entrance else .95 if spec['archetype']=='industrial' else 2.1 if spec['archetype']=='office' else 1.8
                     position=(horizontal,depth/2+.04,z+1.5) if facade=='front' else (horizontal,-depth/2-.04,z+1.5) if facade=='rear' else (-depth/2-.04,horizontal,z+1.5) if facade=='left' else (depth/2+.04,horizontal,z+1.5)
                     dim=(width,.16,height) if facade in ('front','rear') else (.16,width,height)
                     box(f'{facade}_{floor}_{b}_Frame',position,tuple(v+.10 if v>.2 else v for v in dim),steel,.025)
@@ -86,10 +103,39 @@ def build(spec):
             box('HVAC_Base',(x,0,h+1.15),(2.4,1.9,.85),steel,.08)
             for slat in range(6): box('HVAC_Louver',(x-1+slat*.4,0,h+1.60),(.16,1.6,.08),stone)
         box('Service_Panel',(-w*.35,d/2+.12,1.1),(.7,.16,1.1),steel,.02)
-        box('Sign_Mount',(0,d/2+.15,3.6),(w*.5,.2,.5),cyan,.02)
+        box('Sign_Mount',(0,d/2+.15,3.6),(w*.5,.2,.65),steel,.02)
+        box('Sign_Underline',(0,d/2+.27,3.3),(w*.48,.035,.055),cyan)
+        if spec['archetype']=='industrial':
+            for x in [-w*.4,w*.4]:
+                box('Service_Riser',(x,d/2+.22,h/2),(.24,.3,h),accent,.04)
+                box('Exhaust_Stack',(x,-d*.25,h+1.8),(.7,.7,2.5),steel,.05)
+                box('Stack_Cap',(x,-d*.25,h+3.1),(1,1,.18),accent,.03)
+            for floor in range(floors):
+                box('Industrial_Belt',(0,d/2+.13,1+floor*story),(w,.22,.3),accent,.03)
+        elif spec['archetype']=='commercial':
+            box('Store_Awning',(0,d/2+.95,3.1),(w-.7,1.9,.22),accent,.05)
+            for x in [-w*.34,w*.34]:
+                box('Storefront_Header',(x,d/2+.18,2.7),(w*.25,.3,.32),accent)
+            box('Roof_Pavilion',(w*.2,-d*.15,h+1.1),(w*.45,d*.5,.9),accent,.08)
+        elif spec['archetype']=='office':
+            for x in [-w*.43,-w*.22,w*.22,w*.43]:
+                box('Vertical_Sun_Fin',(x,d/2+.35,h/2+.4),(.16,.7,h),accent,.025)
+            box('Relay_Crown',(0,0,h+1.3),(w*.55,d*.65,1.1),steel,.08)
+            box('Relay_Mast',(0,0,h+3),(.15,.15,3),steel)
+            box('Crown_Accent',(0,d*.33,h+1.5),(w*.52,.05,.1),cyan)
     else:
         box('Skyline_Cap',(0,0,h+.55),(w+.1,d+.1,.3),steel)
     collision=box('Building-colonly',(0,0,h/2+.2),(w,d,h+.4),ground); collision.hide_render=True
+    # Batch static modules by material. Preserve named integration contracts.
+    keep={'Foundation','Structural_Shell','Entrance_Glass','Entrance_Canopy','Entrance_Light','Roof_Parapet','Building-colonly'}
+    for mat in [stone,steel,glass,light,cyan,ground,accent]:
+        group=[o for o in bpy.context.scene.objects if o.type=='MESH' and o.name not in keep and o.data.materials[0]==mat]
+        if len(group)<2:continue
+        bpy.ops.object.select_all(action='DESELECT')
+        for o in group:
+            o.select_set(True);bpy.context.view_layer.objects.active=o
+            for mod in list(o.modifiers):bpy.ops.object.modifier_apply(modifier=mod.name)
+        bpy.context.view_layer.objects.active=group[0];bpy.ops.object.join();group[0].name='Batch_'+mat.name
     blend=ROOT/f"blender/projects/{spec['id']}.blend"; blend.parent.mkdir(parents=True,exist_ok=True)
     bpy.ops.wm.save_as_mainfile(filepath=str(blend))
     report={'schema_version':1,'spec':spec,'placements':placements,'recipe_sha256':hashlib.sha256(json.dumps(placements,sort_keys=True).encode()).hexdigest(),
