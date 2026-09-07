@@ -162,3 +162,14 @@ When implementing a feature, consider:
 - City/character templates are architecture only. Reuse modular kits, per-chunk instancing and quality classes; do not claim streaming/navigation/rigging is implemented from a template.
 - Run `py -3.11 tools/imagegen/test_local_backend.py` for actual local lifecycle/inference acceptance. Run `tools/imagegen/test_environment.py` with the configured embedded Python for material/GLB tests. Keep existing provider and fighter regressions passing.
 - No further model is needed for this tested stage. Downloads over approximately 2 GB require the user's concrete approval; never silently spend external credits. Rejected spacecraft view images must not be used as approved 3D references.
+
+## Playable world continuation
+
+- Read docs/PLAYABLE_BLOCK.md, docs/WORLD_RESULTS.md and docs/CURRENT_STATE.md before extending the block.
+- Run `pipeline.ps1 world-test`, `world-stress`, `world-benchmark` or `world-launch`; preserve the fighter main scene.
+- Use `tools/test-world.ps1` for regression without regenerating accepted assets. Inspect logs and GPU captures, not exit codes alone.
+- Keep one owned threaded cell request at a time, instantiate on the main thread, discard obsolete results, drain requests on shutdown and wait for physics/audio cleanup in bounded tests.
+- Run multiple separate stress processes after lifecycle changes. Verify persistent entities, objective state, navigation counts, duplicate suppression and shutdown with a pending request.
+- Preserve character skin/rig/animations. Read-only Blender validation uses tools/world/worker_character.json; never send a rigged character through static cleanup.
+- The robot is a technical fixture, the city a bounded prototype. Do not claim organic character quality, arbitrary large-world streaming, complete district rules, general rain collision, professional audio or vehicle gameplay from extension hooks.
+- No Gemini, Higgsfield or Meshy setup/submissions are authorized for this milestone. No external credits or new large models. Do not invoke another agent or Claude.

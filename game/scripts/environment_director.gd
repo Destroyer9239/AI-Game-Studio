@@ -52,9 +52,15 @@ func _ready() -> void:
 	rain.process_material=process
 	var mesh:=BoxMesh.new()
 	mesh.size=Vector3(.012,.3,.012)
-	var material:=StandardMaterial3D.new()
-	material.albedo_color=Color(.35,.55,.7,.5)
-	material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+	var material:=ShaderMaterial.new()
+	material.shader=load("res://shaders/rain_streak.gdshader")
+	var zone_data: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://world/audio_zones.json"))
+	var bounds: Array[Vector4]=[]
+	for zone in zone_data.zones:
+		bounds.append(Vector4(zone.center[0],zone.center[2],2.1,1.5))
+	material.set_shader_parameter("shelter_count",mini(bounds.size(),8))
+	while bounds.size()<8:bounds.append(Vector4.ZERO)
+	material.set_shader_parameter("shelter_bounds",bounds)
 	mesh.material=material
 	rain.draw_pass_1=mesh
 	add_child(rain)

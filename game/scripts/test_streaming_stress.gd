@@ -48,7 +48,14 @@ func run() -> void:
 		max_nodes=maxi(max_nodes,int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)))
 	check(world.load_game("user://studio_stress_save.json"),"disk restore after cycles")
 	check(s.loaded.center.worker.health==73 and s.loaded.center.terminal.active,"disk entity restore")
-	print("STREAMING_STRESS_PASS: ",checks," checks / 20 cycles; max nodes ",max_nodes,"; ",s.metrics())
+	var metrics: Dictionary=s.metrics()
 	DirAccess.remove_absolute("user://studio_stress_save.json")
 	world.queue_free();await process_frame;await create_timer(.3).timeout
+	check(root.get_child_count()==0,"all scene children released")
+	var closing=load("res://scripts/world_streamer.gd").new();root.add_child(closing)
+	closing.update_focus(Vector3.ZERO);closing._process(0)
+	check(not closing.active_load.is_empty(),"shutdown test has active request")
+	closing.queue_free();await process_frame;await create_timer(.3).timeout
+	check(root.get_child_count()==0,"shutdown drains pending request")
+	print("STREAMING_STRESS_PASS: ",checks," checks / 20 cycles; max nodes ",max_nodes,"; ",metrics)
 	quit()

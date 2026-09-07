@@ -34,3 +34,25 @@ per-building texture duplication; sidewalks reference one shared material-factor
 Assembled HLOD/skyline proxies, occlusion proxies, arbitrary 2D region grids and byte-based
 memory admission remain extension work. Current streaming distance is a one-dimensional
 road corridor, deliberately limited to three cells for this test.
+
+## Implemented lifecycle update (2026-09-07)
+
+Loading is now serialized: one owned background resource request, then main-thread
+instantiation after it completes. Out-of-range queued requests are cancelled; active
+requests are drained and discarded if obsolete (Godot supplies no cancellation handle).
+Shutdown drains outstanding owned work. No worker thread touches SceneTree. This
+removes the overlapping-load/instantiation pattern associated with an intermittent
+headless RID allocator failure. The exact engine-internal cause was not proven.
+
+Repeated stress crosses the three cells rapidly, changes focus while requests are
+pending, checks duplicate suppression, destroys/restores worker entities and terminal
+state, preserves objective/weather, checks navigation region counts after physics sync,
+and tests shutdown during an active request. Collision ownership follows freed chunks;
+no separate world registry retains child physics nodes. Current maximum is three cells;
+future large-world byte-based budgeting and time-sliced instantiation remain unimplemented.
+
+`launch` now opens the playable scene. NPC navigation is tested, not merely planned.
+See PLAYABLE_BLOCK.md and WORLD_RESULTS.md. District rules remain a design vocabulary;
+only the industrial block is composed. The city contract validator enforces IDs, height
+ranges, street-facing entrances and sidewalk clearance against existing recipes. Not
+all metadata (wealth, cleanliness, NPC/traffic density) drives generated content yet.

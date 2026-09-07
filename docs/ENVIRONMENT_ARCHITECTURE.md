@@ -50,3 +50,12 @@ Do not use the static mesh cleanup path for rigged content. Environment work com
 Build one original modular street corner using a small shared facade kit, one road
 intersection and two navigable chunks. Establish frame-time and memory targets before
 expanding to a district. This tests reuse, sockets, loading and navigation with gameplay.
+
+## Current implementation supersedes the original planning-only status
+
+The initial lab contract above is retained as architectural context. The implemented
+world now uses 64 m cells, a four-building block, bounded serialized streaming,
+NavigationAgent3D worker movement, a skinned fixture and playable persistence flow.
+See CITY_AND_STREAMING.md, PLAYABLE_BLOCK.md and characters/WORKER_PIPELINE.md.
+Arbitrary 2D worlds, streaming memory admission, HLOD assembly and organic character
+production remain future work; the three-cell proof must not be described as those systems.

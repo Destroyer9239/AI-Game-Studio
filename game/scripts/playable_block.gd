@@ -38,6 +38,12 @@ func _ready() -> void:
 		elif arg.begins_with("--report="):report=arg.trim_prefix("--report=")
 		elif arg.begins_with("--weather="):director.set_weather(arg.trim_prefix("--weather="))
 		elif arg.begins_with("--quality="):quality=clampi(arg.trim_prefix("--quality=").to_int(),0,4)
+		elif arg=="--character-inspection":
+			player.position=Vector3(-5,.35,2)
+			player.camera.look_at(Vector3(-15,1.3,6))
+		elif arg=="--inspection":
+			player.position=Vector3(22,.35,6)
+			player.camera.look_at(Vector3(-14,2,-1))
 	apply_quality()
 	last_tick=Time.get_ticks_usec()
 
@@ -99,6 +105,7 @@ func _process(delta: float) -> void:
 		ready_player=true;player.enabled=true
 	if player.position.y< -10:player.position=Vector3(0,.5,-3);player.velocity=Vector3.ZERO
 	director.focus=player.position
+	ambience.active_cells=streamer.loaded.keys()
 	ambience.update_listener(player.position)
 	director.indoors=ambience.indoors
 	hud.text="CINDER EXCHANGE / "+objective+"\nWASD move • click/mouse look • E interact • Space jump\nR rain • T day/night • F5 save / F9 load • 1–5 quality • Esc release mouse\nCells %d • NPCs %d • FPS %d • wetness %.2f • %s"%[streamer.loaded.size(),get_tree().get_nodes_in_group("npcs").size(),Engine.get_frames_per_second(),director.wetness,director.weather]
@@ -110,6 +117,11 @@ func _process(delta: float) -> void:
 		if not report.is_empty():
 			var file:=FileAccess.open(report,FileAccess.WRITE);file.store_string(JSON.stringify(data,"  "))
 		print("PLAYABLE_PREVIEW_PASS: ",data)
+		# Let audio and navigation servers release cell-owned resources before exit.
+		set_process(false)
+		streamer.queue_free();ambience.queue_free()
+		await get_tree().process_frame
+		await get_tree().create_timer(.3).timeout
 		get_tree().quit()
 
 func metrics() -> Dictionary:

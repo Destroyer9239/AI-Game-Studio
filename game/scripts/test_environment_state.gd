@@ -30,8 +30,15 @@ func run() -> void:
 	check(audio.indoors,"spatial shelter zone")
 	audio.update_listener(Vector3(20,1,0))
 	check(not audio.indoors,"spatial exterior zone")
+	audio.update_listener(Vector3(0,1,6));audio._process(1)
+	check(audio.indoors and audio.muffler.cutoff_hz==1500,"second shelter filters exterior layers")
+	audio.active_cells=[];audio.update_listener(Vector3(0,1,6));audio._process(1)
+	check(not audio.indoors and audio.muffler.cutoff_hz==18000,"unloaded zone no longer applies")
+	var owned_bus: String=audio.filter_bus_name
 	print("ENVIRONMENT_STATE_TESTS_PASS: ",checks," checks")
 	director.queue_free();audio.queue_free()
 	await process_frame
 	await create_timer(.15).timeout
+	check(AudioServer.get_bus_index(owned_bus)==-1,"owned audio bus released")
+	print("ENVIRONMENT_FINAL_PASS: ",checks," checks")
 	quit()

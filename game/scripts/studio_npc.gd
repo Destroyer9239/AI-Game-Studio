@@ -10,6 +10,7 @@ var animation: AnimationPlayer
 var ready_frames:=0
 var health:=100
 var activity:="patrol"
+var hour:=17.0
 signal perceived(entity: Node)
 
 func snapshot() -> Dictionary:
@@ -21,7 +22,7 @@ func restore(value: Dictionary) -> void:
 	goal_index=clampi(int(value.get("goal",0)),0,1)
 	health=clampi(int(value.get("health",100)),0,100)
 	velocity=Vector3.ZERO
-	agent.target_position=Vector3(0,.3,6) if state=="SEEK_SHELTER" else goals[goal_index]
+	agent.target_position=Vector3(0,.3,6) if state!="PATROL" else goals[goal_index]
 
 func _ready() -> void:
 	var shape:=CollisionShape3D.new();var capsule:=CapsuleShape3D.new();capsule.radius=.3;capsule.height=1.8;shape.shape=capsule;shape.position.y=.9;add_child(shape)
@@ -35,30 +36,42 @@ func _ready() -> void:
 				animation.play(clip)
 	for child in visual.find_children("*","GeometryInstance3D",true,false):child.visibility_range_end=35
 	var proxy:=MeshInstance3D.new();var mesh:=CapsuleMesh.new();mesh.height=1.8;mesh.radius=.3;mesh.radial_segments=6;mesh.rings=1;proxy.mesh=mesh;proxy.position.y=.9;proxy.visibility_range_begin=35
+	var proxy_material:=StandardMaterial3D.new();proxy_material.albedo_color=Color(.55,.22,.035);proxy.material_override=proxy_material
 	add_child(proxy)
 	agent=NavigationAgent3D.new();agent.path_desired_distance=.5;agent.target_desired_distance=.6;add_child(agent)
 	floor_snap_length=.35
 	add_to_group("npcs")
 
 func on_environment(kind: String,value: Dictionary) -> void:
-	if kind=="weather":
+	if kind in ["weather","time"]:
 		weather=value.weather
-		state="SEEK_SHELTER" if weather in ["rain","heavy_rain","storm"] else "PATROL"
-		if state=="SEEK_SHELTER":agent.target_position=Vector3(0,.3,6)
+		hour=value.hour
+		state="SEEK_SHELTER" if weather in ["rain","heavy_rain","storm"] else "REST" if hour>=21 or hour<6 else "PATROL"
+		activity="rest" if state=="REST" else "patrol" if state=="PATROL" else "shelter"
+		if state!="PATROL":agent.target_position=Vector3(0,.3,6)
 		else:agent.target_position=goals[goal_index]
+
+func set_animation(moving: bool) -> void:
+	if not animation:return
+	var wanted:="Walk" if moving else "Idle"
+	for clip in animation.get_animation_list():
+		if wanted in clip and animation.current_animation!=clip:
+			animation.get_animation(clip).loop_mode=Animation.LOOP_LINEAR
+			animation.play(clip)
 
 func _physics_process(delta: float) -> void:
 	ready_frames+=1
 	if ready_frames<20:return
-	if ready_frames==20:agent.target_position=Vector3(0,.3,6) if state=="SEEK_SHELTER" else goals[goal_index]
+	if ready_frames==20:agent.target_position=Vector3(0,.3,6) if state!="PATROL" else goals[goal_index]
 	if agent.is_navigation_finished():
 		if state=="PATROL":goal_index=1-goal_index;agent.target_position=goals[goal_index]
-		else:velocity=Vector3.ZERO;return
+		else:velocity=Vector3.ZERO;set_animation(false);return
 	var next:=agent.get_next_path_position()
 	var direction:=next-global_position;direction.y=0
 	if direction.length()>.05:
 		direction=direction.normalized()
 		visual.rotation.y=atan2(-direction.x,-direction.z)
 	velocity.x=direction.x*1.6;velocity.z=direction.z*1.6
+	set_animation(direction.length()>.05)
 	if not is_on_floor():velocity.y-=18*delta
 	move_and_slide()

@@ -58,3 +58,19 @@ failure. Runtime InputMap defaults come from world/controls.json. Gameplay now p
 28 checks including advancing animation playback, invalid saves and interaction hooks.
 Two more 20-cycle persistence stress processes passed. Master pipeline exposes world-test,
 world-stress, world-benchmark and world-launch; the original fighter main scene is preserved.
+
+Checkpoint 3/4 integration: player-linked shelter zones, owned low-pass ambience bus,
+night/day NPC activity and animation switching are implemented. Five rainy GPU quality
+presets rendered; a zero-exit audio resource leak was caught and fixed with orderly
+cell/audio release before bounded exit. Visual review caught shelter rain clipping;
+a bounded roof mask was added, with a fresh GPU sweep required. Existing provider,
+workflow, material, canonical view, building, city and fighter regressions pass through
+tools/test-world.ps1 -SkipGpu. Final metrics/report and checkpoint follow the fresh sweep.
+
+Final acceptance: see WORLD_RESULTS.md for exact counts, performance and limitations.
+1,149 counted passing checks/assertions (325 distinct cases/check positions with stress
+repeated), zero remaining failures; additional source/import/GPU/audit gates pass.
+All five final rainy presets and actual street/worker images inspected. Current ComfyUI
+loopback health is unavailable because the backend is stopped; no new inference or model
+install was needed. Meshy remains deferred (prior HTTP 401), no Gemini/Higgsfield, no credits.
+Next milestone is visual/navigation refinement of this same small block, not a larger city.

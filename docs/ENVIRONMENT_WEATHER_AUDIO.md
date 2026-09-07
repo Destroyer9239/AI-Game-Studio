@@ -29,3 +29,18 @@ This tests parameter/lifecycle behavior; subjective audio mixing remains prototy
 Run `pwsh -NoProfile -File tools/world.ps1 preview -Weather rain` or `-Weather clear`.
 The shelter at the central sidewalk is a test zone; a future player controller supplies
 listener position. The next checkpoint connects events and zones to actual movement.
+
+## Integrated update (2026-09-07)
+
+The actual player supplies listener position. Both sidewalk shelters have cell-owned
+zones; unloaded cells cannot apply an audio zone. Exterior wind/city/rain layers crossfade
+through an owned low-pass bus (18 kHz outside to 1.5 kHz sheltered), while the interior
+layer bypasses it. The bus is removed on shutdown. One-shots and positional machinery
+remain synthesized replacement fixtures. A tested cleanup wait prevents audio resources
+from remaining in use on bounded GPU exit.
+
+Rain visibility masks the two test shelter footprints below roof height, preventing
+streaks through those roofs. This is a bounded shader mask, not general building rain
+collision. Other roofs need registered bounds or a reviewed collision solution. No
+puddle simulation, water streak material system or physically calibrated HDR is claimed.
+Weather also drives the worker's shelter state; time drives its simple night/day activity.
