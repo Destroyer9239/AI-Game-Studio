@@ -1,0 +1,13 @@
+{
+ "id":"canonical_fighter",
+ "source_blend":"blender/projects/test_fighter.blend",
+ "invariants":{
+  "dimension_ranges_m":[[6,10],[5,8],[1,3]],
+  "required_nodes":["Fuselage_Main","Cockpit_Canopy","Wing_Left","Wing_Right","Engine_Left_Emissive_Core","Engine_Right_Emissive_Core"],
+  "engines":2,"wings":2,"cockpits":1,
+  "palette":"gunmetal hull, amber markings, cyan exhaust",
+  "markings":"authored geometric color panels only; no text or logos",
+  "asymmetry":"none in major silhouette",
+  "orientation":"Blender +Y nose, +Z dorsal"
+ }
+}

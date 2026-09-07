@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "id": "canonical_fighter",
+  "source": "blender/projects/test_fighter.blend",
+  "source_sha256": "c0721371bf3444c45bfcb67d47f4681ed30c834640f3a7665906a4d4b97227f0",
+  "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5",
+  "dimensions_m": [
+    8.281331062316895,
+    6.597499847412109,
+    1.6309646368026733
+  ],
+  "component_names": [
+    "Cockpit_Canopy",
+    "Cockpit_Frame",
+    "Engine_Left_Armor",
+    "Engine_Left_Emissive_Core",
+    "Engine_Left_Housing",
+    "Engine_Left_Intake",
+    "Engine_Left_Rear_Nozzle",
+    "Engine_Right_Armor",
+    "Engine_Right_Emissive_Core",
+    "Engine_Right_Housing",
+    "Engine_Right_Intake",
+    "Engine_Right_Rear_Nozzle",
+    "Fuselage_Main",
+    "Nose_Armor",
+    "Tail_Fin_Left",
+    "Tail_Fin_Right",
+    "Wing_Left",
+    "Wing_Left_Amber_Marking",
+    "Wing_Left_Leading_Armor",
+    "Wing_Right",
+    "Wing_Right_Amber_Marking",
+    "Wing_Right_Leading_Armor"
+  ],
+  "invariants": {
+    "dimension_ranges_m": [
+      [
+        6,
+        10
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "required_nodes": [
+      "Fuselage_Main",
+      "Cockpit_Canopy",
+      "Wing_Left",
+      "Wing_Right",
+      "Engine_Left_Emissive_Core",
+      "Engine_Right_Emissive_Core"
+    ],
+    "engines": 2,
+    "wings": 2,
+    "cockpits": 1,
+    "palette": "gunmetal hull, amber markings, cyan exhaust",
+    "markings": "authored geometric color panels only; no text or logos",
+    "asymmetry": "none in major silhouette",
+    "orientation": "Blender +Y nose, +Z dorsal"
+  },
+  "views": {
+    "front": {
+      "file": "generated/references/canonical_fighter/front.png",
+      "sha256": "373c3e7e84d654e614daded54ec2cce42cf9c3aa2c72650222a2a1a64595c9ef",
+      "camera_direction": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "left": {
+      "file": "generated/references/canonical_fighter/left.png",
+      "sha256": "0f658891a8e858b798e0dea3dc10526d3ed30c3e13df554789389e5916f565fe",
+      "camera_direction": [
+        -1,
+        0,
+        0
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "right": {
+      "file": "generated/references/canonical_fighter/right.png",
+      "sha256": "ebb63d9d52c08b00f78f2b0a6357bd8310ca7f64cf0632e895b8366eabf58ef9",
+      "camera_direction": [
+        1,
+        0,
+        0
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "rear": {
+      "file": "generated/references/canonical_fighter/rear.png",
+      "sha256": "ffcac9dba2cc1e4be9ba1c2726f63b95497f1b704b66137453794fdf414c0971",
+      "camera_direction": [
+        0,
+        -1,
+        0
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "top": {
+      "file": "generated/references/canonical_fighter/top.png",
+      "sha256": "0479a83a194c5adc8e4e39b1b395b903e7f0ba2b6a5a837b4fc1f0a0c5b17a3a",
+      "camera_direction": [
+        0,
+        0,
+        1
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "bottom": {
+      "file": "generated/references/canonical_fighter/bottom.png",
+      "sha256": "80d9e6238a2974e9a818e9b2408bcf89a245df7a38efda1bb82b9694c8cf4c67",
+      "camera_direction": [
+        0,
+        0,
+        -1
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "front_three_quarter": {
+      "file": "generated/references/canonical_fighter/front_three_quarter.png",
+      "sha256": "18d5435dca8cc31a61070c5bef4dae99e5b3b09aae6f62630f73020cba6d72be",
+      "camera_direction": [
+        1,
+        1,
+        0.65
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    },
+    "rear_three_quarter": {
+      "file": "generated/references/canonical_fighter/rear_three_quarter.png",
+      "sha256": "f0708a35bac2c510d8c8ba22713e7e23e623cddaae96f4bfabd9b478682fa7ec",
+      "camera_direction": [
+        -1,
+        -1,
+        0.65
+      ],
+      "projection": "orthographic",
+      "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5"
+    }
+  },
+  "marking_audit": "NO_FONT_OR_IMAGE_NODES",
+  "status": "PASS",
+  "reason": "Canonical geometry checks plus visual review passed"
+}

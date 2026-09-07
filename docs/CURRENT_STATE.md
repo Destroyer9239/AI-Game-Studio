@@ -15,3 +15,8 @@ Next work: deterministic canonical Blender multiviews and modular building recip
 then a small city block, streaming, connected weather/audio and character/gameplay.
 No external generation or new provider setup is authorized. Meshy remains user-key
 detected / HTTP 401; Gemini and Higgsfield are not connected. No credits spent.
+
+Checkpoint 2: canonical fighter multiviews passed structural and visual review, with
+five gate tests. The foundry building passed eight recipe checks and its complete
+Blender/GLB/Godot/render pipeline. See MULTIVIEW_AND_BUILDINGS.md. Next: small block
+composition and bounded streaming. No paid services used.

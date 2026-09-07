@@ -27,3 +27,4 @@ generated/backend/
 *.pth
 *.pt
 generated/material-work/
+blender/projects/unit_*.blend

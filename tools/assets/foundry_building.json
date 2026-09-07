@@ -1,0 +1,11 @@
+{
+ "schema_version":1,"id":"foundry_building","status":"ready",
+ "specification":"docs/assets/foundry_building.md",
+ "generator":"blender/scripts/generate_foundry_building.py",
+ "blend":"blender/projects/foundry_building.blend",
+ "model":"game/assets/models/foundry_building.glb",
+ "scene":"game/scenes/assets/foundry_building.tscn",
+ "uv_mode":"required","require_collision":true,"max_triangles":20000,"max_materials":8,
+ "required_nodes":["Foundation","Structural_Shell","Entrance_Glass","Entrance_Canopy","Roof_Parapet"],
+ "emissive_nodes":["Entrance_Light"]
+}

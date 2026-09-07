@@ -1,0 +1,24 @@
+{
+  "reviewer": "Astra visual inspection",
+  "geometry_sha256": "0edf2ee7b29400c775a09a14f329a9c6757150c76d796dbfef914e82d0a9e9b5",
+  "views": [
+    "front",
+    "left",
+    "right",
+    "rear",
+    "top",
+    "bottom",
+    "front_three_quarter",
+    "rear_three_quarter"
+  ],
+  "checks": {
+    "silhouette": "PASS",
+    "proportions": "PASS",
+    "components": "PASS",
+    "placement": "PASS",
+    "palette": "PASS",
+    "markings": "PASS",
+    "viewpoints": "PASS"
+  },
+  "notes": "Inspected eight-view contact sheet. Same two engines, two wings, one cockpit; amber geometric accents, no text/logos. Correct orthographic front/rear/left/right/top/bottom and oblique poses. Thin side silhouette is the actual canonical design."
+}

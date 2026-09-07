@@ -1,0 +1,10 @@
+{
+ "id":"foundry_building","seed":14721,"archetype":"industrial","quality":"STANDARD",
+ "footprint":[12,10],"floors":3,"district":"industrial",
+ "style":"original restrained near-future mineral facade and charcoal service trim",
+ "facade_color":[0.34,0.39,0.42],"roof":"flat_service",
+ "age":"established","condition":"maintained","wealth":"working",
+ "function":"fabrication offices","technology":"near_future",
+ "lighting_style":"warm occupied windows, cyan service markers",
+ "invariants":{"front_entrance":1,"roof_hvac":2,"story_height_m":3.2,"major_asymmetry":"front canopy and service panel"}
+}
