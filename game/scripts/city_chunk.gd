@@ -7,6 +7,13 @@ var persistent_state: Dictionary = {}
 var cell_data: Dictionary
 var terminal: Node
 var worker: Node
+
+func project_mark(id: String,position_m: Vector3,size_m: Vector3,wall:=false) -> void:
+	var decal:=Decal.new();decal.texture_albedo=load("res://assets/textures/hero_decals/"+id+".png")
+	decal.position=position_m;decal.size=size_m;decal.normal_fade=.7
+	decal.distance_fade_enabled=true;decal.distance_fade_begin=35;decal.distance_fade_length=15
+	if wall:decal.rotation_degrees.x=90
+	add_child(decal)
 var nav_obstacles: Array[AABB]=[]
 
 static func mat(key: String, color: Color, metallic: float = 0, roughness: float = .7) -> StandardMaterial3D:
@@ -65,7 +72,7 @@ func _ready() -> void:
 	assert(cell_data != null, "Unknown cell")
 	var pavement := mat("pavement",Color(.29,.31,.32),0,.83)
 	if pavement.albedo_texture == null:
-		pavement.albedo_texture = load("res://assets/textures/hero_surfaces/aggregate.png")
+		pavement.albedo_texture = load("res://assets/textures/hero_decals/pavement.png")
 		pavement.uv1_triplanar=true
 		pavement.uv1_world_triplanar=true
 		pavement.uv1_scale = Vector3(.5,.5,.5)
@@ -106,6 +113,10 @@ func _ready() -> void:
 	for x in range(-30,31,6):lane_marks.append(Vector3(x,.04,0))
 	multibox("LaneMarks",Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8),lane_marks)
 	if cell_id=="center":
+		var reflection:=ReflectionProbe.new();reflection.size=Vector3(62,24,58)
+		reflection.position=Vector3(0,6,0);reflection.box_projection=true
+		reflection.max_distance=70;reflection.update_mode=ReflectionProbe.UPDATE_ONCE
+		add_child(reflection)
 		# Composed service-edge clusters leave a continuous pedestrian route.
 		var paint:=mat("service_paint",Color(.45,.22,.07),0,.65)
 		var stripes:Array[Vector3]=[];var feet:Array[Vector3]=[];var bands:Array[Vector3]=[];var joints:Array[Vector3]=[]
@@ -123,7 +134,13 @@ func _ready() -> void:
 		multibox("BollardStripes",Vector3(.19,.12,.19),shared.curb,stripes)
 		multibox("BenchFeet",Vector3(.12,.44,.4),shared.steel,feet)
 		multibox("CrateBands",Vector3(1.43,.13,1.23),shared.steel,bands)
-		multibox("PavementJoints",Vector3(.025,.007,3.8),shared.steel,joints)
+		# Joint appearance is now a mipmapped material tile; projected marks add locality.
+		for x in [-23,19]:
+			project_mark("repair",Vector3(x,.08,2),Vector3(3,.2,1.8))
+		for x in [-24,24]:
+			project_mark("warning",Vector3(x,.12,-9.8),Vector3(2.2,.35,1.6))
+			project_mark("stain",Vector3(x,.28,4.6),Vector3(1.7,.2,1.5))
+		project_mark("service",Vector3(-20,2,-11.9),Vector3(1.5,.6,1.5),true)
 		box("UtilityCabinet",Vector3(8,.94,6),Vector3(.8,1.4,.7),paint,true)
 		box("UtilityVent",Vector3(8,1.15,5.64),Vector3(.6,.35,.035),shared.steel)
 		var crossings:Array[Vector3]=[]

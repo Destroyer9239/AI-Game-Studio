@@ -108,6 +108,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        5.67,
+        1.9
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        5.67,
+        0.8499999999999999
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "front_0_1_Frame",
       "position": [
         0.0,
@@ -134,6 +162,34 @@
         2.33
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        5.67,
+        1.9
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.35
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        5.67,
+        0.6749999999999998
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "Entrance_Canopy",
@@ -192,6 +248,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        5.67,
+        1.9
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        5.67,
+        0.8499999999999999
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_0_0_Frame",
       "position": [
         -3.0,
@@ -218,6 +302,34 @@
         1.98
       ],
       "material": "Warm_Window_Light"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        -5.67,
+        1.9
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        -5.67,
+        0.8499999999999999
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "rear_0_1_Frame",
@@ -248,6 +360,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        -5.67,
+        1.9
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        -5.67,
+        0.8499999999999999
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_0_2_Frame",
       "position": [
         3.0,
@@ -274,6 +414,34 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        -5.67,
+        1.9
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        -5.67,
+        0.8499999999999999
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "left_0_0_Frame",
@@ -598,6 +766,34 @@
       "material": "Warm_Window_Light"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        5.67,
+        5.1
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        5.67,
+        4.05
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "front_1_1_Frame",
       "position": [
         0.0,
@@ -624,6 +820,34 @@
         1.98
       ],
       "material": "Warm_Window_Light"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        5.67,
+        5.1
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        5.67,
+        4.05
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "front_1_2_Frame",
@@ -654,6 +878,48 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        5.67,
+        5.1
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        5.67,
+        4.05
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        3.0,
+        5.67,
+        5.5
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
+    },
+    {
       "name": "rear_1_0_Frame",
       "position": [
         -3.0,
@@ -680,6 +946,34 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        -5.67,
+        5.1
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        -5.67,
+        4.05
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "rear_1_1_Frame",
@@ -710,6 +1004,34 @@
       "material": "Warm_Window_Light"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        -5.67,
+        5.1
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        -5.67,
+        4.05
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_1_2_Frame",
       "position": [
         3.0,
@@ -736,6 +1058,48 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        -5.67,
+        5.1
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        -5.67,
+        4.05
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        3.0,
+        -5.67,
+        5.5
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
     },
     {
       "name": "left_1_0_Frame",
@@ -1060,6 +1424,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        5.67,
+        8.3
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        5.67,
+        7.250000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "front_2_1_Frame",
       "position": [
         0.0,
@@ -1086,6 +1478,48 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        5.67,
+        8.3
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        5.67,
+        7.250000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        0.0,
+        5.67,
+        8.700000000000001
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
     },
     {
       "name": "front_2_2_Frame",
@@ -1116,6 +1550,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        5.67,
+        8.3
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        5.67,
+        7.250000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_2_0_Frame",
       "position": [
         -3.0,
@@ -1142,6 +1604,34 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        -5.67,
+        8.3
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        -5.67,
+        7.250000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "rear_2_1_Frame",
@@ -1172,6 +1662,48 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        -5.67,
+        8.3
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        -5.67,
+        7.250000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        0.0,
+        -5.67,
+        8.700000000000001
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
+    },
+    {
       "name": "rear_2_2_Frame",
       "position": [
         3.0,
@@ -1198,6 +1730,34 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        -5.67,
+        8.3
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        -5.67,
+        7.250000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "left_2_0_Frame",
@@ -1522,6 +2082,48 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        5.67,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        5.67,
+        10.450000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        -3.0,
+        5.67,
+        11.900000000000002
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
+    },
+    {
       "name": "front_3_1_Frame",
       "position": [
         0.0,
@@ -1548,6 +2150,34 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        5.67,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        5.67,
+        10.450000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "front_3_2_Frame",
@@ -1578,6 +2208,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        5.67,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        5.67,
+        10.450000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_3_0_Frame",
       "position": [
         -3.0,
@@ -1604,6 +2262,48 @@
         1.98
       ],
       "material": "Warm_Window_Light"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        -5.67,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        -5.67,
+        10.450000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        -3.0,
+        -5.67,
+        11.900000000000002
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
     },
     {
       "name": "rear_3_1_Frame",
@@ -1634,6 +2334,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        -5.67,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        -5.67,
+        10.450000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_3_2_Frame",
       "position": [
         3.0,
@@ -1660,6 +2388,34 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        -5.67,
+        11.500000000000002
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        -5.67,
+        10.450000000000001
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "left_3_0_Frame",
@@ -1984,6 +2740,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        5.67,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        5.67,
+        13.65
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "front_4_1_Frame",
       "position": [
         0.0,
@@ -2010,6 +2794,34 @@
         1.98
       ],
       "material": "Warm_Window_Light"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        5.67,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        5.67,
+        13.65
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "front_4_2_Frame",
@@ -2040,6 +2852,48 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        5.67,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        5.67,
+        13.65
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        3.0,
+        5.67,
+        15.100000000000001
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
+    },
+    {
       "name": "rear_4_0_Frame",
       "position": [
         -3.0,
@@ -2066,6 +2920,34 @@
         1.98
       ],
       "material": "Warm_Window_Light"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        -3.0,
+        -5.67,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        -3.0,
+        -5.67,
+        13.65
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
     },
     {
       "name": "rear_4_1_Frame",
@@ -2096,6 +2978,34 @@
       "material": "Blue_Glazing"
     },
     {
+      "name": "Window_Mullion",
+      "position": [
+        0.0,
+        -5.67,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        0.0,
+        -5.67,
+        13.65
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
       "name": "rear_4_2_Frame",
       "position": [
         3.0,
@@ -2122,6 +3032,48 @@
         1.98
       ],
       "material": "Blue_Glazing"
+    },
+    {
+      "name": "Window_Mullion",
+      "position": [
+        3.0,
+        -5.67,
+        14.700000000000001
+      ],
+      "dimensions": [
+        0.045,
+        0.08,
+        2.0
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Window_Sill",
+      "position": [
+        3.0,
+        -5.67,
+        13.65
+      ],
+      "dimensions": [
+        2.3200000000000003,
+        0.28,
+        0.12
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Interior_Transom",
+      "position": [
+        3.0,
+        -5.67,
+        15.100000000000001
+      ],
+      "dimensions": [
+        2.16,
+        0.055,
+        0.1
+      ],
+      "material": "Foundation"
     },
     {
       "name": "left_4_0_Frame",
@@ -2628,6 +3580,132 @@
       "material": "Cyan_Wayfinding"
     },
     {
+      "name": "Lobby_Portal",
+      "position": [
+        0,
+        5.8,
+        1.65
+      ],
+      "dimensions": [
+        3.6,
+        0.6,
+        2.8
+      ],
+      "material": "Charcoal_Trim"
+    },
+    {
+      "name": "Lobby_Double_Door",
+      "position": [
+        0,
+        6.14,
+        1.55
+      ],
+      "dimensions": [
+        2.61,
+        0.035,
+        2.5
+      ],
+      "material": "Blue_Glazing"
+    },
+    {
+      "name": "Lobby_Door_Stile",
+      "position": [
+        0,
+        6.18,
+        1.55
+      ],
+      "dimensions": [
+        0.06,
+        0.08,
+        2.5
+      ],
+      "material": "Painted_Accent"
+    },
+    {
+      "name": "Stepped_Service_Core",
+      "position": [
+        -2.5200000000000005,
+        -1.76,
+        17.65
+      ],
+      "dimensions": [
+        2.88,
+        5.5,
+        2.8
+      ],
+      "material": "Warm_Mineral_Facade"
+    },
+    {
+      "name": "Opaque_Service_Bay",
+      "position": [
+        -2.88,
+        -5.65,
+        1.9
+      ],
+      "dimensions": [
+        2.43,
+        0.25,
+        2.8
+      ],
+      "material": "Painted_Accent"
+    },
+    {
+      "name": "Opaque_Service_Bay",
+      "position": [
+        -2.88,
+        -5.65,
+        5.1
+      ],
+      "dimensions": [
+        2.43,
+        0.25,
+        2.8
+      ],
+      "material": "Painted_Accent"
+    },
+    {
+      "name": "Opaque_Service_Bay",
+      "position": [
+        -2.88,
+        -5.65,
+        8.3
+      ],
+      "dimensions": [
+        2.43,
+        0.25,
+        2.8
+      ],
+      "material": "Painted_Accent"
+    },
+    {
+      "name": "Opaque_Service_Bay",
+      "position": [
+        -2.88,
+        -5.65,
+        11.500000000000002
+      ],
+      "dimensions": [
+        2.43,
+        0.25,
+        2.8
+      ],
+      "material": "Painted_Accent"
+    },
+    {
+      "name": "Opaque_Service_Bay",
+      "position": [
+        -2.88,
+        -5.65,
+        14.700000000000001
+      ],
+      "dimensions": [
+        2.43,
+        0.25,
+        2.8
+      ],
+      "material": "Painted_Accent"
+    },
+    {
       "name": "Vertical_Sun_Fin",
       "position": [
         -3.87,
@@ -2740,7 +3818,7 @@
       "material": "Foundation"
     }
   ],
-  "recipe_sha256": "6505eee760a767301b047dcba54cd25263d45bd18ae01954953fc0154ee72571",
+  "recipe_sha256": "e7493abcae4800c4621190f649dee7cfb1604d9e492248c2f772a222d96568ad",
   "source": "original modular generator",
   "navigation_hooks": {
     "front_entrance": [

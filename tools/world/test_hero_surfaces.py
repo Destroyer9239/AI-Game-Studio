@@ -142,7 +142,7 @@ class HeroSurfaces(unittest.TestCase):
                 self.assertTrue(np.array_equal(data[:, :, 0], data[:, :, channel]), name + ' is not greyscale')
 
     def test_provenance(self):
-        self.assertEqual(self.metadata['height_amplitude_m'], .00012)
+        self.assertEqual(self.metadata['height_amplitude_m'], .0006)
         self.assertEqual(self.metadata['repeat_m'], 2)
         self.assertEqual(self.metadata['seed'], 7182)
         self.assertEqual(self.metadata['credits'], 0)

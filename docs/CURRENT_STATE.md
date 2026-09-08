@@ -106,3 +106,15 @@ counted passing checks, zero failures, 100 streaming cycles across five separate
 372 audited files. Remaining engineering issue: the navigation mesh stops 4.22 m short of
 the designed building entrances. Remaining art work is Astra's; no provider, credit or
 model use in this pass.
+
+Visual continuation from b31ee50 (2026-09-07): preserved Claude's batching, mipmaps,
+benchmark and expanded tests. Fresh eleven-view baseline inspected. New art adds grouped
+panes, sills/transoms, industrial shutters/service core, market arcade and sign tower,
+office lobby/core, restrained sign trim, real Decal projections, and a texture-based
+pavement grid replacing mesh joints. Authored relief increased from .12 to .6 mm after
+close-view review; provenance test updated to the deliberate specification change.
+All three building Blender/export/Godot pipelines reran successfully. Full regression
+with GPU handled separately passed; reports world-regression-fee87f7e2819472db3f8ecc8d4ce93d1
+and world-e83cb3c5b00e4168bbbe042cc1701e9e. Navigation remains intentionally STREET-ONLY;
+no NPC doorway behavior is claimed. No expansion, providers, credits or new models.
+Hero grade remains pending final review; current art is improved but visibly procedural.

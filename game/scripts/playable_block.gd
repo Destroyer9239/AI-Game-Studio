@@ -62,6 +62,7 @@ func apply_quality() -> void:
 	director.environment.ssil_enabled=quality>=3
 	director.environment.glow_enabled=quality>=1
 	director.environment.volumetric_fog_enabled=quality>=2
+	director.environment.ssr_max_steps=128 if quality==4 else 64
 	get_viewport().msaa_3d=Viewport.MSAA_8X if quality==4 else Viewport.MSAA_4X if quality>=2 else Viewport.MSAA_DISABLED
 	get_viewport().use_taa=quality>=3
 	director.rain.amount=[250,700,1800,2400,3000][quality]

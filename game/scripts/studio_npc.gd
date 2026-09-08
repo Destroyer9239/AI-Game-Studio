@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	var direction:=next-global_position;direction.y=0
 	if direction.length()>.05:
 		direction=direction.normalized()
-		visual.rotation.y=atan2(-direction.x,-direction.z)
+		visual.rotation.y=lerp_angle(visual.rotation.y,atan2(-direction.x,-direction.z),minf(delta*8,1))
 	velocity.x=direction.x*1.6;velocity.z=direction.z*1.6
 	set_animation(direction.length()>.05)
 	if not is_on_floor():velocity.y-=18*delta

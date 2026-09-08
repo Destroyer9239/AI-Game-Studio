@@ -1,0 +1,8 @@
+{
+  "source": "original local procedural graphics and authored text",
+  "seed": 4801,
+  "resolution": 512,
+  "pavement_resolution": 1024,
+  "maps": "sRGB color/alpha only; no fabricated material maps",
+  "credits": 0
+}

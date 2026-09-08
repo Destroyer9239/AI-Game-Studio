@@ -37,6 +37,7 @@ func _ready() -> void:
 	add_child(world)
 	sun=DirectionalLight3D.new()
 	sun.shadow_enabled=true
+	sun.light_angular_distance=.5
 	sun.rotation_degrees.y=-25
 	add_child(sun)
 	rain=GPUParticles3D.new()
@@ -92,7 +93,8 @@ func apply_state() -> void:
 	environment.ambient_light_energy=.15+daylight*.55
 	sun.rotation_degrees.x=(hour-6)*-15
 	sun.light_energy=daylight*2.4*(1-visual_cloud*.7)
-	sun.light_color=Color(1,.79,.55).lerp(Color(.65,.77,.9),visual_cloud)
+	sun.light_color=Color(1,.61,.34).lerp(Color(1,.94,.84),minf(daylight*1.5,1)).lerp(Color(.70,.79,.90),visual_cloud)
+	environment.volumetric_fog_albedo=Color(.58,.66,.73)
 	environment.volumetric_fog_density=profile.fog
 	environment.background_energy_multiplier=.15+daylight*.85
 	if environment.sky.sky_material is ProceduralSkyMaterial:

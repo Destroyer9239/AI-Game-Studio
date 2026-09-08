@@ -37,7 +37,7 @@ def build(spec):
     steel=material('Charcoal_Trim',(.055,.075,.09),.75,.3)
     glass=material('Blue_Glazing',(.018,.065,.08),0,.12)
     light=material('Warm_Window_Light',(.42,.27,.13),0,.35,.45)
-    cyan=material('Cyan_Wayfinding',(.02,.3,.36),.2,.35,1.2)
+    cyan=material('Cyan_Wayfinding',(.24,.30,.25),0,.45,.45)
     ground=material('Foundation',(.17,.19,.20),0,.9)
     accent=material('Painted_Accent',spec.get('accent_color',[.32,.13,.055]),0,.65)
     for role in ['normal','roughness']:
@@ -91,6 +91,15 @@ def build(spec):
                     inset=tuple(position[i]+outward[i] for i in range(3))
                     inset_dim=(width-.1,.035,height-.12) if facade in ('front','rear') else (.035,width-.1,height-.12)
                     box('Entrance_Glass' if entrance else f'{facade}_{floor}_{b}_Window',inset,inset_dim,light if rng.random()<.16 and not entrance else glass)
+                    # Glass reads as grouped panes, with opaque jambs and shallow sill depth.
+                    if facade in ('front','rear'):
+                        face_y=inset[1]+(.035 if facade=='front' else -.035)
+                        box('Window_Mullion',(horizontal,face_y,z+1.5),(.045,.08,height-.1),steel)
+                        box('Window_Sill',(horizontal,face_y,z+1.5-height/2),(width+.16,.28,.12),stone,.02)
+                        if spec['archetype']=='commercial' and floor==0:
+                            for offset in [-.3,.3]:box('Shop_Pane_Frame',(horizontal+width*offset,face_y,z+1.5),(.055,.1,height),steel)
+                        if floor>0 and (b+floor)%3==0:
+                            box('Interior_Transom',(horizontal,face_y,z+1.9),(width,.055,.1),ground)
                     if entrance:
                         box('Entrance_Canopy',(horizontal,d/2+.65,3.02),(bay*1.25,1.5,.18),steel,.04)
                         box('Entrance_Light',(horizontal,d/2+.71,2.89),(bay,.9,.035),cyan)
@@ -106,6 +115,12 @@ def build(spec):
         box('Sign_Mount',(0,d/2+.15,3.6),(w*.5,.2,.65),steel,.02)
         box('Sign_Underline',(0,d/2+.27,3.3),(w*.48,.035,.055),cyan)
         if spec['archetype']=='industrial':
+            box('Heavy_Service_Base',(0,0,1.05),(w+.12,d+.12,1.3),ground,.08)
+            box('Rear_Service_Core',(-w*.28,-d*.30,h+.8),(w*.35,d*.34,2.2),stone,.12)
+            for x in [-w*.35,w*.35]:
+                box('Loading_Frame',(x,d/2+.2,1.7),(1.5,.4,2.5),steel,.05)
+                for slat in range(7):box('Service_Shutter',(x,d/2+.43,.7+slat*.3),(1.25,.05,.12),ground)
+            for row in range(4):box('Roof_Duct',(0,-d*.3+row*.42,h+.9),(w*.35,.25,.25),steel,.04)
             for x in [-w*.4,w*.4]:
                 box('Service_Riser',(x,d/2+.22,h/2),(.24,.3,h),accent,.04)
                 box('Exhaust_Stack',(x,-d*.25,h+1.8),(.7,.7,2.5),steel,.05)
@@ -113,11 +128,22 @@ def build(spec):
             for floor in range(floors):
                 box('Industrial_Belt',(0,d/2+.13,1+floor*story),(w,.22,.3),accent,.03)
         elif spec['archetype']=='commercial':
+            box('Shop_Platform',(0,d/2+.38,.25),(w-.2,.8,.18),ground,.04)
+            for x in [-w*.45,0,w*.45]:box('Arcade_Pier',(x,d/2+.42,1.65),(.36,.65,2.8),stone,.06)
+            for x in [-w*.33,0,w*.33]:
+                box('Awning_Rib',(x,d/2+.9,3.23),(.1,1.9,.12),steel)
+            box('Market_Sign_Tower',(-w*.43,0,h+1.45),(1.1,1.3,2.5),accent,.06)
             box('Store_Awning',(0,d/2+.95,3.1),(w-.7,1.9,.22),accent,.05)
             for x in [-w*.34,w*.34]:
                 box('Storefront_Header',(x,d/2+.18,2.7),(w*.25,.3,.32),accent)
             box('Roof_Pavilion',(w*.2,-d*.15,h+1.1),(w*.45,d*.5,.9),accent,.08)
         elif spec['archetype']=='office':
+            box('Lobby_Portal',(0,d/2+.3,1.65),(w*.4,.6,2.8),steel,.04)
+            box('Lobby_Double_Door',(0,d/2+.64,1.55),(w*.29,.035,2.5),glass)
+            box('Lobby_Door_Stile',(0,d/2+.68,1.55),(.06,.08,2.5),accent)
+            box('Stepped_Service_Core',(-w*.28,-d*.16,h+1.65),(w*.32,d*.5,2.8),stone,.1)
+            for floor in range(floors):
+                box('Opaque_Service_Bay',(-w*.32,-d/2-.15,.4+floor*story+1.5),(w*.27,.25,2.8),accent,.025)
             for x in [-w*.43,-w*.22,w*.22,w*.43]:
                 box('Vertical_Sun_Fin',(x,d/2+.35,h/2+.4),(.16,.7,h),accent,.025)
             box('Relay_Crown',(0,0,h+1.3),(w*.55,d*.65,1.1),steel,.08)

@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g4bc1my4s1ps"
-path="res://.godot/imported/market_building_normal.png-3bc3e5292b8463583b93d215cd7020f0.ctex"
+uid="uid://bb3bni8eov52w"
+path="res://.godot/imported/warning.png-586736a1b23b48f09ee69d07ce917db8.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "5df291c088697d0d4072698e50a38aca"
 }
 
 [deps]
 
-source_file="res://assets/models/market_building_normal.png"
-dest_files=["res://.godot/imported/market_building_normal.png-3bc3e5292b8463583b93d215cd7020f0.ctex"]
+source_file="res://assets/textures/hero_decals/warning.png"
+dest_files=["res://.godot/imported/warning.png-586736a1b23b48f09ee69d07ce917db8.ctex"]
 
 [params]
 
@@ -26,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
