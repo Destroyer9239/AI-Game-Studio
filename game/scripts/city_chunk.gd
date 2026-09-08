@@ -113,10 +113,6 @@ func _ready() -> void:
 	for x in range(-30,31,6):lane_marks.append(Vector3(x,.04,0))
 	multibox("LaneMarks",Vector3(2.5,.02,.1),mat("paint",Color(.8,.68,.34),0,.8),lane_marks)
 	if cell_id=="center":
-		var reflection:=ReflectionProbe.new();reflection.size=Vector3(62,24,58)
-		reflection.position=Vector3(0,6,0);reflection.box_projection=true
-		reflection.max_distance=70;reflection.update_mode=ReflectionProbe.UPDATE_ONCE
-		add_child(reflection)
 		# Composed service-edge clusters leave a continuous pedestrian route.
 		var paint:=mat("service_paint",Color(.45,.22,.07),0,.65)
 		var stripes:Array[Vector3]=[];var feet:Array[Vector3]=[];var bands:Array[Vector3]=[];var joints:Array[Vector3]=[]

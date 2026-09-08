@@ -1,5 +1,20 @@
 # Current checkpoint
 
+Latest acceptance (2026-09-07): **IMPROVED PROTOTYPE**, not HERO QUALITY.
+Continue from the final hero-art acceptance checkpoint after art commit 82977c3;
+see HERO_ART_RESULTS.md for current evidence, counts, benchmarks and remaining work.
+The historical entries below are chronological, not the next task list.
+The new probe was removed after its roughly 541 MB memory cost was measured.
+Final HIGH: 1.628 ms wall / .940 ms GPU render / 297 draws / 336 MB reported video
+memory. CINEMATIC: 1.961 ms / 1.246 ms / 288 draws / 496 MB. Desktop variance is
+substantial; do not infer a full-world frame rate. Eleven final views and all five
+presets rendered and inspected. Full regression plus two benchmark check sweeps:
+2,305 counted passing checks (includes repetition), zero remaining failures.
+Navigation is deliberately STREET-ONLY; doorway routes are outside current scope.
+Next: one convincing close-view storefront/material reference, then same-block
+lighting/rain/glass polish. Audio listening and motion/LOD traversal review remain.
+No second block, paid usage, new provider, large download or Claude invocation.
+
 The interrupted local image/material/environment stage is complete in `8c1656d`,
 already present on the existing GitHub origin/main. A normal push confirmed it is
 up to date. Godot resource/main/fighter validation, 23 provider tests, 9 material
