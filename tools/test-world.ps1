@@ -17,6 +17,8 @@ Invoke-StudioProcess 'building-recipe' $blender @('--background','--factory-star
 $config=Get-Content (Get-StudioPath 'tools/providers/image_generation/comfyui.json') -Raw | ConvertFrom-Json
 Invoke-StudioProcess 'hero-surface-tests' (Join-Path $config.runtime 'python_embeded/python.exe') @('tools/world/test_hero_surfaces.py') 90 'OK'
 Invoke-StudioProcess 'hero-navigation' (Resolve-StudioTool godot) @('--headless','--path',(Get-StudioPath 'game'),'--script','res://scripts/test_hero_navigation.gd') 90 'HERO_NAVIGATION_PASS'
+Invoke-StudioProcess 'district-contract' $py @('-3.11','tools/world/test_district.py') 90 'OK'
+Invoke-StudioProcess 'district-runtime' (Resolve-StudioTool godot) @('--headless','--path',(Get-StudioPath 'game'),'--script','res://scripts/test_district.gd') 120 'DISTRICT_TEST_PASS'
 Invoke-StudioProcess 'material-regression' (Join-Path $config.runtime 'python_embeded/python.exe') @('tools/imagegen/test_environment.py') 120 'OK'
 foreach($entry in @('test-automation.ps1','pipeline.ps1')) {
  [string[]]$arguments=if($entry -eq 'pipeline.ps1'){@('validate')}else{@()}
@@ -32,4 +34,3 @@ if(-not $SkipGpu) {
 Invoke-StudioProcess 'artifact-audit' $py @('-3.11','tools/audit_git.py') 90 'PASS'
 $script:StudioStages | ConvertTo-Json -Depth 8 | Set-Content (Join-Path $script:RunDirectory 'stages.json')
 Write-Host "WORLD_REGRESSION_PASS: $script:RunDirectory; GPU skipped=$SkipGpu; live inference not repeated"
-

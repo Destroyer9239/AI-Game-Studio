@@ -90,7 +90,15 @@ def build(spec):
                     outward=(0,.095,0) if facade=='front' else (0,-.095,0) if facade=='rear' else (-.095,0,0) if facade=='left' else (.095,0,0)
                     inset=tuple(position[i]+outward[i] for i in range(3))
                     inset_dim=(width-.1,.035,height-.12) if facade in ('front','rear') else (.035,width-.1,height-.12)
-                    box('Entrance_Glass' if entrance else f'{facade}_{floor}_{b}_Window',inset,inset_dim,light if rng.random()<.16 and not entrance else glass)
+                    pane=box('Entrance_Glass' if entrance else f'{facade}_{floor}_{b}_Window',inset,inset_dim,light if rng.random()<.16 and not entrance else glass)
+                    # A window is one room card; preserve a full 0..1 UV rectangle
+                    # through material batching for the runtime parallax illusion.
+                    for polygon in pane.data.polygons:
+                        axis=max(range(3),key=lambda a:abs(polygon.normal[a]))
+                        plane=[a for a in range(3) if a!=axis]
+                        for loop in polygon.loop_indices:
+                            co=pane.data.vertices[pane.data.loops[loop].vertex_index].co
+                            pane.data.uv_layers.active.data[loop].uv=tuple(co[a]/inset_dim[a]+.5 for a in plane)
                     # Glass reads as grouped panes, with opaque jambs and shallow sill depth.
                     if facade in ('front','rear'):
                         face_y=inset[1]+(.035 if facade=='front' else -.035)

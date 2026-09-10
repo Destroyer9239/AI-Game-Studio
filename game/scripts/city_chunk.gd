@@ -1,6 +1,7 @@
 extends Node3D
 ## A bounded reusable cell. Four designed buildings only in the central block.
 @export var cell_id := "center"
+@export var spec_path := "res://world/city_block.json"
 @export var building_scenes: Array[PackedScene] = []
 static var shared: Dictionary = {}
 var persistent_state: Dictionary = {}
@@ -65,7 +66,7 @@ func multibox(label: String, size: Vector3, material: Material, offsets: Array) 
 	return node
 
 func _ready() -> void:
-	var spec: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://world/city_block.json"))
+	var spec: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(spec_path))
 	for value in spec.cells:
 		if value.id == cell_id:
 			cell_data = value
@@ -167,6 +168,12 @@ func _ready() -> void:
 			add_child(worker)
 			runtime.director.state_changed.connect(worker.on_environment)
 			worker.on_environment("weather",runtime.director.snapshot())
+	for prop in cell_data.get("props",[]):
+		var p: Array=prop.position;var s: Array=prop.size
+		box(prop.id,Vector3(p[0],p[1],p[2]),Vector3(s[0],s[1],s[2]),mat("district_utility",Color(.21,.24,.22),.2,.65),prop.collision)
+	for mark in cell_data.get("decals",[]):
+		var p: Array=mark.position;var s: Array=mark.size
+		project_mark(mark.id,Vector3(p[0],p[1],p[2]),Vector3(s[0],s[1],s[2]))
 	for b in cell_data.buildings:
 		var packed: PackedScene
 		for candidate in building_scenes:
@@ -178,6 +185,15 @@ func _ready() -> void:
 		building.position = Vector3(b.position[0],b.position[1],b.position[2])
 		building.rotation_degrees.y = b.yaw
 		add_child(building)
+		if not shared.has("window_room"):
+			var room_material:=ShaderMaterial.new()
+			room_material.shader=load("res://shaders/window_room.gdshader")
+			shared["window_room"]=room_material
+		for mesh_node in building.find_children("*","MeshInstance3D",true,false):
+			for surface in mesh_node.mesh.get_surface_count():
+				var source_material: Material=mesh_node.mesh.surface_get_material(surface)
+				if source_material and source_material.resource_name.begins_with("Blue_Glazing"):
+					mesh_node.set_surface_override_material(surface,shared["window_room"])
 		var sign := Label3D.new()
 		sign.text = {"market_a":"CINDER / EXCHANGE", "relay_a":"RELAY 07"}.get(b.id,"CINDER / WORKS")
 		sign.font_size = 48

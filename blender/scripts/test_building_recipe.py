@@ -88,6 +88,9 @@ uvs = [tuple(loop.uv) for loop in shell.data.uv_layers.active.data]
 check(all(all(abs(v) < 1e4 for v in uv) for uv in uvs), 'shell UVs are finite')
 span = max(u for u, _ in uvs) - min(u for u, _ in uvs)
 check(abs(span - base['footprint'][0] / 2) < .01, 'shell UV span matches a two-metre repeat')
+glazed = [o for o in bpy.context.scene.objects if o.type == 'MESH' and any(m and m.name == 'Blue_Glazing' for m in o.data.materials)]
+check(bool(glazed), 'room cards retain the glazing material after batching')
+check(all(-.001 <= v <= 1.001 for o in glazed for loop in o.data.uv_layers.active.data for v in loop.uv), 'window-local UVs remain in the room rectangle after batching')
 
 # --- seed and quality still change the recipe ------------------------------
 changed = dict(base, seed=base['seed'] + 1)

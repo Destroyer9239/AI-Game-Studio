@@ -7,6 +7,7 @@ var pending: Dictionary = {}
 var states: Dictionary = {}
 var failures: Dictionary = {}
 var spec: Dictionary
+var spec_path := "res://world/city_block.json"
 var focus := Vector3.ZERO
 var loads := 0
 var unloads := 0
@@ -15,13 +16,13 @@ var discarded_loads := 0
 var duplicate_requests := 0
 
 func _ready() -> void:
-	spec = JSON.parse_string(FileAccess.get_file_as_string("res://world/city_block.json"))
+	spec = JSON.parse_string(FileAccess.get_file_as_string(spec_path))
 
 func request_cell(id: String) -> void:
 	if loaded.has(id) or pending.has(id) or failures.has(id):
 		duplicate_requests += 1
 		return
-	var path := "res://scenes/world/cell_"+id+".tscn"
+	var path := str(spec.get("scene_directory","res://scenes/world"))+"/cell_"+id+".tscn"
 	pending[id] = path
 
 func update_focus(value: Vector3) -> void:

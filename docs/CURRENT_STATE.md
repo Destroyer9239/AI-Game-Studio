@@ -1,5 +1,19 @@
 # Current checkpoint
 
+2026-09-09 continuation supersedes the historical entries below. Recovery b18183d
+preserved validated compressed imports. Current district checkpoint is PROTOTYPE:
+separate district_demo.tscn streams two generated blocks; original one-block scene
+and fighter are retained. Read DISTRICT_RESULTS.md and DISTRICT_RECOVERY.md first.
+District seed 4821; west industrial service seed 4822; center preserved seed 2914.
+Window UVs/opaque room-depth shader generated/exported and GPU reviewed. Deterministic
+lot/road template composer and tools/district.ps1 run successfully. Existing regression
+plus district checks: 1,915 passes, zero remaining failures; additional repeated runs
+excluded. HIGH two-block GPU .704 ms / CINEMATIC .937 ms at the documented fixed view.
+Third block deliberately withheld: Block 2 is materially sparser/weaker than Block 1.
+Next work is industrial service composition/family variation, then accessible entrances,
+NPC activity/block ambience and a third-block gate. These systems are NOT completed yet.
+Default district save filename is separate. No paid usage, new model/provider or Claude.
+
 Latest acceptance (2026-09-07): **IMPROVED PROTOTYPE**, not HERO QUALITY.
 Continue from the final hero-art acceptance checkpoint after art commit 82977c3;
 see HERO_ART_RESULTS.md for current evidence, counts, benchmarks and remaining work.

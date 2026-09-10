@@ -1,0 +1,79 @@
+{
+  "audio": {
+    "buses": 2,
+    "players": 6,
+    "playing": 5
+  },
+  "benchmark_uncapped": true,
+  "buffer_memory_bytes": 19490720.0,
+  "chunks": {
+    "discarded": 0,
+    "duplicate_requests": 23472,
+    "failures": {},
+    "loaded": 2,
+    "loads": 2,
+    "pending": 0,
+    "unloads": 0
+  },
+  "cpu_render_ms_mean": 0.217685628382544,
+  "cpu_render_ms_p95": 0.296000003814697,
+  "draw_calls": 190.0,
+  "fps_cap": 0,
+  "fps_mean": 998.004102893414,
+  "frame_ms_max": 3.748,
+  "frame_ms_mean": 1.00199988867861,
+  "frame_ms_median": 0.988,
+  "frame_ms_min": 0.548,
+  "frame_ms_p95": 1.232,
+  "frame_ms_p99": 1.818,
+  "gpu_render_ms_mean": 0.704114661435169,
+  "gpu_render_ms_p95": 0.72299998998642,
+  "headless": false,
+  "hour": 15.0,
+  "lights": 16,
+  "loaded_cell_ids": [
+    "west",
+    "center"
+  ],
+  "materials_shared": 10,
+  "nodes": 314.0,
+  "note": "CPU wall intervals; CPU/GPU render-only times come from RenderingServer viewport measurement and are zero unless --benchmark ran; fixed street camera on a bounded prototype block, not a full-city guarantee",
+  "npcs": 1,
+  "objects": 372.0,
+  "physics_ms": 0.757,
+  "player_position": [
+    -20.0,
+    0.349999994039536,
+    6.0
+  ],
+  "preset": {
+    "glow": true,
+    "msaa_3d": 2,
+    "rain_particles": 1800,
+    "scaling_3d_scale": 1.0,
+    "shadow_max_distance": 70.0,
+    "ssao": true,
+    "ssil": false,
+    "ssr": true,
+    "sun_shadows": true,
+    "taa": false,
+    "volumetric_fog": true
+  },
+  "primitives": 146952.0,
+  "process_ms": 3.619,
+  "quality": 2,
+  "render_timing_measured": true,
+  "resources": 154.0,
+  "samples": 8983,
+  "shadow_casting_lights": 1,
+  "static_memory_bytes": 94565459.0,
+  "texture_memory_bytes": 263192064.0,
+  "video_memory_bytes": 303791856.0,
+  "viewport_size": [
+    1280,
+    800
+  ],
+  "vsync_mode": 0,
+  "weather": "rain",
+  "world_spec": "res://world/district.json"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "district_id": "cinder_lower",
+  "seed": 4821,
+  "district_type": "industrial_commercial_lower_city",
+  "cell_size": 64,
+  "road_width": 8,
+  "blocks": [
+    {"id": "west", "archetype": "industrial_service", "seed": 4822},
+    {"id": "center", "archetype": "main_street", "seed": 2914}
+  ],
+  "palette": {"primary": "warm_mineral", "secondary": "charcoal_steel", "accent": "ochre", "glass": "cool_dark", "emissive": "warm_white"},
+  "budgets": {"max_loaded_cells": 3, "max_buildings": 9, "max_npcs": 3, "max_shadow_lights": 1},
+  "ambient_profile": "industrial",
+  "weather_profile": "world_global"
+}

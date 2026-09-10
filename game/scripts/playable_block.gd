@@ -1,4 +1,5 @@
 extends Node3D
+@export var world_spec := "res://world/city_block.json"
 var streamer: Node3D
 var director: Node3D
 var ambience: Node3D
@@ -30,7 +31,7 @@ func _ready() -> void:
 	ambience=load("res://scripts/ambient_director.gd").new();add_child(ambience)
 	director.state_changed.connect(ambience.on_environment)
 	director.state_changed.connect(func(kind,state):events.publish(kind,state))
-	streamer=load("res://scripts/world_streamer.gd").new();add_child(streamer)
+	streamer=load("res://scripts/world_streamer.gd").new();streamer.spec_path=world_spec;add_child(streamer)
 	streamer.chunk_loaded.connect(func(id):events.publish("chunk_loaded",{"id":id}))
 	streamer.chunk_unloaded.connect(func(id):events.publish("chunk_unloaded",{"id":id}))
 	player=load("res://scripts/studio_player.gd").new();player.position=Vector3(0,.35,-3);player.enabled=false;add_child(player)
@@ -53,6 +54,9 @@ func _ready() -> void:
 		elif arg=="--inspection":
 			player.position=Vector3(22,.35,6)
 			player.camera.look_at(Vector3(-14,2,-1))
+		elif arg=="--district-inspection":
+			player.position=Vector3(-20,.35,6)
+			player.camera.look_at(Vector3(-65,2,-1))
 	apply_quality()
 	last_tick=Time.get_ticks_usec()
 
@@ -77,11 +81,13 @@ func on_terminal(id: String) -> void:
 	events.publish("objective_complete",{"id":id})
 	ambience.trigger_event("service_online")
 
-func save_game(file: String="user://studio_block_save.json") -> Error:
+func save_game(file: String="") -> Error:
+	if file.is_empty():file="user://studio_block_save.json" if world_spec=="res://world/city_block.json" else "user://studio_district_save.json"
 	for id in streamer.loaded:streamer.states[id]=streamer.loaded[id].capture_state()
 	return load("res://scripts/studio_save.gd").save_state(file,{"player":[player.position.x,player.position.y,player.position.z],"yaw":player.rotation.y,"chunks":streamer.states,"objective":objective_state,"environment":director.snapshot(),"settings":{"quality":quality}})
 
-func load_game(file: String="user://studio_block_save.json") -> bool:
+func load_game(file: String="") -> bool:
+	if file.is_empty():file="user://studio_block_save.json" if world_spec=="res://world/city_block.json" else "user://studio_district_save.json"
 	var state: Dictionary=load("res://scripts/studio_save.gd").load_state(file)
 	if not load("res://scripts/studio_save.gd").valid_world(state):return false
 	player.position=Vector3(state.player[0],state.player[1],state.player[2]);player.rotation.y=state.get("yaw",0);player.velocity=Vector3.ZERO
@@ -119,7 +125,7 @@ func _process(delta: float) -> void:
 	if samples.size()>10000:samples.pop_front()
 	streamer.update_focus(player.position)
 	if not ready_player and streamer.loaded.has("center"):
-		ready_player=true;player.enabled=true
+		ready_player=true;player.enabled=not benchmarking
 	if player.position.y< -10:player.position=Vector3(0,.5,-3);player.velocity=Vector3.ZERO
 	director.focus=player.position
 	ambience.active_cells=streamer.loaded.keys()
@@ -170,6 +176,8 @@ func metrics() -> Dictionary:
 		# How the sample was taken. A benchmark run disables vsync and the FPS
 		# cap for its own process only; gameplay presets are untouched.
 		"quality":quality,"benchmark_uncapped":benchmarking,
+		"player_position":[player.position.x,player.position.y,player.position.z],
+		"loaded_cell_ids":streamer.loaded.keys(),"world_spec":world_spec,
 		"vsync_mode":DisplayServer.window_get_vsync_mode(),"fps_cap":Engine.max_fps,
 		"headless":DisplayServer.get_name()=="headless",
 		"viewport_size":[get_viewport().size.x,get_viewport().size.y],
