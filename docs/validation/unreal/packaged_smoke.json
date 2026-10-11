@@ -1,0 +1,7 @@
+{
+  "executable": "C:\\Users\\ronan\\AI-Game-Studio\\generated\\unreal\\package\\Windows\\Cinder\\Binaries\\Win64\\Cinder.exe",
+  "action": "packaged-smoke",
+  "runtime_limit_seconds": 8,
+  "status": "PASS",
+  "map": "/Game/Cinder/Generated/Maps/L_Pipeline"
+}

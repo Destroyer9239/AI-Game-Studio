@@ -67,6 +67,8 @@ dot-source tools/studio-common.ps1 and invoke Get-StudioShell as existing tools 
 | launch | Open the Unreal editor on this project. |
 | play | Launch the installed editor's game mode. This is not a packaged executable. |
 | package | Run UAT BuildCookRun for Windows; missing SDK/toolchain fails visibly, never auto-installs. |
+| smoke | Launch the packaged Development executable offscreen with an eight-second engine runtime limit and verify map load/clean exit. |
+| accept | Run build, test, preview, package and smoke sequentially; stop on failure. |
 
 Set UE_ENGINE_ROOT only to another compatible 5.7 install if necessary. Upgrades need
 their own branch and acceptance run. Do not silently substitute UE 5.6 or latest online.
@@ -94,8 +96,8 @@ See tools/unreal/asset_review.json for the disposition of every asset/system fam
 
 The local machine has an RTX 5070 Ti, Intel Core Ultra 9 285K, about 32 GB RAM and
 about 1.2 TB free on C:. UE 5.6 and 5.7 installations exist; 5.7.1 is selected.
-Visual Studio Installer/vswhere and a Windows SDK include installation were not found
-in standard locations or registered installed-program inventory. Editor automation can
+Initially, Visual Studio Installer/vswhere and a Windows SDK include installation were
+not found in standard locations or registered installed-program inventory. Editor automation can
 run without compiling project C++, but a professional C++/packaging workflow needs a
 verified toolchain.
 
@@ -105,12 +107,17 @@ tools/unreal/development.vsconfig. Check the IDE edition's license for your orga
 The user explicitly approved this multi-GB toolchain installation on 2026-10-10.
 The official Microsoft bootstrapper was downloaded and its Authenticode signature
 verified before launch. Installation uses the prepared component config and
---norestart; completion and packaging must still be verified, not inferred from launch.
+--norestart; completion was verified through installer results and an actual package build.
+The installation subsequently completed with exit code 0 and no restart required:
+Visual Studio Community 2022 17.14.41, MSVC 14.44.35229 (tools folder 14.44.35207),
+Windows SDK 10.0.22621.0. UnrealBuildTool actually selected these versions and compiled
+the project. First UAT build/cook/archive succeeded in about 130 seconds; the cook
+reported zero errors and zero warnings. Bundled .NET 8.0.412 is used by Unreal tools.
 [Epic's UE 5.7 toolchain requirements](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine?application_version=5.7).
 
 ## Next production gates
 
-1. Validate the Windows toolchain and produce/play a packaged build.
+1. Completed: validate the Windows toolchain and produce/play a packaged build.
 2. Port the three-stage mission, interaction/save state and automated gameplay tests to
    Blueprint/C++; the existing Godot behavior is the acceptance reference.
 3. Establish one convincing UE hero location: architecture, original signage, material
@@ -129,10 +136,14 @@ PIE run verified the first-person Blueprint, grounding, movement over one meter 
 clean end-play. Captured and inspected a real 3840x2160 GPU screenshot. This is a 4K
 output image, not a native-internal-resolution performance benchmark.
 
-Packaging was actually attempted with UAT BuildCookRun and failed with ExitCode 6.
+The initial packaging attempt with UAT BuildCookRun failed with ExitCode 6.
 UnrealBuildTool explicitly reports no valid SDK for Win64; the engine's Windows SDK
 configuration files do exist. Report: unreal-348385a616c6460da98524283c2bd806.
-Do not report a packaged executable or completed C++ setup until this gate passes.
+After the approved installation, this blocker was resolved. Successful first package:
+unreal-5e053f0c7da34df69fbc6c413d0a82dc. The Windows Development build lives under
+generated/unreal/package/Windows. Open Play-Cinder-Unreal.cmd to play the migration
+fixture, or Open-Cinder-Unreal.cmd to edit it. It is a development build, not a
+release-qualified commercial product. No full mission port is implied by packaging.
 
 Resolved setup failures: missing editor subsystems in minimal Python commandlet mode,
 an engine divide-by-zero during NullRHI level creation, Python API naming differences,
@@ -146,7 +157,18 @@ The Windows-only project disables AndroidFileServer so it does not create a devi
 connection token in versioned config. No credentials or device tokens are committed.
 The local LFS hook is installed; no new LFS binary payload has been uploaded.
 
+Final `tools/unreal.ps1 accept` passed every stage: Blender/static build acceptance
+87 checks, PIE acceptance 72 checks, 4K preview acceptance 69 checks, UAT package
+exit 0 and packaged Development runtime exit 0 with an eight-second engine runtime limit. These action
+counts repeat common asset checks; they are not 228 distinct unit tests. No remaining
+failure in this setup gate. Final cook reported zero errors and zero warnings.
+Structured evidence is versioned in docs/validation/unreal; complete logs remain in
+generated/reports. The final repeat package took about 17.5 seconds with warm caches.
+The packaged runtime loaded L_Pipeline successfully; it is separate from editor PIE.
+The package folder is about 931 MB and stays outside Git. No Unreal FPS benchmark is
+claimed. The next work is gate 2 (mission parity), not another installation task.
+
 This stage does not migrate the mission/save system, weather, audio, robot rig or
 streaming. The test scene is intentionally small and uses temporary palette materials.
 The existing robot remains untouched. Editor tooling and PIE work without a new
-download. The separately approved toolchain installation is being verified.
+download. The separately approved compiler/SDK are installed and recognized by UBT.

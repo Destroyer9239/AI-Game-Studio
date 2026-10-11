@@ -11,7 +11,11 @@ function Invoke-UnrealProcess([string]$Executable,[string[]]$Arguments,[string]$
  $path=Join-Path $script:RunDirectory 'process.log'
  try{
   $null=$process.Start();$stdout=$process.StandardOutput.ReadToEndAsync();$stderr=$process.StandardError.ReadToEndAsync()
-  if(-not $process.WaitForExit($Timeout*1000)){$process.Kill($true);$process.WaitForExit();throw 'Owned Unreal process timed out'}
+  if(-not $process.WaitForExit($Timeout*1000)){
+   $process.Kill($true);$process.WaitForExit()
+   [IO.File]::WriteAllText($path,$stdout.GetAwaiter().GetResult()+"`n"+$stderr.GetAwaiter().GetResult())
+   throw "Owned Unreal process timed out. Inspect $path"
+  }
   $code=$process.ExitCode
   $log=$stdout.GetAwaiter().GetResult()+"`n"+$stderr.GetAwaiter().GetResult()
   [IO.File]::WriteAllText($path,$log)

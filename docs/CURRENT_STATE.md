@@ -7,6 +7,16 @@ unreal/Cinder/Cinder.uproject. Do not restart the studio, delete Godot, or treat
 UE setup as a completed gameplay/art migration. The old chronological notes below
 are historical and do not override the new engine selection.
 
+UE setup acceptance now PASSES: Blender export/import, scale/material/collision checks,
+actual first-person PIE movement, inspected 3840x2160 GPU image, UAT Windows package
+and a packaged launch with an eight-second engine runtime limit. tools/unreal.ps1 accept repeats all five stages.
+With explicit user approval, VS Community 2022 17.14.41 / MSVC 14.44 / Windows SDK
+10.0.22621 were installed and actually used by UnrealBuildTool. No restart required.
+Open-Cinder-Unreal.cmd opens the editor; Play-Cinder-Unreal.cmd starts the package.
+Evidence: docs/validation/unreal. Next is porting the existing short mission and saves
+to Blueprint/C++, then one convincing hero location. The UE fixture is not AAA art
+and does not yet contain the Godot mission/weather/streaming systems.
+
 2026-09-09 continuation supersedes the historical entries below. Recovery b18183d
 preserved validated compressed imports. Current district checkpoint is PROTOTYPE:
 separate district_demo.tscn streams two generated blocks; original one-block scene

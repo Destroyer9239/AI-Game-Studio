@@ -58,11 +58,19 @@
     "relay_building material assigned",
     "relay_building material assigned",
     "Map loads",
+    "Exactly eleven generated actors; no duplicate builds",
     "Player start exists",
+    "Concrete basecolor texture loads",
+    "Concrete basecolor color space",
+    "Concrete normal texture loads",
+    "Concrete normal color space",
+    "Normal convention corrected",
+    "Concrete roughness texture loads",
+    "Concrete roughness color space",
     "Template loads /Game/FirstPerson/Blueprints/BP_FirstPersonGameMode",
     "Template loads /Game/FirstPerson/Blueprints/BP_FirstPersonCharacter",
     "Screenshot requested",
     "GPU screenshot 3840x2160 saved"
   ],
-  "count": 61
+  "count": 69
 }

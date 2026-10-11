@@ -1,0 +1,14 @@
+{
+  "visual_studio": "2022 17.14.41",
+  "sha256": "e6b61fd64e03ffa252060602e3873ef09dff477c168d3aeab233e07299e82344",
+  "installer_source": "https://aka.ms/vs/17/release/vs_community.exe",
+  "msvc": "14.44.35229",
+  "ubt_compilation": "PASS",
+  "signature_status": "Valid",
+  "signer": "Microsoft Corporation",
+  "installer_exit_code": 0,
+  "restart_required": false,
+  "windows_sdk": "10.0.22621.0",
+  "approved_by_user": true,
+  "packaging": "PASS"
+}

@@ -1,4 +1,4 @@
-param([ValidateSet('doctor','setup','export','build','validate','test','preview','launch','play','package')][string]$Action='doctor',[string]$EngineRoot=$env:UE_ENGINE_ROOT)
+param([ValidateSet('doctor','setup','export','build','validate','test','preview','launch','play','package','smoke','accept')][string]$Action='doctor',[string]$EngineRoot=$env:UE_ENGINE_ROOT)
 . "$PSScriptRoot/studio-common.ps1"
 . "$PSScriptRoot/unreal/process.ps1"
 if(-not $EngineRoot){$EngineRoot='C:\Program Files\Epic Games\UE_5.7'}
@@ -12,9 +12,20 @@ $script:RunDirectory=Get-StudioPath ('generated/reports/unreal-'+[guid]::NewGuid
 New-Item -ItemType Directory -Force $script:RunDirectory | Out-Null
 $env:CINDER_REPORT_DIR=$script:RunDirectory
 $env:CINDER_ACTION=$Action
+if($Action -eq 'accept'){
+ foreach($stage in @('build','test','preview','package','smoke')){
+  & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/unreal.ps1" $stage -EngineRoot $EngineRoot
+  if($LASTEXITCODE -ne 0){throw "Unreal acceptance failed at $stage"}
+ }
+ Write-Host 'UNREAL_ACCEPTANCE_PASS: build, play test, GPU preview, package and packaged launch'
+ exit 0
+}
 if($Action -eq 'doctor'){
  $vswhere='C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe'
  $inventory=@{engine=$EngineRoot;version=$version;editor_exists=(Test-Path $editor);vswhere_exists=(Test-Path $vswhere);free_bytes=(Get-PSDrive C).Free;ram_bytes=(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory}
+ $inventory.visual_studio=@()
+ if(Test-Path $vswhere){$inventory.visual_studio=@(& $vswhere -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -format json | ConvertFrom-Json)}
+ $inventory.windows_sdk_headers=@(Get-ChildItem 'C:\Program Files (x86)\Windows Kits\10\Include' -Directory -ErrorAction SilentlyContinue | Where-Object {Test-Path (Join-Path $_.FullName 'um/Windows.h')} | Select-Object -ExpandProperty Name)
  $inventory | ConvertTo-Json -Depth 5 | Set-Content "$script:RunDirectory/doctor.json"
  $inventory | ConvertTo-Json -Depth 5
 }
@@ -54,6 +65,15 @@ if($Action -in @('launch','play')){
 }
 if($Action -eq 'package'){
  Invoke-UnrealProcess (Get-StudioShell) @('-NoProfile','-File',(Get-StudioPath 'tools/unreal/package.ps1'),'-EngineRoot',$EngineRoot,'-Project',$project,'-Output',(Get-StudioPath 'generated/unreal/package')) 'BUILD SUCCESSFUL' 1800
+}
+if($Action -eq 'smoke'){
+ $folder=Get-StudioPath 'generated/unreal/package/Windows/Cinder/Binaries/Win64'
+ $binary=Get-ChildItem $folder -Filter 'Cinder*.exe' | Select-Object -First 1
+ if(-not $binary){throw 'Packaged Cinder executable not found. Run package first.'}
+ Invoke-UnrealProcess $binary.FullName @('-unattended','-RenderOffscreen','-windowed','-ResX=1920','-ResY=1080','-seconds=8','-stdout','-FullStdOutLogOutput',"-abslog=$script:RunDirectory/game.log") 'Bringing up level for play took:' 180
+ $log=Get-Content "$script:RunDirectory/game.log" -Raw
+ if(-not $log.Contains('/Game/Cinder/Generated/Maps/L_Pipeline')){throw 'Packaged game did not load the Cinder acceptance map'}
+ @{status='PASS';action='packaged-smoke';map='/Game/Cinder/Generated/Maps/L_Pipeline';runtime_limit_seconds=8;executable=$binary.FullName} | ConvertTo-Json | Set-Content "$script:RunDirectory/result.json"
 }
 $script:StudioStages | ConvertTo-Json -Depth 8 | Set-Content "$script:RunDirectory/stages.json"
 Write-Host "UNREAL_TOOL_PASS: $script:RunDirectory"

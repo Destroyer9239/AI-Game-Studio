@@ -3,7 +3,8 @@
 Agent-driven 3D game development workspace.
 
 **Active direction: Unreal Engine 5.7.1.** Open `Open-Cinder-Unreal.cmd` for the
-new project. Read [Unreal setup and migration](docs/UNREAL_PIPELINE.md) for commands,
+new editor project, or `Play-Cinder-Unreal.cmd` for the packaged migration fixture.
+Read [Unreal setup and migration](docs/UNREAL_PIPELINE.md) for commands,
 verified capabilities, asset decisions and remaining toolchain work. The Godot
 release below is preserved as a working reference, not silently replaced or deleted.
 

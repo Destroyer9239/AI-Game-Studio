@@ -30,6 +30,7 @@ unreal/**/Binaries/
 unreal/**/DerivedDataCache/
 unreal/**/Intermediate/
 unreal/**/Saved/
+unreal/**/Build/**/FileOpenOrder/
 unreal/Cinder/Content/FirstPerson/
 unreal/Cinder/Content/Characters/
 unreal/Cinder/Content/Input/

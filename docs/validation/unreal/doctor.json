@@ -1,4 +1,5 @@
 {
+  "ram_bytes": 34049167360,
   "version": {
     "MajorVersion": 5,
     "MinorVersion": 7,
@@ -9,9 +10,64 @@
     "IsPromotedBuild": 1,
     "BranchName": "++UE5+Release-5.7"
   },
-  "ram_bytes": 34049167360,
-  "free_bytes": 1309266702336,
+  "engine": "C:\\Program Files\\Epic Games\\UE_5.7",
   "editor_exists": true,
-  "vswhere_exists": false,
-  "engine": "C:\\Program Files\\Epic Games\\UE_5.7"
+  "windows_sdk_headers": [
+    "10.0.22621.0"
+  ],
+  "visual_studio": [
+    {
+      "instanceId": "4fc12a9b",
+      "installDate": "2026-10-11T00:48:44Z",
+      "installationName": "VisualStudio/17.14.41+37710.0.-september.2026-",
+      "installationPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community",
+      "installationVersion": "17.14.37710.0",
+      "productId": "Microsoft.VisualStudio.Product.Community",
+      "productPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+      "state": 4294967295,
+      "isComplete": true,
+      "isLaunchable": true,
+      "isPrerelease": false,
+      "isRebootRequired": false,
+      "displayName": "Visual Studio Community 2022",
+      "description": "Powerful IDE, free for students, open-source contributors, and individuals",
+      "channelId": "VisualStudio.17.Release",
+      "channelUri": "https://aka.ms/vs/17/release/channel",
+      "enginePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+      "installedChannelId": "VisualStudio.17.Release",
+      "installedChannelUri": "https://aka.ms/vs/17/release/channel",
+      "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes-v17.14#17.14.41",
+      "resolvedInstallationPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community",
+      "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661288",
+      "updateDate": "2026-10-11T00:48:44.4559575Z",
+      "catalog": {
+        "buildBranch": "d17.14",
+        "buildVersion": "17.14.37710.0",
+        "id": "VisualStudio/17.14.41+37710.0.-september.2026-",
+        "localBuild": "build-lab",
+        "manifestName": "VisualStudio",
+        "manifestType": "installer",
+        "productDisplayVersion": "17.14.41 (September 2026)",
+        "productLine": "Dev17",
+        "productLineVersion": "2022",
+        "productMilestone": "RTW",
+        "productMilestoneIsPreRelease": "False",
+        "productName": "Visual Studio",
+        "productPatchVersion": "41",
+        "productPreReleaseMilestoneSuffix": "1.0",
+        "productReleaseNameSuffix": "(September 2026)",
+        "productSemanticVersion": "17.14.41+37710.0.-september.2026-",
+        "requiredEngineVersion": "3.14.2094.42856"
+      },
+      "properties": {
+        "campaignId": "",
+        "channelManifestId": "VisualStudio.17.Release/17.14.41+37710.0.-september.2026-",
+        "includeRecommended": "1",
+        "nickname": "",
+        "setupEngineFilePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe"
+      }
+    }
+  ],
+  "vswhere_exists": true,
+  "free_bytes": 1300210892800
 }
