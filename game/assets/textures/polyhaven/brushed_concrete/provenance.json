@@ -1,0 +1,28 @@
+{
+    "credit":  "Powered by Poly Haven",
+    "source":  "https://polyhaven.com/a/brushed_concrete",
+    "resolution":  2048,
+    "license_url":  "https://polyhaven.com/license",
+    "asset":  "brushed_concrete",
+    "maps":  [
+                 {
+                     "sha256":  "f225b2599f94767c2f448f9da4670788fec3604eee70e4767c5ccaafb1f79d27",
+                     "url":  "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/brushed_concrete/brushed_concrete_diff_2k.png",
+                     "bytes":  22891469,
+                     "role":  "basecolor"
+                 },
+                 {
+                     "sha256":  "f064f553c6357c0faa80cd7cc1253854905d24f06f3bfbe26ffdb79606e72024",
+                     "url":  "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/brushed_concrete/brushed_concrete_nor_gl_2k.png",
+                     "bytes":  21268230,
+                     "role":  "normal"
+                 },
+                 {
+                     "sha256":  "eb5423b0a5ecec1bae35ce9f2305fd192a5ed64df30337fa8e1100326202e8fb",
+                     "url":  "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/brushed_concrete/brushed_concrete_rough_2k.png",
+                     "bytes":  10369454,
+                     "role":  "roughness"
+                 }
+             ],
+    "license":  "CC0"
+}

@@ -17,8 +17,13 @@ func run()->void:
  check(streamer.loaded.west.cell_data.buildings.size()==2,"service block uses two buildings")
  check(streamer.loaded.center.cell_data.buildings.size()==4,"first block preserved")
  var map=streamer.get_world_3d().navigation_map
- for i in range(5):await physics_frame
- var path=NavigationServer3D.map_get_path(map,Vector3(-80,.3,0),Vector3(10,.3,0),true)
+ # Resource load completion does not imply navigation-server synchronization.
+ # Keep the route assertion, but allow bounded asynchronous map publication.
+ var path:=PackedVector3Array()
+ for i in range(180):
+  await physics_frame
+  path=NavigationServer3D.map_get_path(map,Vector3(-80,.3,0),Vector3(10,.3,0),true)
+  if path.size()>1 and path[-1].distance_to(Vector3(10,.3,0))<.5:break
  check(path.size()>1 and path[-1].distance_to(Vector3(10,.3,0))<.5,"cross-boundary road route")
  for cycle in range(10):
   streamer.loaded.west.persistent_state["district_event"]=cycle

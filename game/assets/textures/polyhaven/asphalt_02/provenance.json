@@ -1,0 +1,28 @@
+{
+    "credit":  "Powered by Poly Haven",
+    "source":  "https://polyhaven.com/a/asphalt_02",
+    "resolution":  2048,
+    "license_url":  "https://polyhaven.com/license",
+    "asset":  "asphalt_02",
+    "maps":  [
+                 {
+                     "sha256":  "0f33cc1f8142bc1c19858b95f694dbf3a7be99a3c385462b1729cf65804af1d3",
+                     "url":  "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_02/asphalt_02_diff_2k.png",
+                     "bytes":  9989224,
+                     "role":  "basecolor"
+                 },
+                 {
+                     "sha256":  "f96c0a1664e556d233b3f76e8f70ab08af5b1c342786efb99b72b8854563440e",
+                     "url":  "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_02/asphalt_02_nor_gl_2k.png",
+                     "bytes":  9122344,
+                     "role":  "normal"
+                 },
+                 {
+                     "sha256":  "778fc203e68ddeee5fd42214f199a3d43498f46cda75a60dc9286074d81c9fff",
+                     "url":  "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_02/asphalt_02_rough_2k.png",
+                     "bytes":  2987659,
+                     "role":  "roughness"
+                 }
+             ],
+    "license":  "CC0"
+}

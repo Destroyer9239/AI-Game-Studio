@@ -83,8 +83,11 @@ func on_terminal(id: String) -> void:
 
 func save_game(file: String="") -> Error:
 	if file.is_empty():file="user://studio_block_save.json" if world_spec=="res://world/city_block.json" else "user://studio_district_save.json"
+	return load("res://scripts/studio_save.gd").save_state(file,capture_save_data())
+
+func capture_save_data()->Dictionary:
 	for id in streamer.loaded:streamer.states[id]=streamer.loaded[id].capture_state()
-	return load("res://scripts/studio_save.gd").save_state(file,{"player":[player.position.x,player.position.y,player.position.z],"yaw":player.rotation.y,"chunks":streamer.states,"objective":objective_state,"environment":director.snapshot(),"settings":{"quality":quality}})
+	return {"player":[player.position.x,player.position.y,player.position.z],"yaw":player.rotation.y,"chunks":streamer.states,"objective":objective_state,"environment":director.snapshot(),"settings":{"quality":quality}}
 
 func load_game(file: String="") -> bool:
 	if file.is_empty():file="user://studio_block_save.json" if world_spec=="res://world/city_block.json" else "user://studio_district_save.json"
@@ -137,6 +140,8 @@ func _process(delta: float) -> void:
 		await RenderingServer.frame_post_draw
 		if get_viewport().get_texture().get_image().save_png(capture)!=OK:push_error("Playable capture failed");get_tree().quit(1);return
 		var data:=metrics()
+		var captured_image:=get_viewport().get_texture().get_image()
+		data["capture_size"]=[captured_image.get_width(),captured_image.get_height()]
 		if not report.is_empty():
 			var file:=FileAccess.open(report,FileAccess.WRITE);file.store_string(JSON.stringify(data,"  "))
 		print("PLAYABLE_PREVIEW_PASS: ",data)

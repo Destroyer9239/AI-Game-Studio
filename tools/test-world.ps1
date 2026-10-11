@@ -19,6 +19,7 @@ Invoke-StudioProcess 'hero-surface-tests' (Join-Path $config.runtime 'python_emb
 Invoke-StudioProcess 'hero-navigation' (Resolve-StudioTool godot) @('--headless','--path',(Get-StudioPath 'game'),'--script','res://scripts/test_hero_navigation.gd') 90 'HERO_NAVIGATION_PASS'
 Invoke-StudioProcess 'district-contract' $py @('-3.11','tools/world/test_district.py') 90 'OK'
 Invoke-StudioProcess 'district-runtime' (Resolve-StudioTool godot) @('--headless','--path',(Get-StudioPath 'game'),'--script','res://scripts/test_district.gd') 120 'DISTRICT_TEST_PASS'
+Invoke-StudioProcess 'last-light-mission' (Resolve-StudioTool godot) @('--headless','--path',(Get-StudioPath 'game'),'--script','res://scripts/test_last_light.gd') 120 'LAST_LIGHT_TEST_PASS'
 Invoke-StudioProcess 'material-regression' (Join-Path $config.runtime 'python_embeded/python.exe') @('tools/imagegen/test_environment.py') 120 'OK'
 foreach($entry in @('test-automation.ps1','pipeline.ps1')) {
  [string[]]$arguments=if($entry -eq 'pipeline.ps1'){@('validate')}else{@()}

@@ -114,5 +114,5 @@ func _process(delta: float) -> void:
 	var materials: Dictionary=load("res://scripts/city_chunk.gd").shared
 	if materials.has("road"):
 		materials.road.roughness=lerpf(.87,.16,wetness)
-		materials.road.albedo_color=Color(.055,.065,.075).lerp(Color(.018,.026,.035),wetness)
+		materials.road.albedo_color=Color(.8,.8,.8).lerp(Color(.35,.40,.44),wetness)
 	apply_state()

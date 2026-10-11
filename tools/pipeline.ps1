@@ -66,7 +66,7 @@ function Validate-Project {
     Import-Project
     Invoke-StudioProcess 'godot-resource-test' $godot @('--headless','--path',$gamePath,'--script','res://scripts/validate_resources.gd') 90 'PIPELINE_RESOURCES_PASS'
     Invoke-StudioProcess 'godot-regression' $godot @('--headless','--path',$gamePath,'--script','res://scripts/validate_pipeline.gd') 90 'PIPELINE_SCENE_PASS'
-    Invoke-StudioProcess 'godot-main-runtime' $godot @('--headless','--path',$gamePath,'--quit-after','120','--fixed-fps','60')
+    Invoke-StudioProcess 'godot-main-runtime' $godot @('--headless','--path',$gamePath,'--script','res://scripts/test_main_runtime.gd') 90 'PIPELINE_MAIN_PASS'
 }
 function Preview-Asset {
     $preview = Get-StudioPath "generated/previews/$Asset.png"

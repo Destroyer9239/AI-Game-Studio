@@ -2,6 +2,15 @@
 
 Agent-driven 3D game development workspace.
 
+Current playable release: **Cinder / Last Light**, a short first-person repair
+mission across the existing two-block district. Open `Play-Last-Light.cmd` to play.
+The mission has a start/settings menu, three objectives, checkpoint saving and an
+ending. It supports 4K output; this remains an improved prototype, not AAA-quality
+art or a full campaign. See [current acceptance](docs/LAST_LIGHT_RESULTS.md).
+
+Agent entry point: `tools/last-light.ps1 validate`, `launch`, or
+`benchmark -Quality 2 -FourK`. The original fighter scene and regressions remain.
+
 The Blender → GLB → Godot pipeline is automated and verified. Ask the agent to
 create an original asset, validate the project, render a preview or launch the
 game; the agent runs the tools for you.
@@ -19,8 +28,10 @@ See [Automated workflow](docs/AUTOMATED_WORKFLOW.md),
 [original pipeline test](docs/PIPELINE_TEST.md).
 
 Godot resolution prefers `godot` on PATH, then `C:\Tools\Godot\godot.exe`.
-No new software is required for the current 3D pipeline. Local AI image generation
-is prepared but awaits the proposed ComfyUI/model installation.
+No new software is required for the current pipeline. ComfyUI, SDXL and Real-ESRGAN
+are already installed locally; their lifecycle and inference acceptance are recorded
+in the project documentation. Last Light additionally uses six verified CC0 Poly
+Haven texture maps; gameplay has no network dependency.
 
 The provider layer supports offline generation plans, one-use paid approvals,
 Meshy REST and Higgsfield official CLI adapters, and local ComfyUI jobs.

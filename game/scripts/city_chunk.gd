@@ -84,6 +84,14 @@ func _ready() -> void:
 	box("Road",Vector3(0,.015,0),Vector3(64,.03,8),mat("road",Color(.055,.065,.075),0,.87))
 	shared.road.normal_enabled=true;shared.road.normal_texture=pavement.normal_texture
 	shared.road.uv1_triplanar=true;shared.road.uv1_world_triplanar=true;shared.road.uv1_scale=Vector3(.5,.5,.5)
+	# CC0 source maps retain their real normal/roughness roles and world-space scale.
+	for pair in [[pavement,"brushed_concrete"],[shared.road,"asphalt_02"]]:
+		var surface:StandardMaterial3D=pair[0]
+		var folder:String="res://assets/textures/polyhaven/"+pair[1]+"/"
+		surface.albedo_texture=load(folder+"basecolor.png")
+		surface.normal_texture=load(folder+"normal.png")
+		surface.roughness_texture=load(folder+"roughness.png")
+		surface.normal_scale=.5;surface.albedo_color=Color(.8,.8,.8)
 	var steel := mat("steel",Color(.055,.075,.09),.8,.3)
 	var lamp_material := mat("lamp_emitter",Color(.8,.62,.34),0,.4)
 	lamp_material.emission_enabled=true;lamp_material.emission=Color(1,.65,.28);lamp_material.emission_energy_multiplier=2
@@ -194,6 +202,16 @@ func _ready() -> void:
 				var source_material: Material=mesh_node.mesh.surface_get_material(surface)
 				if source_material and source_material.resource_name.begins_with("Blue_Glazing"):
 					mesh_node.set_surface_override_material(surface,shared["window_room"])
+				elif source_material is StandardMaterial3D and source_material.resource_name.begins_with("Warm_Mineral_Facade"):
+					var material_key:String="facade_"+b.asset
+					if not shared.has(material_key):
+						var facade:StandardMaterial3D=source_material.duplicate()
+						facade.albedo_texture=pavement.albedo_texture
+						facade.normal_texture=pavement.normal_texture;facade.normal_enabled=true;facade.normal_scale=.35
+						facade.roughness_texture=pavement.roughness_texture
+						facade.albedo_color=facade.albedo_color.lerp(Color.WHITE,.4)
+						shared[material_key]=facade
+					mesh_node.set_surface_override_material(surface,shared[material_key])
 		var sign := Label3D.new()
 		sign.text = {"market_a":"CINDER / EXCHANGE", "relay_a":"RELAY 07"}.get(b.id,"CINDER / WORKS")
 		sign.font_size = 48
