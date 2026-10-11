@@ -1,5 +1,12 @@
 # Current checkpoint
 
+2026-10-10: The user selected Unreal Engine 5. Read UNREAL_PIPELINE.md before new
+work. Godot Last Light was preserved and pushed in 3aea70d; its actual tests and
+4K metrics are in LAST_LIGHT_RESULTS.md. The new UE project is separate at
+unreal/Cinder/Cinder.uproject. Do not restart the studio, delete Godot, or treat
+UE setup as a completed gameplay/art migration. The old chronological notes below
+are historical and do not override the new engine selection.
+
 2026-09-09 continuation supersedes the historical entries below. Recovery b18183d
 preserved validated compressed imports. Current district checkpoint is PROTOTYPE:
 separate district_demo.tscn streams two generated blocks; original one-block scene

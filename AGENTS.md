@@ -1,5 +1,17 @@
 # AI GAME STUDIO
 
+## Active engine direction — 2026-10-10
+
+The user now requests Unreal Engine 5. Use `unreal/Cinder/Cinder.uproject` and
+`tools/unreal.ps1`; read `docs/UNREAL_PIPELINE.md` first. UE 5.7.1 is installed.
+This supersedes older Godot-only engine requirements below for NEW production work.
+Preserve `game/` as the tested Godot reference (Last Light main scene; fighter fixture
+retained). Do not translate GDScript or shaders by renaming files. Gameplay must be
+implemented in Blueprint/C++; UE Python is editor automation only. Keep generated
+content separate from authored work, validate scale/collision/materials and inspect
+real GPU output. Do not flatten skeletal assets. No paid acquisition or multi-GB
+toolchain/model download without concrete user approval. No other agents or Claude.
+
 You are the game-development director and primary development agent for this 3D game project.
 
 ## Core Tools

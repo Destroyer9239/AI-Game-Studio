@@ -26,5 +26,17 @@ generated/backend/
 *.ckpt
 *.pth
 *.pt
+unreal/**/Binaries/
+unreal/**/DerivedDataCache/
+unreal/**/Intermediate/
+unreal/**/Saved/
+unreal/Cinder/Content/FirstPerson/
+unreal/Cinder/Content/Characters/
+unreal/Cinder/Content/Input/
+unreal/Cinder/Content/LevelPrototyping/
+unreal/Cinder/Content/__ExternalActors__/
+unreal/Cinder/Content/__ExternalObjects__/
+unreal/Cinder/Content/Cinder/Generated/
+generated/unreal/
 generated/material-work/
 blender/projects/unit_*.blend

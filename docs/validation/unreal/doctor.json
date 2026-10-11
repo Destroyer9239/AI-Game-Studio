@@ -1,0 +1,17 @@
+{
+  "version": {
+    "MajorVersion": 5,
+    "MinorVersion": 7,
+    "PatchVersion": 1,
+    "Changelist": 48512491,
+    "CompatibleChangelist": 47537391,
+    "IsLicenseeVersion": 0,
+    "IsPromotedBuild": 1,
+    "BranchName": "++UE5+Release-5.7"
+  },
+  "ram_bytes": 34049167360,
+  "free_bytes": 1309266702336,
+  "editor_exists": true,
+  "vswhere_exists": false,
+  "engine": "C:\\Program Files\\Epic Games\\UE_5.7"
+}

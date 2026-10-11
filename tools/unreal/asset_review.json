@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "target_engine": "UE 5.7.1",
+  "reviews": [
+    {"family":"fighter and three building blend sources","decision":"reuse as migration fixtures","quality":"prototype","route":"static FBX adapter","remaining":"original materials, modular sections, collision refinement, LOD and art review"},
+    {"family":"Poly Haven 2K asphalt/concrete","decision":"reuse","license":"CC0 with recorded source hashes","route":"explicit UE material graphs; OpenGL normal green channel flipped","remaining":"asphalt UE master and real-world UV density review"},
+    {"family":"Godot shaders and scenes","decision":"rebuild in UE","route":"material graphs, Blueprints and eventual C++","remaining":"window interior illusion, wetness, rain, streaming and gameplay parity"},
+    {"family":"worker robot","decision":"retain technical reference","route":"dedicated skeletal import required","remaining":"skeleton, skin, animation and root-motion acceptance; never static-flatten"},
+    {"family":"ComfyUI/SDXL/Real-ESRGAN","decision":"retain offline art tools","route":"concept/reference/source-map production with provenance","remaining":"human/agent art acceptance; images are not automatically geometry or calibrated PBR"},
+    {"family":"Epic first-person template","decision":"local development foundation","route":"copy from installed UE templates on setup","license":"Epic-provided engine template; not CC0; source packs not redistributed in this repository","remaining":"replace prototype presentation and implement Cinder mission"},
+    {"family":"Fab/third-party packs","decision":"not acquired","route":"review exact license, cost, art match and performance before acquisition","remaining":"user-authorized selection; no paid credits or downloads performed"}
+  ]
+}

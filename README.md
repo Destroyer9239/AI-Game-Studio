@@ -2,6 +2,11 @@
 
 Agent-driven 3D game development workspace.
 
+**Active direction: Unreal Engine 5.7.1.** Open `Open-Cinder-Unreal.cmd` for the
+new project. Read [Unreal setup and migration](docs/UNREAL_PIPELINE.md) for commands,
+verified capabilities, asset decisions and remaining toolchain work. The Godot
+release below is preserved as a working reference, not silently replaced or deleted.
+
 Current playable release: **Cinder / Last Light**, a short first-person repair
 mission across the existing two-block district. Open `Play-Last-Light.cmd` to play.
 The mission has a start/settings menu, three objectives, checkpoint saving and an
