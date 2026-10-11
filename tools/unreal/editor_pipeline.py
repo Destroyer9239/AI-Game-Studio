@@ -11,7 +11,8 @@ import unreal as u
 ROOT = Path(__file__).resolve().parents[2]
 REPORT = Path(os.environ['CINDER_REPORT_DIR'])
 ACTION = os.environ['CINDER_ACTION']
-BASE = '/Game/Cinder/Generated'
+BASE = os.environ.get('CINDER_CONTENT_ROOT', '/Game/Cinder/Generated')
+OUTPUT = Path(os.environ.get('CINDER_OUTPUT_ROOT', str(ROOT/'generated/unreal')))
 MAP = BASE + '/Maps/L_Pipeline'
 assets = u.AssetToolsHelpers.get_asset_tools()
 library = u.EditorAssetLibrary
@@ -84,7 +85,7 @@ def spawn(cls, name, location, rotation=(0,0,0)):
     return actor
 
 def build():
-    records=json.loads((ROOT/'generated/unreal/source/manifest.json').read_text())
+    records=json.loads((OUTPUT/'source/manifest.json').read_text())
     palette=[material('M_Structure',(.04,.07,.085),.45,.65), material('M_Hull',(.4,.44,.42)),material('M_Accent',(.55,.19,.025),.4,.5)]
     imported=[]
     for record in records:
@@ -132,10 +133,10 @@ def build():
     u.get_editor_subsystem(u.UnrealEditorSubsystem).set_level_viewport_camera_info(camera.get_actor_location(),camera.get_actor_rotation())
     check(levels.save_current_level(),'Saved pipeline map')
     library.save_directory(BASE)
-    (ROOT/'generated/unreal/import_manifest.json').write_text(json.dumps(imported,indent=2))
+    (OUTPUT/'import_manifest.json').write_text(json.dumps(imported,indent=2))
 
 def validate():
-    records=json.loads((ROOT/'generated/unreal/import_manifest.json').read_text())
+    records=json.loads((OUTPUT/'import_manifest.json').read_text())
     for record in records:
         check(hashlib.sha256((ROOT/record['source']).read_bytes()).hexdigest()==record['source_sha256'],record['id']+' source not stale')
         check(hashlib.sha256((ROOT/record['export']).read_bytes()).hexdigest()==record['sha256'],record['id']+' export hash verified')
@@ -168,7 +169,7 @@ try:
     validate()
     if ACTION=='preview':
         camera=next(a for a in actors.get_all_level_actors() if a.get_actor_label()=='Pipeline_ReviewCamera')
-        output=ROOT/'generated/previews/unreal_pipeline.png'
+        output=Path(os.environ.get('CINDER_PREVIEW', str(ROOT/'generated/previews/unreal_pipeline.png')))
         output.parent.mkdir(parents=True,exist_ok=True)
         if output.exists():output.unlink()
         u.EditorPythonScripting.set_keep_python_script_alive(True)

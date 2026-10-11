@@ -1,4 +1,4 @@
-param([ValidateSet('doctor','setup','export','build','validate','test','preview','launch','play','package','smoke','accept')][string]$Action='doctor',[string]$EngineRoot=$env:UE_ENGINE_ROOT)
+param([ValidateSet('doctor','setup','export','build','validate','test','preview','launch','play','package','smoke','accept')][string]$Action='doctor',[string]$EngineRoot=$env:UE_ENGINE_ROOT,[ValidatePattern('^[a-z][a-z0-9-]*$')][string]$Game='cinder')
 . "$PSScriptRoot/studio-common.ps1"
 . "$PSScriptRoot/unreal/process.ps1"
 if(-not $EngineRoot){$EngineRoot='C:\Program Files\Epic Games\UE_5.7'}
@@ -7,6 +7,24 @@ if(-not(Test-Path $editor)){throw "UE 5.7 editor missing: $editor. Set UE_ENGINE
 $version=Get-Content (Join-Path $EngineRoot 'Engine/Build/Build.version') -Raw | ConvertFrom-Json
 if($version.MajorVersion -ne 5 -or $version.MinorVersion -ne 7){throw 'Pipeline pinned to UE 5.7; validate upgrades separately.'}
 $project=Get-StudioPath 'unreal/Cinder/Cinder.uproject'
+$contentRoot='/Game/Cinder/Generated'
+$outputRoot=Get-StudioPath 'generated/unreal'
+$preview=Get-StudioPath 'generated/previews/unreal_pipeline.png'
+if($Game -ne 'cinder'){
+ $descriptor=Get-StudioPath "games/$Game/game.json"
+ if(-not(Test-Path $descriptor)){throw "Unknown game: $Game"}
+ $gameConfig=Get-Content $descriptor -Raw | ConvertFrom-Json
+ $project=Get-StudioPath $gameConfig.project
+ $contentRoot=$gameConfig.generated_content
+ $outputRoot=Get-StudioPath "generated/unreal/$Game"
+ $preview=Get-StudioPath "generated/previews/$Game-pipeline.png"
+}
+if(-not(Test-Path $project)){throw "Project missing: $project"}
+$projectName=[IO.Path]::GetFileNameWithoutExtension($project)
+$env:CINDER_CONTENT_ROOT=$contentRoot
+$env:CINDER_OUTPUT_ROOT=$outputRoot
+$env:CINDER_PREVIEW=$preview
+New-Item -ItemType Directory -Force $outputRoot | Out-Null
 $projectDir=Split-Path $project
 $script:RunDirectory=Get-StudioPath ('generated/reports/unreal-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Force $script:RunDirectory | Out-Null
@@ -14,7 +32,7 @@ $env:CINDER_REPORT_DIR=$script:RunDirectory
 $env:CINDER_ACTION=$Action
 if($Action -eq 'accept'){
  foreach($stage in @('build','test','preview','package','smoke')){
-  & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/unreal.ps1" $stage -EngineRoot $EngineRoot
+  & (Get-StudioShell) -NoProfile -File "$PSScriptRoot/unreal.ps1" $stage -EngineRoot $EngineRoot -Game $Game
   if($LASTEXITCODE -ne 0){throw "Unreal acceptance failed at $stage"}
  }
  Write-Host 'UNREAL_ACCEPTANCE_PASS: build, play test, GPU preview, package and packaged launch'
@@ -64,16 +82,16 @@ if($Action -in @('launch','play')){
  Start-Process -FilePath (Join-Path $EngineRoot 'Engine/Binaries/Win64/UnrealEditor.exe') -ArgumentList (@($arguments | ForEach-Object {Format-StudioArgument $_}) -join ' ') -WindowStyle Normal
 }
 if($Action -eq 'package'){
- Invoke-UnrealProcess (Get-StudioShell) @('-NoProfile','-File',(Get-StudioPath 'tools/unreal/package.ps1'),'-EngineRoot',$EngineRoot,'-Project',$project,'-Output',(Get-StudioPath 'generated/unreal/package')) 'BUILD SUCCESSFUL' 1800
+ Invoke-UnrealProcess (Get-StudioShell) @('-NoProfile','-File',(Get-StudioPath 'tools/unreal/package.ps1'),'-EngineRoot',$EngineRoot,'-Project',$project,'-Output',"$outputRoot/package") 'BUILD SUCCESSFUL' 1800
 }
 if($Action -eq 'smoke'){
- $folder=Get-StudioPath 'generated/unreal/package/Windows/Cinder/Binaries/Win64'
- $binary=Get-ChildItem $folder -Filter 'Cinder*.exe' | Select-Object -First 1
+ $folder="$outputRoot/package/Windows/$projectName/Binaries/Win64"
+ $binary=Get-ChildItem $folder -Filter "$projectName*.exe" | Select-Object -First 1
  if(-not $binary){throw 'Packaged Cinder executable not found. Run package first.'}
  Invoke-UnrealProcess $binary.FullName @('-unattended','-RenderOffscreen','-windowed','-ResX=1920','-ResY=1080','-seconds=8','-stdout','-FullStdOutLogOutput',"-abslog=$script:RunDirectory/game.log") 'Bringing up level for play took:' 180
  $log=Get-Content "$script:RunDirectory/game.log" -Raw
- if(-not $log.Contains('/Game/Cinder/Generated/Maps/L_Pipeline')){throw 'Packaged game did not load the Cinder acceptance map'}
- @{status='PASS';action='packaged-smoke';map='/Game/Cinder/Generated/Maps/L_Pipeline';runtime_limit_seconds=8;executable=$binary.FullName} | ConvertTo-Json | Set-Content "$script:RunDirectory/result.json"
+ if(-not $log.Contains("$contentRoot/Maps/L_Pipeline")){throw 'Packaged game did not load the selected acceptance map'}
+ @{status='PASS';action='packaged-smoke';game=$Game;map="$contentRoot/Maps/L_Pipeline";runtime_limit_seconds=8;executable=$binary.FullName} | ConvertTo-Json | Set-Content "$script:RunDirectory/result.json"
 }
 $script:StudioStages | ConvertTo-Json -Depth 8 | Set-Content "$script:RunDirectory/stages.json"
 Write-Host "UNREAL_TOOL_PASS: $script:RunDirectory"

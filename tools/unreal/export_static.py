@@ -6,10 +6,11 @@ existing GLBs remain Godot/canonical interchange artifacts. Reject rigged inputs
 import bpy
 import hashlib
 import json
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "generated/unreal/source"
+OUT = Path(os.environ.get('CINDER_OUTPUT_ROOT', str(ROOT / 'generated/unreal'))) / 'source'
 OUT.mkdir(parents=True, exist_ok=True)
 records = []
 for asset in ("test_fighter", "foundry_building", "market_building", "relay_building"):

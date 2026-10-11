@@ -1,0 +1,8 @@
+{
+  "map": "/Game/SignalLost/Generated/Maps/L_Pipeline",
+  "executable": "C:\\Users\\ronan\\AI-Game-Studio\\generated\\unreal\\signal-lost\\package\\Windows\\SignalLost\\Binaries\\Win64\\SignalLost.exe",
+  "game": "signal-lost",
+  "runtime_limit_seconds": 8,
+  "status": "PASS",
+  "action": "packaged-smoke"
+}

@@ -2,6 +2,14 @@
 
 ## Active engine direction — 2026-10-10
 
+Latest user direction: Signal Lost is the active space game at
+games/signal-lost/unreal/SignalLost.uproject. Read games/README.md and its design/BRIEF.md.
+Use tools/unreal.ps1 with -Game signal-lost. Omitting that argument targets Cinder.
+The user now authorizes manually handing bounded tasks to Claude Code, then returning
+to Codex for review. This supersedes historical Claude prohibitions below. Do not
+automatically invoke Claude or other agents, and never edit concurrently in one checkout.
+Keep Cinder as the studio acceptance reference and Godot as the historical reference.
+
 The user now requests Unreal Engine 5. Use `unreal/Cinder/Cinder.uproject` and
 `tools/unreal.ps1`; read `docs/UNREAL_PIPELINE.md` first. UE 5.7.1 is installed.
 This supersedes older Godot-only engine requirements below for NEW production work.

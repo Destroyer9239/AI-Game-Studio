@@ -2,7 +2,13 @@
 
 Agent-driven 3D game development workspace.
 
-**Active direction: Unreal Engine 5.7.1.** Open `Open-Cinder-Unreal.cmd` for the
+**Active game: [Signal Lost](games/signal-lost/design/BRIEF.md)**, a third-person
+space game in UE 5.7.1. Open `Open-Signal-Lost.cmd`. See [studio games](games/README.md)
+and [Claude's first task](games/signal-lost/design/CLAUDE_TASK_01.md).
+Project foundation is separate from flight gameplay, which is the next milestone.
+Shared Unreal commands select it with `-Game signal-lost`.
+
+**Preserved Unreal reference:** Open `Open-Cinder-Unreal.cmd` for the
 new editor project, or `Play-Cinder-Unreal.cmd` for the packaged migration fixture.
 Read [Unreal setup and migration](docs/UNREAL_PIPELINE.md) for commands,
 verified capabilities, asset decisions and remaining toolchain work. The Godot

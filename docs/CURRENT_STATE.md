@@ -1,5 +1,13 @@
 # Current checkpoint
 
+2026-10-10 latest direction: Signal Lost, an original third-person single-player space
+game, now lives at games/signal-lost/unreal/SignalLost.uproject. Read games/README.md,
+games/signal-lost/design/BRIEF.md and reports/SETUP.md. Shared tools accept
+-Game signal-lost; defaults still target Cinder. Flight is the next Claude milestone,
+not implemented by project setup. The user will hand Claude's report to Codex for
+review. Historical instructions to port the Last Light mission are superseded for
+this new game. Existing projects remain intact.
+
 2026-10-10: The user selected Unreal Engine 5. Read UNREAL_PIPELINE.md before new
 work. Godot Last Light was preserved and pushed in 3aea70d; its actual tests and
 4K metrics are in LAST_LIGHT_RESULTS.md. The new UE project is separate at

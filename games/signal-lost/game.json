@@ -1,0 +1,7 @@
+{
+  "id": "signal-lost",
+  "title": "Signal Lost",
+  "project": "games/signal-lost/unreal/SignalLost.uproject",
+  "generated_content": "/Game/SignalLost/Generated",
+  "stage": "foundation; flight gameplay pending"
+}

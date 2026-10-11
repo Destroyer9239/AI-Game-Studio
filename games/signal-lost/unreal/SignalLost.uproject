@@ -1,0 +1,14 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.7",
+  "Category": "Games",
+  "Description": "Signal Lost space game - studio foundation",
+  "Plugins": [
+    {"Name": "AndroidFileServer", "Enabled": false},
+    {"Name": "PythonScriptPlugin", "Enabled": true, "TargetAllowList": ["Editor"]},
+    {"Name": "EditorScriptingUtilities", "Enabled": true, "TargetAllowList": ["Editor"]},
+    {"Name": "EnhancedInput", "Enabled": true},
+    {"Name": "GameplayStateTree", "Enabled": true},
+    {"Name": "ControlRig", "Enabled": true}
+  ]
+}

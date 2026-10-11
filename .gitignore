@@ -41,3 +41,17 @@ unreal/Cinder/Content/Cinder/Generated/
 generated/unreal/
 generated/material-work/
 blender/projects/unit_*.blend
+games/*/unreal/Binaries/
+games/*/unreal/DerivedDataCache/
+games/*/unreal/Intermediate/
+games/*/unreal/Saved/
+games/*/unreal/Build/**/FileOpenOrder/
+games/*/unreal/.vs/
+games/*/unreal/*.sln
+games/*/unreal/Content/FirstPerson/
+games/*/unreal/Content/Characters/
+games/*/unreal/Content/Input/
+games/*/unreal/Content/LevelPrototyping/
+games/*/unreal/Content/__ExternalActors__/FirstPerson/
+games/*/unreal/Content/__ExternalObjects__/FirstPerson/
+games/*/unreal/Content/*/Generated/
